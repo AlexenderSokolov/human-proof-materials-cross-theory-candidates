@@ -1,0 +1,9 @@
+# CT-001389 · An ascending chain of subsheaves of a constructible sheaf on a Noetherian scheme stabilises
+
+The Stacks Project Authors
+
+stacks-project:etale-cohomology.tex:local-snapshot-20261011 · Stacks Project source tree, file etale-cohomology.tex, corpus local snapshot 20261011
+
+[阅读PDF](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/jobs/j02033/build-root-r001/L3508/L3508_author_proof.pdf) · [来源：human-proof-materials / 001301](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/problems/001301/README.md)
+
+[题证原材料](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/jobs/j02033/package-root-r001/items/L3508_author_proof.tex)
