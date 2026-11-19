@@ -1,0 +1,9 @@
+# CT-006708 · Every F-algebra endomorphism of an algebraic field extension is an automorphism
+
+The Stacks Project Authors
+
+Stacks Project, chapter fields.tex (Fields) · Stacks Project git a04446e57ec1 (2026-07-28); file fields.tex; corpus local snapshot 20261012
+
+[阅读PDF](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/jobs/j07949/build-root-r001/L48359/L48359_author_proof.pdf) · [来源：human-proof-materials / 005887](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/problems/005887/README.md)
+
+[题证原材料](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/jobs/j07949/package-root-r001/items/L48359_author_proof.tex)
