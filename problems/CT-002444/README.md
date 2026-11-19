@@ -1,0 +1,9 @@
+# CT-002444 · For a smooth equidimensional scheme over a field the bivariant Chow ring is Chow homology and composition becomes intersection
+
+The Stacks Project Authors
+
+Stacks Project, chapter chow.tex (Chow Homology), section preparing the key lemma · Stacks Project source tree, file chow.tex, corpus local snapshot 20261012
+
+[阅读PDF](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/jobs/j03058/build-root-r001/L32078/L32078_author_proof.pdf) · [来源：human-proof-materials / 002488](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/problems/002488/README.md)
+
+[题证原材料](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/jobs/j03058/package-root-r001/items/L32078_author_proof.tex)

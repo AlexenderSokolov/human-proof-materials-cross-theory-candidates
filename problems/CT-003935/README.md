@@ -1,0 +1,9 @@
+# CT-003935 · Change of ring and pullback of presheaves of modules is left adjoint to pushforward
+
+The Stacks Project Authors
+
+Stacks Project, chapter sheaves.tex (Sheaves) · Stacks Project git a04446e57ec1 (2026-07-28); file sheaves.tex; corpus local snapshot 20261012
+
+[阅读PDF](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/jobs/j06261/build-root-r001/L22254/L22254_author_proof.pdf) · [来源：human-proof-materials / 004157](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/problems/004157/README.md)
+
+[题证原材料](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/jobs/j06261/package-root-r001/items/L22254_author_proof.tex)

@@ -1,0 +1,7 @@
+# CT-005834 · Birhizomic descent of every abelian presheaf on the sharp-localization site of a saturated sharp monoid
+
+Leo Herr, Jonathan Wise
+
+First Proof — Batch 3 · 5908aab1a1067d0e858294950537d0c471d7bb7f
+
+[阅读PDF](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/works/w00217/original/batch-3-problems/problem-01/problem.pdf) · [来源：human-proof-materials / 008253](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/problems/008253/README.md)

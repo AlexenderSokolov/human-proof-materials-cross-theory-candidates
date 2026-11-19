@@ -7,3 +7,5 @@ stacks-project:cohomology.tex:local-snapshot-20261011 · Stacks Project local so
 [阅读PDF](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/jobs/j00027/build-root-r001/900000053/900000053_author_proof.pdf) · [来源：human-proof-materials / 000061](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/problems/000061/README.md)
 
 [题证原材料](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/jobs/j00027/package-root-r001/items/900000053_author_proof.tex)
+
+[同题来源：human-proof-materials / 004002](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/problems/004002/README.md)

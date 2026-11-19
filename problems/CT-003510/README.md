@@ -1,0 +1,9 @@
+# CT-003510 · The locus of points of a fibre where a finite type module is flat is open in the fibre
+
+The Stacks Project Authors
+
+stacks-project:flat.tex:local-snapshot-20261011 · Stacks Project local source snapshot captured 2026-10-11; upstream commit not recorded
+
+[阅读PDF](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/jobs/j03489/build-root-r001/L36097/L36097_author_proof.pdf) · [来源：human-proof-materials / 003697](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/problems/003697/README.md)
+
+[题证原材料](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/jobs/j03489/package-root-r001/items/L36097_author_proof.tex)
