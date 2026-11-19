@@ -8,6 +8,7 @@
 | --- | --- | --- |
 | [000000](problems/000000/README.md) | 增广中位数：唯一极小数据的稠密性与非唯一处的奇异性 | [PDF](assets/items/100087/reader.pdf) |
 | [000001](problems/000001/README.md) | 二维非除子赋值生成元的严格变换公式 | [PDF](assets/items/100097/reader.pdf) |
+| [000002](problems/000002/README.md) | 将保浸入分裂转化为良好图操作 | [PDF](assets/items/101771/reader.pdf) |
 | [000003](problems/000003/README.md) | 以逆Volterra积分算子的函数表示卷积 | [PDF](assets/items/101823/reader.pdf) |
 | [000004](problems/000004/README.md) | CH与lightface Σ¹₃分离性的一致性构造 | [PDF](assets/items/103137/reader.pdf) |
 | [000005](problems/000005/README.md) | 保持交叉关系的塔平移与盒置换 | [PDF](assets/items/103343/reader.pdf) |
