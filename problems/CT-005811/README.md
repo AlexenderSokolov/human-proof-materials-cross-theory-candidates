@@ -5,3 +5,7 @@ Denis Auroux
 MIT18.966 Geometry of Manifolds, Spring2007 — Homework1 and official Solutions · Spring 2007
 
 [阅读PDF](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/works/w00046/original/homework1.pdf) · [来源：human-proof-materials / 008229](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/problems/008229/README.md)
+
+题面：[PDF 第 1–2 页](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/works/w00046/original/homework1.pdf#page=1)
+
+作者证明：[PDF 第 2 页](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/works/w00046/original/hw1_sol.pdf#page=2)

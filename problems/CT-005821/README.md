@@ -5,3 +5,7 @@ Daniel Spielman
 First Proof — Batch1 · 11a4d2cbe41d9ca1a21ec7b99b025a529d206ea4
 
 [阅读PDF](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/works/w00215/original/author-solutions/Spielman.pdf) · [来源：human-proof-materials / 008240](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/problems/008240/README.md)
+
+题面：[PDF 第 1 页](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/works/w00215/original/author-solutions/Spielman.pdf#page=1)
+
+作者证明：[PDF 第 1–8 页](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/works/w00215/original/author-solutions/Spielman.pdf#page=1)

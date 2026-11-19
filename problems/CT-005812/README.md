@@ -5,3 +5,7 @@ Pavel Etingof
 MIT18.705 Commutative Algebra, Fall2015 — fixed Additional Exercises1 and official solutions · Fall2015; Additional exercises1 and solutions as linked by Pavel Etingof course page
 
 [阅读PDF](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/works/w00045/original/attempt-20261112T050709.147509Z/exer18.705.pdf) · [来源：human-proof-materials / 008230](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/problems/008230/README.md)
+
+题面：[PDF 第 1 页](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/works/w00045/original/attempt-20261112T050709.147509Z/exer18.705.pdf#page=1)
+
+作者证明：[PDF 第 2–3 页](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/works/w00045/original/attempt-20261112T050709.147509Z/exersol18.705.pdf#page=2)

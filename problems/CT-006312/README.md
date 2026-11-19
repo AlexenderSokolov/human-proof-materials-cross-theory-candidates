@@ -1,0 +1,9 @@
+# CT-006312 · Review of eight standard properties of an abelian variety
+
+The Stacks Project Authors
+
+Stacks Project, chapter groupoids.tex (Groupoid Schemes) · Stacks Project git a04446e57ec1 (2026-07-28); file groupoids.tex; corpus local snapshot 20261012
+
+[阅读PDF](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/jobs/j02476/build-root-r001/L30406/L30406_author_proof.pdf) · [来源：human-proof-materials / 006058](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/problems/006058/README.md)
+
+[题证原材料](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/jobs/j02476/package-root-r001/items/L30406_author_proof.tex)

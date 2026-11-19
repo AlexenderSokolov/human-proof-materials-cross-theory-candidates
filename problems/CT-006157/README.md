@@ -1,0 +1,9 @@
+# CT-006157 · Every formula has a formation sequence
+
+The Open Logic Project contributors
+
+Open Logic Project, unit propositional logic syntax and semantics · Open Logic Project git 1e960beff9ed (2026-08-14); unit content/propositional-logic/syntax-and-semantics; corpus local snapshot 20261013
+
+[阅读PDF](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/jobs/j07761/build-root-r001/L46294/L46294_author_proof.pdf) · [来源：human-proof-materials / 005663](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/problems/005663/README.md)
+
+[题证原材料](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/jobs/j07761/package-root-r001/items/L46294_author_proof.tex)
