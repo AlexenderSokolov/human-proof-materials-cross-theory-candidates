@@ -1,0 +1,9 @@
+# CT-002132 · The flat pullback map on cycles descends to a map on Chow groups with the expected degree shift
+
+The Stacks Project Authors
+
+Stacks Project, chapter chow.tex (Chow Homology), section preparing the key lemma · Stacks Project source tree, file chow.tex, corpus local snapshot 20261012
+
+[阅读PDF](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/jobs/j03093/build-root-r001/L32055/L32055_author_proof.pdf) · [来源：human-proof-materials / 002249](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/problems/002249/README.md)
+
+[题证原材料](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/jobs/j03093/package-root-r001/items/L32055_author_proof.tex)
