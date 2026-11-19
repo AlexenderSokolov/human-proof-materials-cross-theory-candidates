@@ -1,10 +1,10 @@
-# 000001 · 二维非除子赋值生成元的严格变换公式
+# CT-000002 · 二维非除子赋值生成元的严格变换公式
 
 Charles Li
 
 Dual graphs and generating sequences of non-divisorial valuations on two-dimensional function fields · arXiv:1311.1542v3 (CC BY 4.0)
 
-[固定版本原库条目](https://github.com/AlexenderSokolov/human-proof-materials-reviewed/blob/332171534c86deb020cb395a0bcb898ee458f90f/problems/000001/README.md)
+[来源：human-proof-materials-reviewed / 000001](https://github.com/AlexenderSokolov/human-proof-materials-reviewed/blob/332171534c86deb020cb395a0bcb898ee458f90f/problems/000001/README.md)
 
 - [阅读 PDF](../../assets/items/100097/reader.pdf)
 - [作者题证 TeX](../../assets/items/100097/derived/100097.tex)
