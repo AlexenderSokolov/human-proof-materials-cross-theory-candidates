@@ -1,0 +1,226 @@
+\documentclass[10pt,a4paper]{amsart}
+\usepackage[margin=19mm]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage[scr=rsfs,cal=euler]{mathalfa}
+\usepackage{xfrac}
+\usepackage[unicode,hidelinks,bookmarks=false]{hyperref}
+\newcommand{\ie}{i.e.\ }
+\newcommand{\cf}{cf.\ }
+\newcommand{\resp}{respectively\ }
+\newcommand{\Subsection}{\subsection}
+\providecommand{\nobreakdash}{\nobreak\hbox{-}}
+\setlength{\emergencystretch}{2em}
+\multlinegap0pt
+\usepackage{xcolor}
+\newtheorem{theorem}{Theorem}
+\def\bbR{\mathbb{R}}
+\title[On $(i)$-Curves in Blowups]{On $(i)$-Curves in Blowups of $\bbP^r$}
+\author{Olivia Dumitrescu, Rick Miranda}
+\date{Source: arXiv:2104.14141v4 (CC BY 4.0)}
+\def\bbP{\mathbb{P}}
+\def\calO{\mathcal{O}}
+\allowdisplaybreaks
+\makeatletter
+\newlabel{HardConjecture}{{\textup{source line 445}}{}}
+\newlabel{projection-1lemma}{{\textup{source line 1259}}{}}
+\newlabel{standardCremona}{{\textup{source line 554}}{}}
+\makeatother
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\begin{document}
+
+\maketitle
+\noindent\textbf{Reviewed difficulty: H2. Legacy noncounting; count 0.} The H2 burden includes the specialized Cremona action and invariant intersection pairing at 633--669, the complete normal-bundle and movability induction at 3070--3108, and the selected finite Weyl-orbit/facet identification. The independently attributed effective-cone inequalities at 3206--3220 are mature input. Source notation note: the selected formulas retain the printed $n/r$ notation, the missing $h$ in 3272 and the displayed $t\leq l$ range in 3291; the adjacent general range in 3274 and the odd-dimensional top class in 3286 identify these local notation omissions. No formula is replaced.\par\medskip
+
+\noindent\emph{Source and licence.} On $(i)$-Curves in Blowups of $\bbP^r$. Version arXiv:2104.14141v4 (CC BY 4.0), distributed by arXiv under the Creative Commons Attribution 4.0 International licence, \url{http://creativecommons.org/licenses/by/4.0/}, as recorded in the arXiv licence metadata for this exact version and shown on the abstract page \url{https://arxiv.org/abs/2104.14141v4}. Full licence notice: \path{licenses/arxiv-2104.14141-CC-BY-4.0.txt}.\par\smallskip
+
+
+\noindent\textit{Editorial scope.} Selected author statement at source0.tex 3254--3259 and complete author proof at 3261--3297. Necessary author inputs and any dedicated auxiliary chain are displayed below. Original mathematical text, hypotheses, formulas and source version are retained.\par\smallskip
+\section*{Author context (source 404--406)}
+Let us consider the rational variety $Y=Y_s^r$
+defined as the blowup of $\bbP^r$ at $s$ general points $p_1,\ldots,p_s$,
+with blowup map $\pi:Y \to \bbP^r$.
+
+\section*{Author context (source 633--669)}
+\begin{proposition}\label{CremonaAY}
+Fix any $(r+1)$-subset $I \subset \{1,2,\ldots, s\}$.
+\begin{itemize}
+\item[(a)]
+The action of $\phi_I$ on $A^{r-1}(Y^r_s)$ is given by sending $dh-\sum_i m_i e_i$ to $d'h-\sum_i m_i' e_i$ where
+\begin{align*}
+d' &= rd-(r-1)\sum_{i\in I} m_i =d+(r-1)t_{r-1} \\
+m_i' &= d - \sum_{j\in I, j \neq i} m_j = m_i + t_{r-1} \;\;\text{for}\;\; i \in I \\
+m_i' &= m_i \;\;\text{for}\;\; i \notin I
+\end{align*}
+for $t_{r-1} = d - \sum_{i \in I} m_i$.  It has order two.
+In particular
+$\phi_I(h) = rh-\sum_{i\in I} e_i$,
+$\phi_I(e_j) = (r-1)h-\sum_{i\in I, i\neq j} e_j$ if $j\in I$,
+and $\phi_I(e_j) = e_j$ if $j \notin I$.
+
+\item[(b)]
+The action of $\phi_I$ on $A^1(Y^r_s)$ is given by sending $dH-\sum_i m_i E_i$ to $d'H-\sum_i m_i' E_i$ where
+\begin{align*}
+d' &= rd - \sum_{j\in I}m_j = d+t_1 \\
+m_i' &= (r-1)d - \sum_{j\in I, j\neq i} m_j = m_i + t_1 \;\;\text{for}\;\; i \in I \\
+m_i' &= m_i \;\;\text{for}\;\; i \notin I
+\end{align*}
+for $t_1 = (r-1)d - \sum_{i \in I} m_i$.  It has order two.
+In particular
+$\phi_I(H) = rH-(r-1)\sum_{i\in I} E_i$,
+$\phi_I(E_j) = H-\sum_{i\in I, i\neq j} E_j$ if $j\in I$,
+and $\phi_I(E_j) = E_j$ if $j \notin I$.
+
+\item[(c)]
+The intersection pairing between $A^1(Y)$ and $A^{r-1}(Y)$ is $\phi_I$-invariant, i.e.,
+for any class $D \in A^1(Y)$ and $C \in A^{r-1}(Y)$, we have
+\[
+(D \cdot C) = (\phi_I(D) \cdot \phi_I(C)).
+\]
+\end{itemize}
+\end{proposition}
+
+\section*{Author context (source 1007--1027)}
+\begin{definition}\label{def3.5}
+\begin{enumerate} Fix $i \in \{-1,0,1\}$, and let $Y=Y^r_s$.
+\item An \emph{$(i)$-curve} in $Y$ is a smooth rational  irreducible curve
+whose normal bundle splits as a direct sum of $\calO(i)$ line bundles.
+\item A \emph{numerical $(i)$-curve} in $Y$ is an smooth rational curve $C$ such that
+$(K_Y \cdot C) = -2 -i(r-1)$
+\item An \emph{$(i)$-Weyl line} is a curve that is the Cremona image 
+(under the Weyl group) of the proper transform of a line through $1-i$ of the $s$ points.
+\item An \emph{$(i)$-curve class} is the class $c$ of an $(i)$-curve.
+\item A \emph{numerical $(i)$-class} is a curve class $c \in A^{r-1}$ such that
+$(K_Y \cdot c ) = -2 -i(r-1)$
+\item An \emph{$(i)$-Weyl class} is a class $c \in A^{r-1}$
+which is in the orbit of the class of an $(i)$-Weyl line
+(equivalently, a class of an $(i)$-Weyl line). Hence
+\begin{enumerate}
+\item a $(-1)$-Weyl class is in the orbit of $h-e_{1}-e_{2}$; 
+\item a $(0)$-Weyl class is in the orbit of $h-e_1$;
+\item a $(1)$-Weyl class is in the orbit of $h$.
+\end{enumerate}
+\end{enumerate}
+\end{definition}
+
+\section*{Author context (source 3049--3049)}
+A \emph{movable} curve in $Y^r_s$ is a curve that moves in a large enough family so that a general point is contained in at least one member of the family.
+
+\section*{Author context (source 3070--3108)}
+\begin{proposition}\label{ConjectureProofTheorem}
+Conjecture \ref{HardConjecture} is true for $i = 0$ and $i=1$:
+for all $r$, $s$, every $(i)$-Weyl line is an $(i)$-curve.
+\end{proposition}
+
+\medskip\noindent{\bf Proof:}
+The proof of (a) is relatively straightforward, after we make the following observation.
+First, the statement is true for the actual line through $1$ or $0$ points (the initial case of a $(0)$-Weyl line or a $(1)$-Weyl line): the normal bundle of a line is a direct sum of $\calO(1)$'s, and upon blowing up, the normal bundle is twisted by $\calO(-1)$.
+
+The argument proceeds by induction on the number of standard Cremona transformations required to arrive at the given $(i)$-Weyl line.  When that number is zero, we have the initial case above.  When that number is one, the curve is always a rational normal curve, and has the expected balanced normal bundle too.
+
+If $C$ is an $(i)$-Weyl line that is obtained by applying $k$ standard Cremona transformations to a line, then we may write $C = \phi(C')$ where $C'$ is obtained by applying $k-1$ such transformations to a line, and $\phi$ is a standard Cremona transformation. By induction, $C'$ will be an $(i)$-curve in $Y^r_s$.
+
+The standard Cremona transformation $\phi$ on $Y^r_s$,
+as explained in Section \ref{standardCremona},
+is factored by systematically blowing up and down the proper transforms of the linear subspaces of codimension at least two spanned by subsets of the $r+1$ initial base points.  Hence if these proper transforms are disjoint from the curve $C'$, the curve $C$ will be isomorphic to $C'$, and will have the same normal bundle, proving that $C$ is also an $(i)$-curve in the transformed $Y^r_s$.  It suffices to show that $C'$ is disjoint from the proper transforms of the codimension two subspaces, since these contain the others.
+
+Let $\psi$ be the composition of standard Cremona transformations 
+that take $C'$ back to a line.  
+To show that $C'$ is disjoint from 
+the finite number of proper transforms 
+of the codimension two subspaces $\{L_\alpha\}$ in question, 
+it suffices to show that $\psi(C')$ is disjoint from the transforms $\psi(L_\alpha)$,
+which are a finite number of codimension two subvarieties in $Y^r_s$.
+
+This is obvious for $i=1$: the line $\psi(C')$ is a general line, and can be chosen to be disjoint from any finite set of codimension two subvarieties.
+For $i=0$, the line $\psi(C')$ is a line through one of the $s$ points, but is otherwise general;
+in this case a simple dimension count shows that the general member of the $(r-1)$-dimensional family of such lines can be chosen to be disjoint from the finite set of codimension two subvarieties as well.
+
+%Statement (b) is obvious for $r=2$, so we will assume $r \geq 3$.
+%Since the $(-1)$-Weyl lines are transforms of lines through two of the $s$ points,
+%these lines are finite in number, and so the above argument that uses the generality of the set of such lines doesn't work.  Instead we rely on an argument that uses projection, and an induction on the dimension $r$.
+
+%By Lemma \ref{projection-1lemma}, there is a base point (among the $s$ points),
+%the projection from which ($\pi$) gives a $(-1)$-Weyl line class,
+%and hence by induction a $(-1)$-curve $\pi(C)$.
+%Hence we conclude that $C$ is a $(-1)$ curve also: the normal bundle of the projected curve $\pi(C)$ is a quotient of the normal bundle of $C$ by $\calO(-1)$, and so if that normal bundle is a direct sum of $\calO(-1)$'s, so must be the normal bundle of $C$.
+
+\rightline{QED}
+
+\section*{Author context (source 3206--3230)}
+\begin{theorem}\cite[Theorem 5.1]{bdp3}
+
+{\textbf Case 1}. If the number of points $s=r+2$,
+a divisor $D$ is effective if and only if
+
+$$(A_{i}): d\geq m_i \text{ and } rd \geq \sum_{j=1, j\neq i}^{n+3} m_j$$
+
+{\textbf Case 2}.  If the number of points $s=r+3$,
+then a divisor $D$ is effective if and only if
+inequalities $(A_{i})$ together with $(B_{n, I(t)})$ hold, where
+
+$$(B_{n, I(t)}): \text{  }  k_{t, I(t)}:=[(t+1)n - t] d - t \sum_{i=1}^{r+3} m_i - \sum_{i\in I} m_i\geq 0$$
+ 
+for every  set $I(t)$ so that $|I(t)|=r-2t+1$ where $-1\leq t \leq l+\alpha$ and $r=2l+\alpha$, $\alpha\in \{0, 1\}$.
+\end{theorem}
+
+
+We will recall  that in the Mori Dream Space cases,
+the Weyl group and therefore the Weyl orbits
+of a general line $h$ and a pencil of lines through one point $h-e_i$ are finite.
+
+Denote the collection of all $(0)$- and $(1)$-curves on the Mori Dream Space $Y$ by
+\begin{equation}\label{equation1}
+\mathcal{E}:=\{\text{(i)-Weyl line}  \;\text{ for }\; i \in \{0,1\}\} \subset A^{r-1}(Y).
+\end{equation}
+\section*{Selected author statement}
+\begin{theorem}\label{effective cone}
+ If $s \leq r+3$ then
+ $$\text{Eff}_{\mathbb{R}} Y^r_s = \mathcal{E}_{\geq 0}.$$
+In other words, $(0)$- and $(1)$-Weyl lines give the extremal rays
+for the cone of movable curves in $\mathbb{P}^r$ with $r+3$ points blown up.
+\end{theorem}
+\section*{Complete author proof}
+\begin{proof}
+We will first compute the set $\mathcal{E} \subset A^{r-1}(Y)$ of Equation \eqref{equation1}.
+
+It is easy to see that $(0)$-Weyl lines consists only in a pencil of lines through one point and the rational normal curves of degree $r$ passing through $r+2$ general points.
+\[
+\alpha_{i}=h-e_i \text{  and  } \alpha'_{i}=nh - \sum_{j\neq i} e_j.
+\]
+The $(0)$-Weyl lines $\alpha_{i}$ give the facets $(A_{i})$.
+
+We will leave to the reader to check that the $(1)$-curves are of the form
+\[
+\beta_{t, I(t)} = (t+1)r-t - \sum_{i\in I(t)} (t+1)e_i -  \sum_{i\notin I(t)} t e_i
+\]
+for every $-1\leq t\leq l+\alpha$ and $|I(t)|=r-2t+1$.
+Indeed, ordering the multiplicities in a decreasing order,
+one can see that performing a standard Cremona transformation to the last $r+1$ points, then
+\[
+Cr(\beta_{t, I(t)}) = \beta_{t+1, I(t+1)}.
+\]
+
+The $(1)$-Weyl line of minimal degree correspond to $t=-1$,
+i.e. the general hyperplane class $\beta_{-1, I(-1)}=h$,
+while $(1)$-Weyl line of maximal degree correspond to $t$ a half of $r$
+i.e. when
+for $\alpha=0$ ($r$ is even) is the quasihomogeneous curve $\beta_{l, I(l)}$,
+and if $\alpha=1$, a homogeneous curve $\beta_{l+1, I(l+1)}$.
+The $(1)$-Weyl line $\beta_{t, I(t)}$ with $|I(t)|=r-2t+1$ give facets $(B_{r,I(t)})$.
+We obtain
+\begin{equation}
+\begin{split}
+ \mathcal{E}&=\{ \{\alpha_i, \alpha'_i\}_{1\leq i\leq r+3}, \text{ and } \{\beta_{t, I(t)}\}_{ -1 \leq t \leq l} \},\\
+\mathcal{E}_{\geq 0}&=\{D\in \text{Pic}(Y)_{\bbR} \text{ so that } D \cdot C\geq 0\ \text{for } C\in \mathcal{E}\},\\
+&=\{D\in \text{Pic}(Y)_{\bbR} \text{ satisfying } (A_{i})\ \text{ and } (B_{n,I(t)})\},\\
+&= \text{Eff}_{\mathbb{R}} Y.
+\end{split}
+\end{equation}
+\end{proof}
+\begin{thebibliography}{99}
+\bibitem[BDP2]{bdp3} M. C. Brambilla, O. Dumitrescu and E. Postinghel,
+{\it On the effective cone of $\mathbb{P}^n$ blown-up at $n+3$ points},
+ Exp. Math. 25, no. 4, 452--465 (2016).
+\end{thebibliography}
+\end{document}

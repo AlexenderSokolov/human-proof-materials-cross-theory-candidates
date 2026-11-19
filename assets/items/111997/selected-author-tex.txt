@@ -1,0 +1,511 @@
+材料范围说明：旧许可旁文的“无图片/无依赖”描述旧包；本批4张必要原图和main.bib已保存，详见 assets/works/w00021/NOTICE.md。
+原编号：111997
+作者作品：Positroid Links and Braid varieties
+固定版本：arXiv:2105.13948v4 (CC BY 4.0)
+以下为作者TeX原文按准确行区间摘录，未补写数学内容；完整原件见 assets/works/w00021/source0.tex。
+图示请打开条目“必要上下文”中的作者原图；本文件没有声称新编译PDF。
+
+
+===== 题目：source0.tex 第2682—2708行 =====
+\begin{lemma}
+\label{lem: inductive destabilization}
+At the $m$-th step, $1\le m\le n-k+1$, of the above destabilization procedure we get an $(n+1-m)$-strand braid  that can be decomposed into the following three parts:
+\begin{itemize}
+    \item[(a)] The first part $\beta^{(1)}_{m}$ is the product of interval braids
+\[
+\prod_{h = m}^{n-k}\left(s_{\lambda^{t}_{n-k+1-h}+h-1}\cdots s_h\right) \times
+\prod_{\ell = 0}^{m-2}\left(s_{\lambda^{t}_{n-k-m-2+\ell}+n-k-1}\cdots s_{2n-k-m-\ell+3+\inv(n-k-m+2-\ell)-f(j_{n-k-m+2-\ell})}\right),
+\]    
+%\[
+%\left(s_{\lambda_{n-k-m+1}^{t} + m -1}\cdots s_{m}\right)
+%\cdots\left(s_{\lambda_{1}^{t} + n - k -1}\cdots s_{n-k}\right)
+%\times   
+%\] 
+%\[
+%\left(s_{\lambda^{t}_{n-k-m+2}+n-k-1}\cdots s_{2n+\inv(n-k-m+2)-f(j_{n-k-m+2})-k-m+3}\right)\cdots
+%\left(s_{\lambda^{t}_{n-k}+n-k-1}\cdots s_{2n-k+
+%-f(j_{n-k})+1}\right).
+%\]
+where for $m=1$ the second product is assumed to equal 1 and for $m = n-k+1$ the first product is assumed to equal 1.
+
+\vspace{0.1cm}
+
+\item[(b)] The second part $\beta^{(2)}_{m}$ is a permutation braid obtained as a part of the wiring diagram for $u^{-1}w_0$ connecting $1, \dots, n-m+1$ on the right with $u^{-1}(n),\ldots,u^{-1}(m)$ on the left.\\%\textcolor{red}{No relabeling yet!}\\
+
+\item[(c)] The third part is $\Delta_{n-m+1}$.   \end{itemize}
+\end{lemma}
+
+
+===== 必要上下文：source0.tex 第1143—1178行 =====
+\subsubsection{$k$-Grassmannian permutations and positroid pairs}
+\label{subsec: w}
+By definition, a permutation $w \in S_n$ is said to be \emph{$k$-Grassmannian} if
+\[
+w(1) < w(2) < \cdots < w(k), \mbox{ and } w(k+1) < \cdots < w(n).
+\]
+Similarly, $\Sh \in S_n$ is said to be a \emph{$k$-shuffle} if $\Sh^{-1}$ is $k$-Grassmannian, that is, if 
+\[
+\Sh^{-1}(1) < \Sh^{-1}(2) < \cdots < \Sh^{-1}(k), \mbox{ and } \Sh^{-1}(k+1) < \cdots < \Sh^{-1}(n).
+\]
+
+%\MG{Call this subsubsection ``k-Grassmannian permutations and Young diagrams'' and move the defintion of positroid pairs to the next subsubsection?}
+
+The set of $k$-Grassmannian permutations in $S_{n}$ (equivalently, the set of $k$-shuffles) is in bijection with the set of partitions $\lambda$ whose Young diagram fits inside a $k \times (n-k)$-rectangle, cf.~ \cite[Section 19]{Post}. We do not distinguish between a partition $\lambda$ and its Young diagram; we draw the latter in French notation. Thus, if the Young diagram of $\lambda$ fits inside a $k \times (n-k)$-rectangle, we write $\lambda \subseteq (n-k)^k$. Such $\lambda$ can be written as
+\[
+\lambda = (\lambda_{1}, \dots, \lambda_{k})
+\]
+where $n-k \geq \lambda_1 \geq \cdots \geq \lambda_{k} \geq 0$. Note that it is possible that $\la$ has a zero part, e.g.~ $\lambda_{k} = 0$ is allowed. Similarly, the transposed partition can be written as
+\[
+\lambda^{t} = (\lambda_{1}^{t}, \dots, \lambda_{n-k}^{t})
+\]
+where $k \geq \lambda_1^{t} \geq \cdots \geq \lambda_{n-k}^{t} \geq 0$. Again, it is allowed that $\lambda_{n-k}^{t} = 0$; this happens if and only if $n-k > \lambda_{1}$.
+%\textcolor{red}{Say more clearly that $\lambda$ or $\lambda^t$ can have zero parts}
+
+For $\lambda \subseteq (n-k)^{k}$, we denote by $w_{\lambda} \in S_{n}$ its associated $k$-Grassmannian permutation. By using one-line notation, we can write
+\begin{equation}
+\label{eq: w from lambda}
+w_{\lambda} = [1 + \lambda_k, 2 + \lambda_{k-1}, \dots, k+\lambda_1, k+1-\lambda_{1}^{t}, k+2 -\lambda_2^{t}, \dots, n - \lambda_{n-k}^{t}].
+\end{equation}
+%where $\lambda^{t}$ is the transposed Young diagram.
+Note that the length of $w_{\lambda}$ is $\ell(w_{\lambda}) = |\lambda| := \la_1 + \ldots + \la_{k}$. In fact, we can obtain reduced decompositions for $w_{\lambda}$ as follows:
+\begin{equation}\label{eqn:w lambda}
+\begin{array}{rl}
+w_{\lambda} = &  %(s_{k}s_{k+1}\cdots s_{k+\lambda_1 - 1})(s_{k-1}s_{k}\cdots s_{k+\lambda_2 - 2})\cdots (s_1 \cdots s_{\lambda_{k}})
+(s_{\lambda_{k}}\cdots s_{1})\cdots (s_{k+\lambda_{2}-2}\cdots s_{k-1})(s_{k+\lambda_{1}-1}s_{k+\lambda_{1}-2}\cdots s_{k})
+\\ = &  %(s_{k}s_{k-1}\cdots s_{k+1-\lambda_1^{t}})(s_{k+1}s_{k}\cdots s_{k+2-\lambda_2^{t}})\cdots (s_{n-1}\cdots s_{n-\lambda^{t}_{n-k}})
+
+
+===== 必要上下文：source0.tex 第1405—1547行 =====
+\subsubsection{Bounded affine permutations}\label{ssec:boundedaffinepermutation}Finally, let us discuss  $k$-bounded affine permutations of size $n$, following \cite{KLS}. By definition, an affine permutation $f:\Z\to \Z$ of size $n$ is a bijection such that $f(i+n)=f(i)+n$ for all $i\in\Z$; we often denote affine permutations in one-line window notation $f=[f(1)\ldots f(n)]$. By definition, an affine permutation is said to be {\it $k$-bounded} if the following conditions are satisfied:
+$$i\le f(i)\le i+n,\quad i\in\Z\quad\mbox{ and } \quad \sum_{i = 1}^{n}(f(i) - i) = nk.$$%f(1)+\ldots+f(n)=\frac{n(n+1+2k)}{2}.$$
+%\textcolor{red}{Why $\N$ and not $\Z$? Fixed $\N$ to $\Z$ in the previous sentence}
+\noindent 
+%These conditions imply that there are exactly $k$ values of $i\in[1,n]$ such that $f(i)\in [n+1,2n]$, and exactly $(n-k)$ values such that $f(i)\in[1,n]$. 
+By \cite[Prop.~3.15]{KLS}, a $k$-bounded affine permutation $f$ admits a unique decomposition of the form
+\begin{equation}\label{eq: dec bounded affine permutation}
+f = u_ft_{k}w_f^{-1},\qquad \mbox{where }t_k:=[1 + n, 2+n, \dots, k+n, k+1, k+2, \dots, n],
+\end{equation}
+
+\noindent with $(u_f,w_f)\in S_n$ a positroid pair. This is to say, any $k$-bounded affine composition admits a unique decomposition of the form
+\[
+f = \mbox{\cyr{U}}^{-1}t_k\Sh
+\]
+where $\Sh$ is a $k$-shuffle permutation and {\cyr{U}} $\leq \Sh$.
+
+
+Let us provide an explicit description of the permutations $u_f, w_f$ appearing in \eqref{eq: dec bounded affine permutation}. For that, we note that there exist exactly $k$ values $i_{1} < i_{2} < \ldots < i_{k}$ of $i_r\in[1,n]$ such that $n<f(i_r)$, and exactly $(n-k)$ values $j_{1} < j_{2} < \cdots < j_{n-k}$ of $j_t\in[1,n]$ such that $f(j_t) \leq n$. 
+%We describe the 
+The permutations $u_f,w_f$ are then described as follows:
+\begin{equation}
+\label{eq: w from f}
+w_f := [i_{1}, i_{2}, \dots, i_{k}, j_{1}, j_{2}, \dots, j_{n-k}],
+\end{equation}
+\begin{equation}
+\label{eq: u from f}
+u_f := [f(i_{1}) - n, \dots, f(i_{k}) - n, f(j_{1}), \dots, f(j_{n-k})].
+\end{equation}
+\noindent Note that $w_f$ is a $k$-Grassmannian permutation and $u \in S_{n}$, since $n < f(i_{r}) \leq 2n$ for every $r\in[1,k]$. The permutations $u_f,w_f$ %are the same permutations that are 
+coincide with the permutations  in \cite[Proposition 3.15]{KLS}. \footnote{Our notation coincides with that of \cite{KLS}. Note that what \cite{GL} calls a $k$-Grassmannian permutation is what we call a $k$-shuffle, so the decomposition in \cite[Proposition 4.2]{GL} is in fact the decomposition $f = \mbox{\cyr{U}}^{-1}t_k\Sh$.}
+
+\begin{example}
+First, for the trivial $n$-translation $f=t_{k} = [1+n, \dots, k+n, k+1, \dots, n]$, we have $(i_{1}, \dots, i_{k}) = (1, \dots, k)$ and thus $w_f = [1, 2, \dots, n]$. Similarly, $u_f = [1, 2, \dots, n]$ is also the identity. 
+
+Second, for the $k$-bounded permutation $f$ defined by $f(i)=i+k$, we obtain that $(i_{1}, \dots, i_{k}) = (n-k+1, \dots, n)$ and hence $w_f = [n-k+1, \dots, n, 1, \dots, n-k]$ % \textcolor{red}{is it $w^{-1}$?}
+is the maximal $k$-Grassmannian permutation. In this second case, the permutation $u_f = [1, 2, \dots, n]$ is still the identity.\hfill$\Box$
+\end{example}
+
+\noindent Next, we record some facts translating the notations between Le diagrams and bounded affine permutations. 
+
+\begin{lemma}
+\label{lem: Le and f}
+Suppose that $u\le w$ correspond both to the Le diagram of shape $\lambda$ and to the bounded affine permutation $f$, so that $f = ut_{k}w^{-1}$. Let $i_1,\ldots,i_k$ and $j_1,\ldots,j_{n-k}$ be as above. Then:
+
+a) $i_1=1+\lambda_k, i_2 = 2 + \lambda_{k-1}, \ldots,i_k=k+\lambda_1$ and  $j_1=k+1-\lambda_1^t, j_2 = k+2-\lambda_{2}^{t}\ldots, j_{n-k}=n-\lambda_{n-k}^t$.
+
+b) If the Le diagram for $u\leq w$ has no dots in the rightmost column then 
+$$f(j_{n-k})=u(n)=w(n)=j_{n-k}.$$ Otherwise $f(j_{n-k})=u(n)=n-d+1$, with $d$ the row number of the lowest dot in the last column.
+\end{lemma}
+
+\begin{proof}
+Part (a) follows by comparing the two formulas  \eqref{eq: w from lambda} and \eqref{eq: w from f} for $w$ in one-line notation. The first part of Part (b) holds by construction.  To prove the second part, observe that 
+$$
+w=(s_{n-\lambda_{n-k}^t}\cdots s_{n-1})\cdots (s_{k+1-\lambda_1^{t}}\cdots s_{k})
+$$
+and that we have
+$
+u=(as_{n-d+1}\cdots s_{n-1})b
+$,
+where $b$ does not contain $s_{n-1}$ and $a$ is a subword of $(s_{n-\lambda_{n-k}^t}\cdots s_{n-d-1})$.
+Therefore $u(n)=n-d+1$.
+\end{proof}
+
+Lemma \ref{lem: Le and f} above gives us a direct way for moving from the Le diagram to the corresponding bounded affine permutation. Let us fix a Le diagram $\Le$ with the underlying partition $\lambda$. Recall the left and right labels for $\lambda$ from Section \ref{subsec: w}.
+%Recall that we enumerate the vertical and horizontal steps forming the partition $\lambda$. 
+It follows from identity \eqref{eq: w from f} that $i_{1}, \dots, i_{k}$ are the right labels corresponding to the \emph{vertical} steps of $\la$, while $j_1, \dots, j_{n-k}$ are the right labels that correspond to the horizontal steps. 
+
+Now we consider the wiring diagram of $\Le$. %with a slight change. Since in the decomposition $f = u_{f}^{-1}t_{k}w_{f}$ we see $u_{f}^{-1}$ (as opposed to $u$), we \emph{reverse} the direction of the wires. 
+The following two facts are a consequence of \eqref{eq: u from f}.
+
+\begin{itemize}
+\item[(a)] Consider the wire starting at the bottom of the $s$-th column of $\Le$ with the left label $s+k$. Then, $f(j_{s})$ is the right label of the endpoint of this wire.
+\item[(b)] Consider the wire starting on the left of the $\ell$-th row of $\Le$ with the left label $\ell$. Then, $f(i_{\ell}) = n + t$, where $t$ is the right label of the endpoint of this wire. 
+\end{itemize}
+
+\noindent Note that (a) and (b) imply that the dotless columns of $\Le$ correspond to the fixed points of $f$; while the dotless rows correspond to $x \in \{1, \dots, n\}$ satisfying $f(x) = x+n$.  See Figure \ref{fig: wiring diagram} for an example.
+\begin{figure}[h!]
+\centering
+				\begin{tikzpicture}[scale = 0.8]
+		\draw (0,0)--(0,4)--(2,4)--(2,0)--(0,0);
+		\draw (0,1)--(2,1);
+		\draw (0,2)--(2,2);
+		\draw (0,3)--(2,3);
+		\draw (1,0)--(1,4);
+		\draw (0.5,0.5) node {$\bullet$};
+		
+		\draw (0.5,3.5) node {$\bullet$};
+		\draw (1.5,0.5) node {$\bullet$};
+		
+		\draw (1.5,2.5) node {$\bullet$};
+		\draw (1.5,3.5) node {$\bullet$};
+
+  \draw node at (0.5, 4.3) {$1$};
+  \draw node at (1.5, 4.3) {$2$};
+  \draw node at (2.2, 3.5) {$3$};
+  \draw node at (2.2, 2.5) {$4$};
+  \draw node at (2.2, 1.5) {$5$};
+  \draw node at (2.2, 0.5) {$6$};
+
+  \draw[->, color=blue] (0, 3.5) to[out=0, in=270] (0.5, 4);
+  \draw[->, color=blue] (0, 2.5) to (1, 2.5) to[out=0,in=270] (1.5, 3) to [out=90, in=180] (2, 3.5);
+  \draw[->, color=blue] (0, 1.5) to (2, 1.5);
+  \draw[->, color=blue] (0,0.5) to[out=0,in=270] (0.5, 1) to (0.5, 3) to[out=90, in=180] (1, 3.5) to[out=0, in=270] (1.5, 4);
+
+  \draw[->, color=red] (0.5, 0) to[out=90, in=180] (1, 0.5) to[out=0, in=270] (1.5, 1) to (1.5, 2) to[out=90, in=180] (2, 2.5);
+  \draw[->, color=red] (1.5, 0) to[out=90, in=180] (2, 0.5);	
+		\end{tikzpicture}
+
+  \caption{The wiring diagram for the Le diagram of Example \ref{ex: markov 44}. If $f$ is the corresponding bounded affine permutation, then $f(1), f(2) < n$, while $f(3), f(4), f(5), f(6) > n$. %\textcolor{red}{Recall that $w^{-1}=[i_1,i_2,i_3,i_4,j_1,j_2]=[3,4,5,6,1,2].$}
+  Moreover, to find $f(1)$ we follow the red strand starting opposite to $1$, and see that $f(1) = 4$. Similarly, $f(2) = 6$. Likewise, to find $f(3)$ we follow the blue strand starting opposite to $3$, and see that $f(3) = 1 + 6$. Similarly, $f(4) = 3+6$, $f(5) = 5+6$, $f(6) = 2+6$.
+  Note that the only dotless row has the right label $5$: this corresponds to $5$ being the only $x \in \{1, \dots, 6\}$ satisfying $f(x) = x+6$.}
+    \label{fig: wiring diagram}
+\end{figure}
+
+For $1 \le s \le n-k$ we define
+\begin{equation}
+\inv(s):=\sharp\{t>s: f(j_t)<f(j_s)\}.
+\end{equation}
+%\MG{Use another letter? $s$ is used for the number of fixed points of $f$ in other sections, plus we have $s_i$ everywhere.}
+
+\begin{lemma}
+\label{lem: inv}
+For all $s\in [1,n-k]$, we have the inequalities
+$$
+j_s\le f(j_s)-\inv(s)\le k+s
+$$
+The first inequality is sharp unless $f(j_s)=j_s$.
+\end{lemma}
+
+\begin{proof}
+If $t>s$ then $j_t>j_s$. If $f(j_t)<f(j_s)$ then
+$$
+j_s<j_t\le f(j_t)<f(j_s),
+$$
+and since $f$ is injective all such $f(j_t)$ are distinct. Therefore either $f(j_s)=j_s$ and $\inv(s)=0$, or $\inv(s)\le f(j_s)-j_s-1$, so $f(j_s)-\inv(s)\ge j_s+1$.
+
+For the second inequality, observe that 
+\begin{equation}\label{eq: noninversions}
+\sharp\{t>s: f(j_t)>f(j_s)\}=n-k-s-\inv(s),
+\end{equation}
+so we have at least $n-k-s-\inv(s)$ distinct integers between $f(j_s)+1$ and $n$. Therefore
+$f(j_s)+n-k-s-\inv(s)\le n$ and $f(j_s)-\inv(s)\le k+s$. 
+\end{proof}
+
+
+===== 必要上下文：source0.tex 第2519—2678行 =====
+\subsection{Generalized destabilizations and comparison of $\La(u,w)$ and $\La(f)$}\label{ssec:destabilization} The main result of this subsection is to establish that, possibly up to unlinked unknots, the smooth links $\La(u,w)$ and $\La(f)$ are smoothly isotopic.%, up to unlinked unknots.
+\begin{thm}\label{thm:Richardson_to_juggling}
+Let $(u,w)$ be a positroid pair and $f = ut_{k}w^{-1}$ its associated bounded affine permutation. Then the smooth link $\La^{+}(u,w)\sse\R^3$ is smoothly isotopic to the smooth link $\La(f)\sse\R^3$, up to a possibly empty collection of unlinked unknots.
+\end{thm}
+
+Theorem \ref{thm:Richardson_to_juggling} is proven by appropriately using the following lemma iteratively.
+
+\begin{lemma}\label{lem:Markovsmooth} Let $\beta_1\in\Br_n$ be a positive braid on $n$ strands in the generators $\sigma_1,\ldots,\sigma_{n-1}$ and $\beta_2\in\Br_{n+1}$ the lift of a permutation $w\in S_{n+1}$ on $(n+1)$ strands. Set $j:=w^{-1}(n+1)$, let $\tilde{\beta}_1 \in \Br_{n+1}$ be the braid obtained from $\beta_1$
+%\MG{from $\beta_1$, right?} 
+by shifting the indices of the Artin generators up by $1$, and let $\beta'_2 \in \Br_n$ be the braid obtained from $\beta_2$ by removing the strand that ends at the bottom on the right of $\beta_2$.
+
+%\MG{I moved the definition of $\beta'_2$ up, since it appears in both points (1) and (2). Commented it out in (1) and (2).}
+
+\begin{itemize}
+    \item[$(1)$] Consider the braid words $\eta_1 := \Delta_{n+1}\beta_2 (\sigma_{\ell}\cdot\ldots\cdot\sigma_{j+1}\sigma_j\cdot\ldots\cdot\sigma_2\sigma_1)\tilde{\beta}_1 \in \Br_{n+1}$, an $(n+1)$-stranded positive braid, and $\eta_2:=\Delta_n\beta'_2(\sigma_{\ell - 1}\cdot\ldots\cdot\sigma_{j+1})\beta_1 \in \Br_n$, an $n$-stranded positive braid.
+    %, with $\beta'_2$ obtained from $\beta_2$ by removing the strand that ends at the bottom on the right of $\beta_2$.
+    \\
+
+\noindent  Then the 0-framed smooth closure of $\eta_1$ is smoothly isotopic to that of $\eta_2$.\\
+
+\item[$(2)$] Consider the braid words $\eta_1:=\Delta_{n+1}\beta_2(\sigma_{j}\sigma_{j-1}\cdot\ldots\cdot\sigma_1)\tilde{\beta}_1 \in \Br_{n+1}$, an $(n+1)$-stranded positive braid, and $\eta_2:=\Delta_n\beta'_2\beta_1\in \Br_n$, an $n$-stranded positive braid.
+%, with $\beta'_2$ obtained from $\beta_2$ by removing the strand that ends at the bottom on the right of $\beta_2$.
+\\
+
+\noindent  Then the 0-framed smooth closure of $\eta_1$ is smoothly isotopic to the unlinked union of the 0-framed smooth closure of  $\eta_2$ and an unknot.
+\end{itemize}
+\hfill$\Box$
+\end{lemma}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.6]{markov_stabilizations.pdf}
+    \caption{The sequence of moves starting with $R(u, w)$, on the upper left corner, and finishing with $J_k(f)$ on the lower right corner. We have marked in blue the occasions where we use Lemma \ref{lem:Markovsmooth}, and we have chosen to draw the link diagrams as fronts, as in Lemma \ref{lem:Markov}, for easier reference. (So all crossings in these link diagrams are over-crossings.)}
+    \label{fig: running example}
+\end{figure}
+
+For now, Lemma \ref{lem:Markovsmooth} will be left unproven and we just directly use it. In the next section we will independently prove Lemma \ref{lem:Markov}, which is a stronger version that implies Lemma \ref{lem:Markovsmooth}.
+
+\begin{example}
+Before proving Theorem \ref{thm:Richardson_to_juggling}, we verify it in Example \ref{ex: running 1} as follows. Recall that $f = [4, 6, 7, 9, 11, 8]$, so that $w = [3,4,5,6,1,2]$ and $u = [1, 3, 5, 2, 4, 6]$. From Example \ref{ex: markov 44} we obtain:
+   % \[
+   % \beta(w) = (\s_2\s_3\s_4\s_5)(\s_1\s_2\s_3\s_4) \Rightarrow \beta(w_0ww_0) = (\s_4\s_3\s_2\s_1)(\s_5\s_4\s_3\s_2),
+   % \]
+    \[
+    \beta(w) = (\s_2\s_3\s_4\s_5)(\s_1\s_2\s_3\s_4) \Rightarrow \beta(w^*) = (\s_4\s_3\s_2\s_1)(\s_5\s_4\s_3\s_2),
+    \]
+    and $u^{-1}w_0 = [1,4,2,5,3,6]w_0 = [6,3,5,2,4,1]$. Figure \ref{fig: running example} then shows the sequence of moves, using Lemma \ref{lem:Markovsmooth},  that starts with the Richardson link and ends with the Juggling link.\hfill$\Box$ 
+\end{example}
+
+Now, Subsection \ref{ssec:RichardsonBraid} defines the Richardson link $\Lambda(u,w)$ to be smooth 0-framed closure of the braid %$\Delta_n^{-1}\beta(u^{-1}w_0)\beta(w_0ww_0)$
+$\Delta_n^{-1}\beta(u^{-1}w_0)\beta(w^*)$
+, where $(u,w)$ is a positroid pair. It will be more convenient to write this braid word as %$\Delta_n^{-2}\Delta_n\beta(u^{-1}w_0)\beta(w_0ww_0)$ 
+$\Delta_n^{-2}\Delta_n\beta(u^{-1}w_0)\beta(w^*)$
+and focus on the piece %$\Delta_n\beta(u^{-1}w_0)\beta(w_0ww_0)$
+$\Delta_n\beta(u^{-1}w_0)\beta(w^*)$, where all our changes will take place, see e.g. Figure \ref{fig: running example}. Let $f=f_{u,w} = ut_kw^{-1}$ be the associated bounded affine permutation, as in Subsection \ref{ssec:boundedaffinepermutation}. By the identity \eqref{eq: u from f},
+$$
+u=[f(i_1)-n,\ldots,f(i_k)-n,f(j_1),\ldots,f(j_{n-k})]
+$$
+and therefore 
+$$
+uw_0=[f(j_{n-k}),\ldots,f(j_1),f(i_k)-n,\ldots,f(i_1)-n].
+$$
+Now note that 
+\begin{equation}\label{eq: u-1w_0}
+u^{-1}w_0 = (w_0(uw_0)w_0)^{-1}.
+\end{equation}
+In particular, up to conjugation by the longest element $w_0$, the inverse of the restriction of the permutation $u^{-1}w_0$ to $\{n-k+1,\ldots,n\}$ is the permutation $J^{(2)}(f)$ which sorts $f(i_1),\ldots,f(i_k)$ in decreasing order, see Proposition \ref{prop: J2}. 
+
+The iterative applications of Lemma \ref{lem:Markovsmooth} that will lead to a destabilization procedure from $R_n(u,w)$ to $J_k(f)$ are indexed by the columns of the corresponding Le diagram. The two basic steps we need are as follows:
+
+\begin{itemize}
+    \item[(1)] First, suppose that the Le diagram for $(u,w)$ has dots in the rightmost column, with the lowest dot in row $d$. Then we schematically draw the braid %$\Delta_n\beta(u^{-1}w_0)\beta(w_0ww_0)$ $\Delta_n\beta(u^{-1}w_0)\beta(w^*)$
+    as follows:
+\begin{center}
+\begin{tikzpicture}
+\draw (0,0)--(0,3)--(2,3)--(2,0)--(0,0);
+\draw (0,4)--(2,4)--(3,1);
+\draw [line width=3,color=blue] (0,4)--(2,4)--(2.5,2.5)--(3,3);
+\draw (2,3)--(3,4);
+\draw (2,2)--(3,3);
+\draw (2,1)--(3,2);
+\draw (3.7,4) node {$1$};
+\draw (3.7,3.5) node {$\vdots$};
+\draw (3.7,3) node {\small $d$\normalsize};
+\draw (3.7,2) node {$\vdots$};
+\draw (3.7,1) node {\small$\lambda_{n-k}^t+1$\normalsize};
+\draw[<->,dashed] (-0.2,-0.2)--(3.2,-0.2);
+\draw (1.5,-0.5) node {$w^*$};
+\draw [line width=3,color=blue] (4.5,3)--(6,0);
+\draw (6.2,0) node {$n$};
+\draw[<->,dashed] (3.9,-0.2)--(6.2,-0.2);
+\draw (4.7,-0.5) node {$u^{-1}w_0$};
+\draw[<->,dashed] (6.5,-0.2)--(9.2,-0.2);
+\draw (7.5,-0.5) node {$\Delta_n$};
+\draw [line width=3,color=blue] (6.5,0)--(9,4);
+\draw (1,1.5) node {$\widetilde{w}$};
+
+\draw  (-0.2,-0.2)--(-0.2,-0.8);
+\draw (-0.2,-1) node {$x=0$};
+
+\draw  (3.7,-0.2)--(3.7,-0.8);
+\draw (3.7,-1) node {$x=1$};
+
+\draw  (6.2,-0.2)--(6.2,-0.8);
+\draw (6.2,-1) node {$x=2$};
+\end{tikzpicture}
+\end{center}
+
+Write $w = (s_{n-\lambda_{n-k}^{t}}\cdots s_{n-1})w'$, so that $w^* = (s_{\lambda_{k-t}^{t}}\cdots s_{1})\widetilde{w}$, and note that, by \eqref{eq: u-1w_0}, $u^{-1}w_0$ is a permutation braid that connects $n$ on the right with $w_0u(n)= w_0(f(j_{n-k})) = w_0(n-d+1) = d$ on the left, where the equation $f(j_{n-k}) = n-d+1$ follows from Lemma \ref{lem: Le and f}. Then, the thick blue strand in the figure above can be removed by Lemma \ref{lem:Markovsmooth}, leaving a braid which can be described as follows. On the side of $w_0ww_0=w^*$, we get
+$$
+\left(s_{\lambda_{n-k}^{t}}\cdots s_{d}\right)\cdot\widetilde{w}= \widetilde{w}\cdot\left(s_{\lambda_{n-k}^{t}+n-k-1}\cdots s_{d+n-k-1} \right).
+$$
+On the side of $u^{-1}w_0$, we just remove the strand connecting $d$ to $n$ and leave the rest unchanged. On the side of $\Delta_n$, we remove the strand connecting $n$ to $1$, and get $\Delta_{n-1}$.\\
+
+%Write $w=\widetilde{w}\cdot(s_n\cdots s_{n-\lambda_{n-k}^t})$ and note that $u^{-1}w_0$ is a permutation braid that connects 1 on the right with $u^{-1}w_0(1)=f(j_{n-k})=n-d+1$ on the left.
+ %The last equation follows from  Lemma \ref{lem: Le and f}. Then, the thick strand in the figure above can be removed by Lemma \ref{lem:Markovsmooth}, leaving a braid which can be described as follows. On the side of $w$, we get
+%$$
+%\widetilde{w}\cdot\left(s_{n-d-1}\cdots s_{n-\lambda_{n-k}^t}\right)=
+%\left(s_{k-d}\cdots s_{k+1-\lambda_{n-k}^t}\right)\cdot\widetilde{w}.
+%$$
+%On the side of $u^{-1}w_0$, we just remove the strand connecting $n-d+1$ with 1 and keep the wiring diagram for the remaining permutation unchanged. On the side of $\Delta_n$, we simply remove a strand connecting $1$ and $n$ and get $\Delta_{n-1}$.\\
+
+\item[(2)] Second, suppose that the last column of the Le diagram is empty. Then by Lemma \ref{lem: Le and f} $u(n) = f(j_{n-k}) = n-\lambda_{n-k}^{t}$, so by \eqref{eq: u-1w_0} we get $u^{-1}w_0(\lambda_{n-k}^{t} + 1) = n$, and thus the diagram has the following form:
+
+\begin{center}
+\begin{tikzpicture}
+\draw (0,0)--(0,3)--(2,3)--(2,0)--(0,0);
+\draw (0,4)--(2,4)--(3,1);
+\draw [line width=3,color=blue] (0,4)--(2,4)--(3,1);
+\draw (2,3)--(3,4);
+\draw (2,2)--(3,3);
+\draw (2,1)--(3,2);
+\draw (3.7,4) node {$1$};
+\draw (3.7,3.5) node {$\vdots$};
+\draw (3.7,3) node {$\vdots$};
+\draw (3.7,2) node {$\vdots$};
+\draw (3.7,1) node {\small $\lambda_{n-k}^t+1$\normalsize};
+\draw[<->,dashed] (-0.2,-0.2)--(3.2,-0.2);
+\draw (1.5,-0.5) node {$w^*$};
+\draw [line width=3,color=blue] (4.5,1)--(6,0);
+\draw (6.2,0) node {$n$};
+\draw[<->,dashed] (3.9,-0.2)--(6.2,-0.2);
+\draw (4.7,-0.5) node {$u^{-1}w_0$};
+\draw[<->,dashed] (6.5,-0.2)--(9.2,-0.2);
+\draw (7.5,-0.5) node {$\Delta_n$};
+\draw [line width=3,color=blue] (6.5,0)--(9,4);
+\draw (1,1.5) node {$\widetilde{w}$};
+
+\draw  (-0.2,-0.2)--(-0.2,-0.8);
+\draw (-0.2,-1) node {$x=0$};
+
+\draw  (3.7,-0.2)--(3.7,-0.8);
+\draw (3.7,-1) node {$x=1$};
+
+\draw  (6.2,-0.2)--(6.2,-0.8);
+\draw (6.2,-1) node {$x=2$};
+\end{tikzpicture}
+\end{center}
+
+\noindent In this case the thick line closes up to an unknot. By Lemma \ref{lem:Markovsmooth} this unknot is unlinked from the rest of the link diagram. After moving it away, we are left with $\widetilde{w}$ instead of $w$.
+
+
+===== 必要上下文：source0.tex 第3881—3959行 =====
+\subsection{Variations on the Markov move}\label{ssec:MarkovMoves} The Legendrian links that we are comparing are associated to braids with different number of strands. For instance, the Richardson braids are $n$-stranded and the juggling braids are $k$-stranded for a positroid in $\Gr(k,n)$. In order to show that these Legendrian links are Legendrian isotopic, we must therefore apply a type of (de)stabilization. This is also the reason to work in $(\R^{3},\xi_{st})$ instead of the 1-jet space $(J^1S^1,\xi_{st})$. The following destabilization lemma,  which implies Lemma \ref{lem:Markovsmooth}, will suffice for our purposes:
+
+\begin{center}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=\textwidth]{figures/Ingredients_FrontsMarkov_Statement2.pdf}
+		\caption{Lemma \ref{lem:Markov} states that two fronts $(1.a)$ and $(1.b)$, resp.~$(2.a)$ and $(2.b)$ have front homotopic $(-1)$-closures, resp.~front homotopic $(-1)$-closures up to an unlinked max-tb unknotted component. Note that these fronts, if to be understood cyclically in $S^1_\theta\times\R_z$, do {\it not} yield Legendrian (or even smoothly) isotopic links. This forces considering $(-1)$-closures so as to find the Legendrian isotopy in $(\R^3,\xi_{st})$.
+  }
+		\label{fig:Ingredients_FrontsMarkov_Statement}
+	\end{figure}
+\end{center}
+
+\begin{lemma}[Legendrian destabilizations]\label{lem:Markov} Let $\beta_1\in\Br_n$ be a positive braid on $n$ strands in the Artin generators $\sigma_1,\ldots,\sigma_{n-1}$ and $\beta_2\in\Br_{n+1}$ a reduced positive lift of a permutation $w\in S_{n+1}$ on $(n+1)$ strands. Set $j:=w^{-1}(n+1)$, let $\tilde{\beta}_1 \in \Br_{n+1}$ the braid obtained from $\beta_1$ %the braid obtained
+by shifting all the indices of the Artin generators up by $1$, and let $\beta'_2 \in \Br_n$ be the braid obtained from $\beta_2$ by removing the strand that ends at the bottom on the right of $\beta_2$. Then the following two statements hold:
+
+%\MG{I moved the definition of $\beta'_2$ up, since it appears in both points (1) and (2). Commented it out in (1) and (2).}
+
+\begin{itemize}
+    \item[$(1)$] Consider the following two positive braid words:\\
+    
+    \begin{itemize}
+        \item[(a)] $\eta_1 := \Delta_{n+1}\beta_2 (\sigma_{\ell}\cdot\ldots\cdot\sigma_{j+1}\sigma_j\cdot\ldots\cdot\sigma_2\sigma_1)\tilde{\beta}_1 \in \Br_{n+1}$, the $(n+1)$-stranded positive braid depicted in Figure \ref{fig:Ingredients_FrontsMarkov_Statement}.$(1.a)$,\\
+
+        \item[(b)] $\eta_2:=\Delta_n\beta'_2(\sigma_{\ell - 1}\cdot\ldots\cdot\sigma_{j+1})\beta_1 \in \Br_n$, the $n$-stranded positive braid depicted in Figure \ref{fig:Ingredients_FrontsMarkov_Statement}.$(1.b)$.
+        %, with $\beta'_2$ obtained from $\beta_2$ by removing the strand that ends at the bottom on the right of $\beta_2$.
+        \\
+    \end{itemize} 
+
+\noindent Then the Legendrian link $\La_{\eta_1}$ is Legendrian isotopic to $\La_{\eta_2}$.\\
+
+     \item[$(2)$] Consider the following two positive braid words:\\
+    
+    \begin{itemize}
+        \item[(a)] $\eta_1:=\Delta_{n+1}\beta_2(\sigma_{j}\sigma_{j-1}\cdot\ldots\cdot\sigma_1)\tilde{\beta}_1 \in \Br_{n+1}$, the $(n+1)$-stranded positive braid depicted in Figure \ref{fig:Ingredients_FrontsMarkov_Statement}.$(2.a)$,\\
+
+        \item[(b)] $\eta_2:=\Delta_n\beta'_2\beta_1\in \Br_n$, the $n$-stranded positive braid depicted in Figure \ref{fig:Ingredients_FrontsMarkov_Statement}.$(2.b)$.
+        %, with $\beta'_2$ obtained from $\beta_2$ by removing the strand that ends at the bottom on the right of $\beta_2$.
+        \\
+
+    \end{itemize}
+\noindent Then the Legendrian link $\La_{\eta_1}$ is Legendrian isotopic to the Legendrian link given by a max-tb Legendrian unknot unlinked union with $\La_{\eta_2}$.\\
+\end{itemize}
+\end{lemma}
+
+\begin{center}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=\textwidth]{figures/Ingredients_FrontsMarkov2_General.pdf}
+		\caption{In (1) the starting piece of a front. From (2)-(6), the Legendrian isotopy that proves Lemma \ref{lem:Markov} for its $(-1)$-closure.}
+		\label{fig:Ingredients_FrontsMarkov2_General}
+	\end{figure}
+\end{center}
+%In the above notations, suppose that $\vartheta=\vartheta_1\sigma_{n-1}\vartheta_2$ for $\vartheta_1,\vartheta_2\in \Br_{n-1}$. Then $\Lambda(\vartheta)$ is Legendrian isotopic to $\Lambda(\vartheta_1\vartheta_2)$.
+
+\begin{proof}
+The proof is contained in Figure \ref{fig:Ingredients_FrontsMarkov2_General}, for item $(1)$, and \ref{fig:Ingredients_FrontsMarkov2_General_Case2}, for item $(2)$, which we now explain. First item $(1)$. Choose a braid word for the half-twist $\Delta_{n+1}$ which is of the form $\Delta_n(\sigma_n\sigma_{n-1}\ldots \sigma_2\sigma_1)$. The resulting braid is then as in Figure \ref{fig:Ingredients_FrontsMarkov2_General}.(1) and its $(-1)$-closure is depicted in Figure \ref{fig:Ingredients_FrontsMarkov2_General}.(2). 
+
+The fronts in Figure \ref{fig:Ingredients_FrontsMarkov2_General}.(2)-(6) are then front homotopic, i.e.~realized by Legendrian isotopies, as follows. Front (2) to (3) consists of a series of Reidemeister III moves followed by a sequence of Reidemeister II moves that pull the top (blue) strand to the right of the front past $\Delta_n$ and $n$ right cusps. Front (3) to (4) is the reverse of that sequence applied to the piece of the (blue) strand above the rightmost (blue) cusp: first a sequence of Reidemeister II moves and then a sequence of Reidemeister III moves. Front (4) to (5) is a sequence of Reiedemeister III and Reidemeister II moves that pull the right blue cusp pointing down up to the center region. The sequence of Reidemeister III moves necessary to realize this Legendrian isotopy from (4) to (5) exists because $\beta_2$ is (the lift of) a permutation braid. In particular, the blue strand inside the $\beta_2$-box in Front (4) always goes above the other strands. Then the isotopy from (4) to (5) is as follows: first pull the blue strand exiting the right blue cusp from above across part of the $\beta_2$-box via Reidemeister III moves; then use Reidemeister II moves to pull the right blue cusp through the $\beta_2$-box so as to reach Front (5). Finally, Front (5) to (6) is a sequence of Reidemeister II moves that pulls the top leftmost blue cusp to the region containing the right blue cusp. Front (6) is homotopic to the $(-1)$-closure of $\eta_2$ via a Reidemeister I move applied to the crossing between $\beta_1$ and $\beta_2$, which proves item (1) of the lemma.
+
+For item (2), proceed as in item (1) by choosing a braid word for the half-twist $\Delta_{n+1}$ of the form $$\Delta_n(\sigma_n\sigma_{n-1}\cdot \ldots \cdot \sigma_2\sigma_1).$$
+The resulting braid is drawn in Figure \ref{fig:Ingredients_FrontsMarkov2_General_Case2}.(1) and its $(-1)$-closure is in Figure \ref{fig:Ingredients_FrontsMarkov2_General_Case2}.(2). From Front (2) to Front (3) we perform a sequence of Reidemeister III and then Reidemeister II moves moving the right piece of the blue strand (under the cusps). This is the same first step as for item (1). From Front (3) to Front (4) we perform a movie similar to the previous one but to the left piece, using the left cusps. The only difference is that we must pull the strand through a piece of the $\beta_2$-box, as indicated by the red arrows in Figure \ref{fig:Ingredients_FrontsMarkov2_General_Case2}.(3). This is indeed possible because $\beta_2$ is a permutation braid. Once at Front (4), the blue component is a max-tb Legendrian unknot which is unlinked from the other components of the Legendrian link, thus item (2) follows.
+
+%Consider the front $\mathfrak{W}_{\vartheta}\subset S^1_\theta\times\R_z$. The hypothesis $\vartheta=\vartheta_1\sigma_{n-1}\vartheta_2$ implies that the top strand exiting $u_{ch}\sse \mathfrak{W}_{\vartheta}$ from the left has a unique Reeb chord to it in the region between $w_{cr}$ and $u_{ch}$.{\bf FINISH THIS}
+\end{proof}
+
+\begin{center}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=\textwidth]{figures/Ingredients_FrontsMarkov2_General_Case2.pdf}
+		\caption{In (1) the starting piece of a front. From (2)-(4), the Legendrian isotopy that proves Lemma \ref{lem:Markov} for its $(-1)$-closure.}
+		\label{fig:Ingredients_FrontsMarkov2_General_Case2}
+	\end{figure}
+\end{center}
+
+%\MG{Should we add a few words explaining why this lemma does indeed imply Lemma \ref{lem:Markovsmooth}? Or is clear enough?}{\RC I think it is clear: look at the two statements.}
+
+\begin{remark}
+Lemma \ref{lem:Markov} does not hold for general positive braid words $\beta_2\in\Br_{n+1}$. %\MG{It might be nice to add an example to illustrate that.}\RC{Let's not.}
+Fortunately, the hypothesis of $\beta_2$ being a permutation braid is met for the positroid Richardson braids.\hfill$\Box$
+
+
+===== 作者活动证明：source0.tex 第2710—2751行 =====
+\begin{proof}
+We prove this by induction in $m$. For notational convenience, we refer to the left end of $\beta^{(1)}_{m}$ as $x=0$, to the right end of $\beta^{(1)}_{m}$ which coincides the left end of $\beta^{(2)}_{m}$ as $x=1$ and to the right end of $\beta^{(2)}_{m}$ as $x=2$ (see figures above). For $m=1$ we get
+\begin{equation}\label{eq: w0ww0}
+%w_0ww_0
+\beta^{(1)}_{1}=w^*= \left(s_{\lambda^{t}_{n-k}}\cdots s_1\right)\cdots\left(s_{\lambda_{1}^{t} + n - k -1}\cdots s_{n-k}\right). 
+\end{equation}
+and $\beta^{(2)}_{1}=u^{-1}w_0$. 
+
+Assume that the statement holds for all $1 \leq j \leq m$.
+To prove the step of induction, we mark in blue the bottom-most strand at $x=2$. It is labeled by $n-m+1$ at $x=2$ and by $(u^{-1}w_0)^{-1}(n-m+1)  = w_0u(n-m+1) = w_0(f(j_{n-k-m+1})) = n+1-f(j_{n-k-m+1})$ at $x=1$. For brevity, denote $m' := n-k-m+1$.
+
+By assumption, the rightmost interval braid in $\beta^{(1)}_{m}$ is
+%ends with the interval braid
+\begin{equation}\label{eq: m step}
+s_{m-1+\lambda^{t}_{n-k-m+1}}\cdots s_{m}=s_{m-1+\lambda^{t}_{m'}}\cdots s_{m}.
+\end{equation}
+
+We need to verify that we can apply Lemma \ref{lem:Markovsmooth}. Let us count the number of strands \emph{above} the blue strand $n+1-f(j_{m'})$ we have removed at $x=1$. Note that such strands correspond to $1 \leq \ell < m$ such that $n+1-f(j_{\ell'}) < n+1-f(j_{m'})$ where $\ell' :=  n-k-\ell+1$, that is, they correspond to elements $n - k \geq \ell' > m'$ such that $f(j_{\ell'}) > f(j_{m'})$. Thanks to \eqref{eq: noninversions}, there are precisely $n-k-m'-\inv(m')$ such strands. We conclude that the blue strand occupies the position
+\[
+n + 1 - f(j_{m'}) - (n-k-m' - \inv(m')) = k+1+m'+\inv(m') - f(j_{m'})
+\]
+and, in order to verify we can apply Lemma \ref{lem:Markovsmooth}, we need to verify that 
+\[
+k+m'+\inv(m') - f(j_{m'}) \leq \lambda^{t}_{m'} = k+m'-j_{m'} \Leftrightarrow j_{m'} \leq f(j_{m'}) - \inv(m')
+\]
+which holds thanks to Lemma \ref{lem: inv}. So we can indeed use Lemma \ref{lem:Markovsmooth} in order to destabilize. We have cases:
+
+\begin{itemize}
+\item[-] If $j_{m'} = f(j_{m'}) - \inv(m')$, then we remove a disjoint blue unknot and erase the interval braid completely.
+\item[-] If $j_{m'} = f(j_{m'}) - \inv(m') - 1$, then we also erase the interval braid completely.
+\item[-] Else, we delete the part $(s_{m+k+m'+\inv(m')-f(j_{m'})}\cdots s_{m})$ intersecting the blue strands out of the interval braid \eqref{eq: m step} and are left with 
+\[
+s_{m-1+\lambda^{t}_{m'}}\cdots s_{m+k+m'+\inv(m')-f(j_{m'})+1} = s_{m-1+\lambda^{t}_{m'}}\cdots s_{n+\inv(m')-f(j_{m'}) + 2}.
+\]
+Now we push this interval through the $m' - 1$ remaining interval braids and get
+\begin{equation}\label{eq: push before substract}
+s_{m-1+\lambda^{t}_{m'}+m'-1}\cdots s_{n+\inv(m')-f(j_{m'}) + 2+m'-1}=
+s_{n-k-1+\lambda^{t}_{m'}}\cdots s_{n+\inv(m')-f(j_{m'}) + m'+1}.
+\end{equation}
+This agrees with the interval braid in $\beta^{(1)}_{m+1}$.
+\end{itemize}
+\end{proof}

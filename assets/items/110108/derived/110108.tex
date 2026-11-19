@@ -1,0 +1,168 @@
+\documentclass[10pt,a4paper]{amsart}
+\usepackage[margin=19mm]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage[scr=rsfs,cal=euler]{mathalfa}
+\usepackage{xfrac}
+\usepackage[unicode,hidelinks,bookmarks=false]{hyperref}
+\newcommand{\ie}{i.e.\ }
+\newcommand{\cf}{cf.\ }
+\newcommand{\resp}{respectively\ }
+\newcommand{\Subsection}{\subsection}
+\providecommand{\nobreakdash}{\nobreak\hbox{-}}
+\setlength{\emergencystretch}{2em}
+\multlinegap0pt
+\usepackage{xcolor}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\newtheorem{lemma}{Lemma}
+\renewcommand{\H}{\mathbb{H}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\title[Author proof 110108]{Valuations on the character variety: \\ Newton polytopes and Residual Poisson Bracket}
+\author{Julien March\'e, Christopher-Lloyd Simon}
+\date{Source: arXiv:2104.04340v1 (CC BY 4.0)}
+\usepackage{graphicx}
+\graphicspath{{assets/}}
+\newcommand{\Bb}{\mathcal{B}}
+\newcommand{\ML}{\mathrm{ML}}
+\DeclareMathOperator{\NewSet}{\Delta}
+\newcommand{\Q}{\mathbb{Q}}
+\allowdisplaybreaks
+\begin{document}
+
+\maketitle
+\noindent\textbf{Reviewed difficulty: H2. Legacy noncounting; count 0.} The H2 burden includes the explicit CW/orbifold construction with half-edges, truncated collinear simplices and projective-space attachments, the compatible equivariant map avoiding the inscribed circle, and the finite-subcomplex deformation-retraction argument. Both original construction figures are included. Standard covering-space theory, van Kampen, $K(\pi,1)$ and homotopy-group comparison are mature inputs; the specialized common construction remains part of this unit.\par\medskip
+
+\noindent\emph{Source and licence.} Valuations on the character variety: \\ Newton polytopes and Residual Poisson Bracket. Version arXiv:2104.04340v1 (CC BY 4.0), distributed by arXiv under the Creative Commons Attribution 4.0 International licence, \url{http://creativecommons.org/licenses/by/4.0/}, as recorded in the arXiv licence metadata for this exact version and shown on the abstract page \url{https://arxiv.org/abs/2104.04340v1}. Full licence notice: \path{licenses/arxiv-2104.04340-CC-BY-4.0.txt}.\par\smallskip
+
+
+\noindent\textit{Editorial scope.} Selected author statement at source0.tex 1192--1194 and complete author proof at 1195--1241. Necessary author inputs and any dedicated auxiliary chain are displayed below. Original mathematical text, hypotheses, formulas and source version are retained.\par\smallskip
+\section*{Author context (source 1128--1136)}
+Let us recall Thurston's description for the tangent space to $\ML$ at a maximal measured lamination $\lambda$. We start with an orientation covering $p\colon S'\to S$, which is a ramified covering of degree $2$ with one ramification point in each triangle of the complement $S\setminus \lambda$, and such that the preimage $p^{-1}(\lambda)$ is naturally co-oriented. By the Gauss-bonnet theorem, the set $R$ of ramification points has $4g-4$ elements and the monodromy of the covering is a morphism $\rho\colon \pi_1(S\setminus R)\to\{\pm 1\}$ which is non-trivial around each ramification point. For later purposes, it will be useful to consider the orbifold $S^o$ where ramification points are thought as conical points of order $2$.
+
+Let $H_1(S',\R)^-$ be the antisymmetric part of $H_1(S',\R)$ with respect to the involution of the covering: it supports a non-degenerate antisymmetric form obtained by restricting half the intersection form.
+%
+We shall refer to this symplectic space as Thurston's model for $T^*_\lambda\ML$.
+%
+We can avoid introducing the covering by considering instead the homology group $H_1(S^o,\R^-)$ with coefficients in the $\pi_1(S^o)$-module $\R$ together the action given by $\gamma.x=\rho(\gamma)x$. The twisted intersection product $H_1(S^o,\R^-)\times H_1(S^o,\R^-)\to H_0(S^o,\R)=\R$ coincides with the previous definition for Thurston's model. We will stick to this point of view in the sequel.
+
+Let $T$ be a trivalent real tree endowed with a free minimal action of $\pi_1(S)$, which is dual to a measured geodesic lamination $\lambda$. %We denote by $S^o$ the orbifold corresponding to $\lambda$. %The orbits of branch points in $T$ correspond either to the connected components of $S\setminus\lambda$, or to the ramification locus $R$ of the covering $S'\to S$. In particular it has $4g-4$ elements. 
+
+\section*{Author context (source 1144--1191)}
+In the next section we first recover a model for $S^o$ which depends only on $T$: our space will be an infinite dimensional CW-complex homotopic to $S^o$. As a consequence, its fundamental group is canonically attached to $T$ and its homology will be easy to compute from $T$. We will use it extensively to prove that the Bonahon model $\Bb(T)_\pi$ and Thurson model $H_1(S^o,\R^-)$ are naturally isomorphic symplectic vector spaces. 
+
+
+\subsection{A homotopical construction of the orbifold tree}
+
+We first construct a space corresponding to the tree $T$ with an orbifold singularity of order $2$ at every branch point.
+%
+As the topology of $T$ induced by the metric is not given by a cell structure, our first task is to build a cellular model of $T$.
+
+\paragraph{Intuition.}
+Let us begin with the following analogy: suppose we wish to replace the real line $\R$ with its usual topology, by a CW-complex whose $0$-cells consists in the set $\Q$ of rationals with the discrete topology. We may first add a $1$-cell between every pair of distinct $0$-cells to make the space connected. This creates a $1$-cycle for every triple of distinct rational points, so we attach a $2$-cell to each of those in order to make the space simply connected. Now every $4$-tuple of rationals form the vertices of a $2$-cycle, to which we attach a $3$-cell, and so on.
+%
+What we obtain in the limit is Milnor's join construction $E\Q$, which is a space homotopic to $\R$ endowed with a free and proper action of $\Q$. 
+
+We shall play a similar game, replacing $\R$ by the real tree $T$, and $\Q$ by its set of branch points $V(T)$. We first attach a $1$-cell to every pair of distinct branch points. However, we close the triangle $(x,y,z)$ only if $x,y,z \in V(T)$ belong to a same geodesic in $T$. Then we go on similarly in higher dimensions, so that our space will resemble $E\Q$ in restriction to any geodesic of $T$. At this stage, we have a space on which $\pi_1(S)$ acts freely and properly. As it is contractible, its quotient by $\pi_1(S)$ is homotopic to $S$.
+%
+Next comes the orbifold singularity: in homotopy theory, this is represented by a $K(\Z/2,1)$-space, that is $\R\P^\infty$. It remains to blow up the preceding construction at every branch point and insert an infinite dimensional space. This construction may look complicated but we shall do it in one shot and few lines below.
+
+\paragraph{Construction.}
+A \emph{half-edge} of $T$ is a pair $(x,h)$ consisting in a branch point $x$ of $T$ and a connected component $h$ of $T\setminus\{x\}$; we sometimes just write $h$ as it determines $x$. Let us construct a CW-complex $T^o$ whose $0$-skeleton is the set of half-edges of $T$.
+%
+First, we attach a $1$-cell denoted $(h,k)$ between every pair of half-edges incident to the same branch point $x\in V(T)$. 
+%
+Now at every branch point $x$, the incident half-edges $h_1,h_2,h_3$ form a triangle homeomorphic to $\R\P^1$ through which we attach a copy of $\R\P^\infty$.
+%
+For the moment, $T^o$ is a disjoint union of infinite projective spaces indexed by the set of branched points $V(T)$, we call it the \emph{orbifold part}.
+
+Now, we add a \emph{connecting part}, as suggested in Figure \ref{fig:CW}. 
+%
+% We now add to $T^o$ \emph{connecting part} modeling the geodesics in $T$. For every pair of distinct branch points $x,y\in V(T)$, we attach the boundary of a $1$-cell $(x,y)$ to the pair half-edges $(x,h)$, $(y,k)$ such that $e$ and $f$ contain the unique geodesic between $x$ and $y$.
+%
+%Finally, we add to $T^o$ a \emph{connecting part}. %by increasing dimensions from $1$ to $\infty$.
+%
+Fix $\epsilon>0$ small enough, say $1/3$. Consider a finite set $W$ of branch points $\{x_0, \dots, x_n\}$ aligned on a geodesic of $T$, and denote $h_i,k_i$ the half-edges incident to $x_i$ containing (a non-empty) part of that geodesic. %, which we orient for convenience so that we may order the branch points $x_0, \dots, x_n$. 
+The $n$-cell $\NewSet_W=\{(r_x)_{x\in W}\in [0,1-\epsilon]^W, \sum_{x\in W}r_x=1\}$ is a truncated simplex, and there is an obvious inclusion $\Delta_{W'}\subset \Delta_W$ when $W'\subset W$. The face of $\Delta_W$ truncated at $x_i$ corresponds to the set $\Delta_W^{x_i}$ of families $(r_x)$ satisfying $r_{x_i}=1-\epsilon$.
+%
+%Note $e_i$ and $f_i$ the $0$-cells corresponding to half-edges incident to $x_i$ containing $x_{i-1}$ and $x_{i+1}$ respectively (with $x_{n+1}=x_0$ and $x_{-1}=x_n$).
+We attach $\Delta_W^{x_i}$ to the orbifold part of $T^o$ through the map $W\setminus\{x_i\}\to \{h_i,k_i\}$ sending the branch point $x_j$ to the half-edge based at $x_i$ which contains $x_j$, as in Figure \ref{fig:CW}. %
+The $1$-cells $\Delta_{\{x,y\}}$ will be called edges and denoted $(x,y)$. % or $(e,f)$ where $e$ and $f$ are the half-edges incident to $x,y$ and containing $y$ and $x$ respectively.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=8cm]{CW.pdf}
+    \caption{Attaching a 3-cell in $T^o$}
+    \label{fig:CW}
+\end{figure}
+
+As promised, the action of $\pi_1(S)$ on $T^o$ is now proper so that we may form the quotient $\Sigma^o=T^o/\pi_1(S)$. The following lemma shows that $\Sigma^o$ and $S^o$ are homotopic. Interestingly, the proof consists in constructing an equivariant map $F:T^o\to \tilde{S}^o$, which plays the role of a (non-existing) retraction for the map $f:\tilde{S}\to T$. 
+
+
+\section*{Author context (source 1245--1257)}
+The homology of $T^o$ can be computed from its finite sub-complexes, which are easy to understand thanks to the following lemma. For a finite set $W\subset V(T)$, let $T^o_{(W)}$ to be the union of cells involving $W$ only: a cell belongs to $T^o_{(W)}$ when all its $0$-faces are of the form $(x,h)$ for $x\in W$. 
+%
+We define $T^o_W$ to be the sub-complex of $T^o_{(W)}$ whose connecting part reduces to the $1$-cells $(x,y)$ for $x,y \in W$ such that there is no other element in $W$ on the geodesic joining them. In more intuitive terms, $T^o_W$ is a collection of $\R\P^\infty$ indexed by $W$, connected in a tree-like fashion given by the embedding of $W$ in $T$. 
+
+\begin{lemma}\label{retraction}
+For all finite $W\subset V(T)$, the cell-complex $T^o_{(W)}$ retracts by deformation on $T^o_W$ .
+\end{lemma}
+
+\begin{proof}
+We define the retraction by induction on the maximal dimension of the truncated simplices $\Delta_U\subset T^o_{(W)}$. % with maximal dimension, and thereby decrease the dimension down to $1$. 
+Let $U =\{x_0,\dots,x_n\}$ correspond to one of them, it is the intersection of $W$ with a geodesic in $T$. We retract $\Delta_U$ by deformation onto the union of $\Delta_{U'}$ for $U'\subset U$ ranging over all subsets which do not contain both $x_0$ and $x_n$. % The number of cells $\Delta_U$ with dimension $>1$ has decreased, and we keep going until all such truncated simplices have dimension one.
+This procedure stops when $U=\{x,y\}$ and $x,y$ are closest neighbours in $W$.
+\end{proof}
+\section*{Selected author statement}
+\begin{lemma}\label{equiv-homotopy}
+Let $\tilde{S}^o$ be the covering of the orbifold $S^o$ corresponding to the kernel of the natural map $\pi_1(S^o)\to \pi_1(S)$. There exists a $\pi_1(S)$-equivariant map $F:T^o\to \tilde{S}^o$ which induces a homotopy equivalence between $\Sigma^o$ and $S^o$.
+\end{lemma}
+\section*{Complete author proof}
+\begin{proof}
+
+
+To define $F$, represent $T$ as the dual tree to a measured geodesic lamination $\lambda$ and consider the collection of circles inscribed in each triangle of the complement $S\setminus\lambda$: they lift to a collection of circles $C_x$ in $\tilde{S}\simeq \H^2$ indexed by $x\in V(T)$.
+%
+Moreover, the half-edges incident to $x$ correspond bijectively to the three intersection points of $C_x$ with the leaves of the lamination, see Figure \ref{fig:equivmap}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=6cm]{equivmap.png}
+    \caption{Lifting a geodesic to $\H^2$ (done with Geogebra)}
+    \label{fig:equivmap}
+\end{figure}
+%
+%(Notice that since $\lambda$ is filling, the discs interior to the $C_x$ have disjoint neighborhoods, and the minimal hyperbolic distance between two of them can be read in $S$.)
+%
+The covering $\tilde{S}^o$ is obtained from $\H^2$ by drilling out the interior of $C_x$ and gluing back a copy of $\R\P^\infty$ along $\R\P^1\simeq C_x$ for every $x\in V(T)$. By construction, the orbifold $S^o$ is homotopic to the quotient $\tilde{S}^o/\pi_1(S)$. 
+
+We now proceed to the construction of an equivariant map $F \colon T^o\to \tilde{S}^o$. There is already an identification between the orbifold parts of both spaces, so that we are left to define the map $F$ on the connecting part. 
+
+For every pair $(x,y)\in V(T)^2$, we must define a path $F(x,y)$ in $\tilde{S}^o$ connecting the points of $C_x$ and $C_y$ identified to the end points $h_x,h_y$ of $(x,y)$ in $T^o$. A first guess would be to consider the geodesic path $\gamma$ between the points $h_x$ and $h_y$. This path actually projects to the geodesic joining $x$ to $y$ in $T$. However it may intersect a forbidden circle $C_z$, in which case it enters its circumscribed ideal triangle $\Delta_z$ by one side and leaves it by another. Call $p_z$ the ideal vertex at the intersection of these two sides. 
+We can homotope $\gamma$ inside $\Delta_z$ to a path avoiding $C_z$ which stays on the side containing $p_z$, see Figure \ref{fig:equivmap}.
+
+%\textcolor{red}{Pourquoi de ce côté et pas de l'autre ? Je ne penses pas qu'on ait le choix sur le côté, et d'ailleurs si on fait certaines alternances gauche droite entre les triangles il faut couper le cercle inscrit...}
+%
+%This path will indeed belong to $f^{-1}([x,y])$ where $[x,y]$ denotes the geodesic joining $x$ to $y$ and will avoid the inscribed circles included in that region. 
+%
+%Let $U$ be the set of vertices lying between $x$ and $y$. These vertices belong to two disjoint classes $U=U_L\cup U_R$: a branch point $u$ belongs to $U_L$ (resp. $U_R$) if the branch leaving $u$ turns left when moving from $x$ to $y$. We define $F(x,y)$ to be any transverse path in $f^{-1}([x,y])$ which separate the collection of circles $U$ accordingly to this decomposition. 
+
+Moreover, we can choose those paths in such a way that $F$ is $\pi_1(S)$-equivariant. Let us now consider a triple of points $x,z,y$ lying on a geodesic of $T$ in that order. We have defined $F(x,z)$, $F(z,y)$ and $F(x,y)$: it is not hard to see that the region enclosed by the three arcs and the boundary of $C_z$ does not contain any other circle, hence it can be filled by a triangle: this extends $F$ to the $2$-skeleton of $T^o$. 
+%
+This procedure can be continued to define an equivariant map $F:T^o\to \tilde{S}^o$, which induces a map $\overline{F}:\Sigma^o\to S^o$.
+
+We would like to show that $\overline{F}$ is a homotopy equivalence. The space $\tilde{S}^o$ is Eilenberg-MacLane and Lemma \ref{retraction} below shows that so is $T^o$, hence it is sufficient to prove that $\overline{F}$ induces an isomorphism between fundamental groups.
+%
+Behold the following commutative diagram, and observe that the five lemma reduces the statement to showing that $F_*$ is an isomorphism.
+$$\xymatrix{
+0\ar[r]& \pi_1(T^o)\ar[d]^{F_*}\ar[r] & \pi_1(\Sigma^o)\ar[r]\ar[d]^{\overline{F}_*}& \pi_1(S)\ar[d]^=\ar[r]& 0 \\
+0\ar[r]& \pi_1(\tilde{S}^o)\ar[r] & \pi_1(S^o)\ar[r]& \pi_1(S)\ar[r]& 0 
+}$$
+This last statement is clear from the fact that $\pi_1(T^o)$ and $\pi_1(\tilde{S}^o)$ are both isomorphic to a free product of copies of $\Z/2\Z$ indexed by $V(T)$ (see again Lemma \ref{retraction}). 
+%As $T^o$ is an Eilengerg-Maclane space, the same is true for $\Sigma^o$ hence it is sufficient to show that $\pi_1(\Sigma^o)$ and $\pi_1(S^o)$ are isomorphic groups. 
+%Fix a hyperbolic structure on $S$ and represent $T$ as the dual tree of a measured lamination $\lambda$ on $S$. Denote by $f$ the quotient map $f:\tilde{S}\simeq \H^2\to T$. 
+%Denote by $\tilde{S}^o$ the covering of $S^o$ corresponding to the morphism $\pi_1(S^o)\to \pi_1(S)$. 
+%It is sufficient to show that there is an isomorphism $\pi_1(\tilde{S}^o\simeq \pi_1(T^o)$ which is $\pi_1(S)$-equivariant up to conjugation (détailler...). 
+%For any finite subset $W\in V(T)$, we can embedd the tree $T'_W$ inside $\H_2$ by sending each cycle to the corresponding inscribed circle. It suffices to lift the edges between closest neighbours to arcs transversal to the lamination...
+\end{proof}
+\end{document}

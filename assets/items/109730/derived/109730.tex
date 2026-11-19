@@ -1,0 +1,668 @@
+\documentclass[10pt,a4paper]{amsart}
+\usepackage[margin=19mm]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage[scr=rsfs,cal=euler]{mathalfa}
+\usepackage{xfrac}
+\usepackage[unicode,hidelinks,bookmarks=false]{hyperref}
+\newcommand{\ie}{i.e.\ }
+\newcommand{\cf}{cf.\ }
+\newcommand{\resp}{respectively\ }
+\newcommand{\Subsection}{\subsection}
+\providecommand{\nobreakdash}{\nobreak\hbox{-}}
+\setlength{\emergencystretch}{2em}
+\multlinegap0pt
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\BF}{\mathrm{BF}}
+\newcommand{\Ell}{\mathcal{E}}
+\newcommand{\KS}{\mathscr{W}}
+\newcommand{\Lgeom}{L_p^{\mathrm{geom}}}
+\newcommand{\cBF}{\Xi}
+\newcommand{\lcBF}{\widetilde{\Xi}}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\leq}{\le}
+\newcommand{\regulator}[1]{r_{#1}}
+\newcommand{\rsyn}{\regulator{\syn}}
+\DeclareMathOperator{\syn}{syn}
+\title[Author proof 109730]{On the factorisation of the \texorpdfstring{$p$}{p}-adic Rankin--Selberg \texorpdfstring{$L$}{L}-function in the supersingular case}
+\author{Alessandro Arlandini, David Loeffler}
+\date{Source: arXiv:2103.16380v3 (CC BY 4.0)}
+\newcommand{\AJ}{\mathrm{AJ}}
+\newcommand{\Bcrys}{B_{\mathrm{crys}}}
+\newcommand{\BdR}{B_{\dR}}
+\newcommand{\C}{\numberset{C}}
+\newcommand{\CH}{\mathrm{CH}}
+\DeclareMathOperator{\Fil}{Fil}
+\newcommand{\HS}{\mathscr{H}}
+\newcommand{\N}{\numberset{N}}
+\newcommand{\Q}{\numberset{Q}}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\TSym}{TSym}
+\newcommand{\Weight}{\mathcal{W}}
+\newcommand{\Z}{\numberset{Z}}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\dR}{dR}
+\newcommand{\del}{\mathcal{D}}
+\renewcommand{\epsilon}{\varepsilon}
+\DeclareMathOperator{\et}{\acute{e}t}
+\DeclareMathOperator{\fp}{fp}
+\renewcommand{\ge}{\geqslant}
+\renewcommand{\geq}{\ge}
+\newcommand{\lBF}{\widetilde{\mathrm{BF}}}
+\DeclareMathOperator{\mot}{\mathscr{M}}
+\renewcommand{\phi}{\varphi}
+\newcommand{\rD}{\regulator{\del}}
+\DeclareMathOperator{\rig}{rig}
+\newcommand{\ringint}{\mathcal}
+\newcommand{\theory}{\mathcal{T}}
+\newcommand{\ud}{\mathrm{d}}
+\newcommand{\numberset}{\mathbb}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\usepackage{tikz-cd,cleveref}
+\allowdisplaybreaks
+\makeatletter
+\newlabel{diag:complex-compatibility}{{\textup{source line 661}}{}}
+\newlabel{eq:cohomology-decompositions}{{\textup{source line 1032}}{}}
+\newlabel{eq:isomorph-ext-0}{{\textup{source line 1285}}{}}
+\newlabel{eq:kunneth-components}{{\textup{source line 1038}}{}}
+\newlabel{sec:de-rham-kuga-sato}{{\textup{source line 1015}}{}}
+\newlabel{sect:feqg}{{\textup{source line 981}}{}}
+\newlabel{subsubsec:swapping}{{\textup{source line 1194}}{}}
+\makeatother
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}[1]{}
+\renewcommand{\MR}[1]{%
+ MR \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#1}.
+}
+\providecommand{\href}[2]{#2}
+\newcommand{\articlehref}[2]{\href{#1}{#2}}
+\begin{document}
+
+\maketitle
+\noindent\textbf{Reviewed difficulty: H2. Legacy noncounting; count 0.} The H2 burden includes the complete special $Z_f$ graph-cycle computation at 1376--1456 and the noble lift, antisymmetric tensor, compact-support/open--proper comparison, projection and regulator-sign chain at 1542--1731. The final selected theorem/proof is their last composition. Canonical cuspidal-component isomorphisms at 929--959 and the independently attributed external regulator/lifting inputs are displayed; the specialized joint chain remains part of this unit\textquotesingle s burden.\par\medskip
+
+\noindent\emph{Source and licence.} On the factorisation of the \texorpdfstring{$p$}{p}-adic Rankin--Selberg \texorpdfstring{$L$}{L}-function in the supersingular case. Version arXiv:2103.16380v3 (CC BY 4.0), distributed by arXiv under the Creative Commons Attribution 4.0 International licence, \url{http://creativecommons.org/licenses/by/4.0/}, as recorded in the arXiv licence metadata for this exact version and shown on the abstract page \url{https://arxiv.org/abs/2103.16380v3}. Full licence notice: \path{licenses/arxiv-2103.16380-CC-BY-4.0.txt}.\par\smallskip
+
+
+\noindent\textit{Editorial scope.} Selected author statement at source0.tex 1757--1763 and complete author proof at 1764--1774. Necessary author inputs and any dedicated auxiliary chain are displayed below. Original mathematical text, hypotheses, formulas and source version are retained.\par\smallskip
+\section*{Author context (source 520--532)}
+  Now let $f$ be an eigenform of level $N$ and weight $k + 2 \ge 2$, and $\alpha_f$ a root of its Hecke polynomial. 
+  
+  \begin{definition}
+  \label{def:noble}
+   We say $f$, or more precisely the pair $(f, \alpha_f)$, is \emph{noble} if the following two conditions hold:
+   \begin{itemize}
+   \item $\alpha_f$ is distinct from the other root\footnote{This is automatic for $k = 0$, and for all $k \ge 0$ if the Tate conjecture holds \cite{colemanedixhoven98}.} $\beta_f$ (``$p$-regular'').
+   \item if $v_p(\alpha_f) = k + 1$ (the maximal possible value), then $M_{\et}(f)|_{G_{\Q_p}}$ is not the direct sum of two characters (``non-critical'').\footnote{If $f$ is of CM-type, with $p$ split in the CM field, and $\alpha_f$ is the non-unit root, then $f$ is always critical. Conversely, is conjectured that non-CM cusp forms are always non-critical.}
+   \end{itemize}
+  \end{definition}
+
+  If $f$ is noble, then for any small enough affinoid $U \ni k$, there exists a unique Coleman family $F$ over $U$ specialising to $f_{\alpha_f}$ at $k$ \cite[Theorem~4.6.4]{loefflerzerbes16}. We can thus define a $p$-adic Rankin--Selberg $L$-function for $f$,
+  \[ L_{p, \alpha_f}(f, f, -) : \Weight \to \C_p, \qquad L_{p, \alpha_f}(f, f, \sigma) \coloneqq \Lgeom(F, F)(k, k, \sigma).\]
+
+\section*{Author context (source 929--959)}
+  An important property that these modules enjoy is that they can be found in several cohomology groups. Indeed, one can give the same definition for the compactified variety $W_k$, and it turns out that the resulting objects are canonically isomorphic to those we defined. Additionally, $M_{\theory}(f)$ lifts to the compactly supported cohomology of $\Ell^k$. To sum up, there are \emph{canonical} isomorphisms:
+  \[
+   \begin{tikzcd}[column sep=small]
+    M_{\theory}(f) \arrow[<->,"\simeq"]{r} \arrow[hook]{d} &
+    M_{\theory}(f) \arrow[<->,"\simeq"]{r} \arrow[hook]{d} &
+    M_{\theory}(f) \arrow[hook]{d} \\
+    H_{c,\theory}^{k+1}(\Ell^k, \Q_{\theory})(\epsilon_k) \ar[r] &
+    H_{\theory}^{k+1}(W_k, \Q_{\theory})(\epsilon_k) \ar[r] &
+    H_{\theory}^{k+1}(\Ell^k, \Q_{\theory})(\epsilon_k)
+   \end{tikzcd}
+  \]
+  and similarly for $M_\theory(f)^*$.
+
+  We also have comparison isomorphisms linking the various realisations:
+  \begin{align}
+   M_B(f) \otimes \C &\simeq M_{\dR}(f) \otimes \C, \tag{De Rham}\\
+   M_{\rig}(f) \otimes \Bcrys &\simeq M_{\dR}(f)_{\Q_p} \otimes \Bcrys \simeq M_{\et}(f)_{\Q_p} \otimes \Bcrys, \tag{$C_{\mathrm{crys}}$} \\
+   M_{\rig}(f) \otimes \BdR &\simeq M_{\dR}(f)_{\Q_p} \otimes \BdR \simeq M_{\et}(f)_{\Q_p} \otimes \BdR \tag{$C_{\dR}$}.
+  \end{align}
+
+  For the Rankin convolution one defines the motives using the above ones as building blocks.
+  \begin{definition}
+   Let $\theory\in\{\dR,B,\et,\rig\}$. Define:
+   \begin{itemize}
+    \item $M_{\theory}(f\otimes g) \coloneqq M_{\theory}(f) \otimes M_{\theory}(g)$;
+    \item $M_{\theory}(f\otimes g)^* \coloneqq M_{\theory}(f)^* \otimes M_{\theory}(g)^*$.
+   \end{itemize}
+   Both $M_{\theory}(f\otimes g)$ and $M_{\theory}(f\otimes g)^*$ are $4$-dimensional, as the building blocks have dimension $2$.
+  \end{definition}
+
+  Similar remarks apply to these spaces: they lift to the cohomology of $W_k \times W_{k'}$, or to the compactly supported cohomology of $\Ell^k \times \Ell^{k'}$; and they are related by the comparison theorems.
+
+\section*{Author context (source 1047--1142)}
+\section{The Beilinson--Flach Euler system}
+
+ In this section we define the cohomology classes that we will use as ingredients to construct our motivic classes. We first introduce Beilinson--Flach classes and explain how they can be extended to the cohomology of Kuga-Sato varieties, and then exploit some differential forms attached to cusp forms.
+
+ \subsection{From Eisenstein to Beilinson--Flach classes}
+
+  In this subsection we introduce the Beilinson--Flach classes, constructed in~\cite{leiloefflerzerbes14,KLZ20} as the push forward of Eisenstein classes (constructed by Beilinson) from the motivic cohomology of modular curves, to that of the product of two modular curves.
+
+  \begin{definition}[{\cite[Definition~5.3.1]{KLZ20}}]
+   The Beilinson--Flach classes defined over $\Q$ are motivic classes
+   \[
+    \BF^{[k,k',j]}_{\mot,N} \in H^3_{\mot}(Y_1(N)^2,\TSym^{[k,k']} \HS_{\mot}(2-j)).
+   \]
+   We will suppress the subscript $N$, since variation in $N$ plays no role in this paper. For any theory $\theory\in\{\et,\dR,\mathrm{Betti},\del,\syn,\rig\}$, we write $\BF^{[k,k',j]}_{\theory} \coloneqq \regulator{\theory}(\BF^{[k,k',j]}_{\mot})$.
+  \end{definition}
+
+  We note that in the case of parallel weights $k = k'$, the involution $\rho'$ induced by swapping the two factors of $\KS_k$ (see \S \ref{sect:feqg} above) acts on $\BF^{[k,k,j]}_{\mot,N}$, and hence also on its realizations in other theories $\theory$, as $(-1)^{k + j}$. \footnote{Compare \S 5 of \cite{KLZ17}, where the statement is that the symmetry involution $\rho$ of $Y_1(N)^2$ acts as $(-1)^j$. As we have seen above, $\rho' = (-1)^k \rho$.}
+
+  \begin{remark}
+   If $N < 4$, then $Y_1(N)$ does not exist as a moduli space; but we can still define $\BF^{[k,k',j]}_{\mot, N}$ by working with auxiliary level structure and taking invariants, \emph{unless} $N = 1$ and $j = k = k'$, since in this case there is no sensible definition of the Siegel unit ${}_c g_{0, 1/N}$.
+  \end{remark}
+
+ \subsection{Compactification of Beilinson--Flach classes}
+ \label{subsec:compactification-bf}
+
+  In this subsection we recall results of Brunault and Chida \cite[\S 7-8]{brunaultchida16} which will allow us to lift the Beilinson--Flach classes from the open Kuga--Sato variety $\Ell^k \times \Ell^k$ to its compactification $\KS_k$, in order that we can apply the Bloch intersection pairing.
+  
+  \begin{remark}
+   Brunault and Chida work with a slightly more general version of the Beilinson--Flach class depending on a parameter $\beta \in \Q[(\Z / N\Z)^2]$. Here we are taking $\beta$ to be the characteristic function of $(0, 1) \in (\Z / N\Z)^2$, in which case the elements considered in \emph{op.cit.}~reduce to those studied in \cite{KLZ20}.
+   
+   Note that there are also some notational conflicts, since \cite{brunaultchida16} uses the symbol ``$\BF$'' to denote a class on the compactification, and ``$\Xi$'' for the un-compactified class, while we do almost the opposite; we are grateful to the referee for pointing out this incompatibility. Unfortunately there seems to be no way to resolve this without breaking compatibility with \cite{KLZ20}; we apologise for any confusion caused.\end{remark}
+
+  We denote by $\hat{\Ell}^d$ the locus of $\overline{\Ell}^d$ where the projection to $X_1(N)$ is smooth, i.e.\ the Néron model of $\Ell^d$ over $X_1(N)$, and by $\hat{\Ell}^{d,*}$ the connected component of the identity. We write $Z^k \coloneqq \hat{\Ell}^{k,*} \setminus \Ell^k$ (the preimage of the cusps in $\hat{\Ell}^{k,*}$), and:
+  \begin{align*}
+   \Ell^{k,k'} &\coloneqq \Ell^k \times \Ell^{k'}, &\; \hat{\Ell}^{k,k',*} &\coloneqq \hat{\Ell}^{k,*}\times \hat{\Ell}^{k',*}, \\
+   Z^{k,k'} &\coloneqq Z^k\times Z^{k'}, & U^{k,k'} &\coloneqq \hat{\Ell}^{k,k',*} \setminus Z^{k,k'}.
+  \end{align*}
+  Note $U^{k,k'}$ is strictly larger than $\Ell^{k, k'}$; it contains both $Z^k \times \Ell^{k'}$ and $\Ell^k \times Z^{k'}$. However, the composite map
+  \[
+      \Ell^{k+k'} \hookrightarrow \Ell^{k, k'} \hookrightarrow U^{k,k'}
+  \]
+  is still a closed embedding.
+  
+  \begin{theorem}[{\cite[Proposition~9.1]{brunaultchida16}}]
+   \label{thm:brunault-chida}
+   For every quadruple $(i,d,d',j) \in \N^4$ with $d,d' \geq 1$, we have
+   \begin{align*}
+    H_{\mot}^i(W_d \times W_{d'}, j)(\epsilon_d,\epsilon_{d'}) &\simeq H_{\mot}^i(\hat{\Ell}^{d,d',*}, j)(\epsilon_d,\epsilon_{d'})
+    \intertext{in particular}
+    H_{\mot}^i(\KS_d, j)(\epsilon_d,\epsilon_d) &\simeq H_{\mot}^i(\hat{\Ell}^{d,d,*}, j)(\epsilon_d,\epsilon_d).
+   \end{align*}
+  \end{theorem}
+
+Brunault and Chida define lifted classes $\lBF^{[k,k',j]}_{\mot}$ as the push-forward of Eisenstein classes to the cohomology of $U^{k,k'}$ rather than of $\Ell^{k,k'}$. The lifted classes then live in $H^{3+k+k'}_{\mot}(U^{k,k'},2+k+k'-j)$ and pull-back to the standard ones. The localisation sequence $Z^{k,k'} \to \hat{\Ell}^{k,k',*} \to U^{k,k'}$ induces a long exact sequence
+\begin{multline*}
+    \cdots\to H^{3+k+k'}_{\mot}(\hat{\Ell}^{k,k',*},2+k+k'-j)(\epsilon_k,\epsilon_{k'}) \\
+    \to H^{3+k+k'}_{\mot}(U^{k,k'},2+k+k'-j)(\epsilon_k,\epsilon_{k'}) \\
+    \xrightarrow{\Res} H^{k+k'}_{\mot}(Z^{k,k'},k+k'-j)(\epsilon_k,\epsilon_{k'}) \to\cdots
+\end{multline*}
+The residue $\Res(\lBF^{[k,k',j]}_{\mot})$ is non-zero only when $j=0$, by \cite[Proposition 8.1]{brunaultchida16}. On one hand, for $j>0$ by exactness the lifted class has a preimage in the first group. On the other hand, when $j=0$ one deduces the same thesis by diagram chasing: the ``cuspidal embedding'' $i_{\mathrm{cusp}} \colon Z^k \times \Ell^{k'} \hookrightarrow U^{k,k'}$ induces a push-forward morphism
+\[
+    H^{1+k+k'}_{\mot}(Z^k \times \Ell^{k'}, 1+k+k') \xrightarrow{i_{\mathrm{cusp},*}} H^{3+k+k'}_{\mot}(U^{k,k'},2+k+k').
+\]
+It turns out that there exists an element $\xi \in H^{k+k'+1}_{\mot}(Z^k \times \Ell^{k'}, k+k'+1)(\epsilon_k,\epsilon_{k'})$ satisfying $\Res\circ i_{\mathrm{cusp},*}(\xi) = \Res(\lBF^{[k,k',0]}_{\mot})$. This shows that the element
+\begin{equation}
+ \label{eq:brunault-chida-lift}
+ \begin{cases} \lBF^{[k,k',0]}_{\mot} - i_{\mathrm{cusp},*}(\xi) &\text{if $j=0$}\\ \lBF^{[k,k',j]}_{\mot} &\text{if $j>0$} \end{cases} \tag{$\sharp$}
+\end{equation}
+has residue always equal to zero. We then denote by $\lcBF^{k,k',j}$ an arbitrary choice of a preimage of this element in $H^{3+k+k'}_{\mot}(\hat{\Ell}^{k,k',*},2+k+k'-j)(\epsilon_k,\epsilon_{k'})$. Recall now that Theorem~\ref{thm:brunault-chida} establishes the existence of an isomorphism
+\[
+    H_{\mot}^{3+k+k'}(W_k \times W_{k'}, j)(\epsilon_k,\epsilon_{k'}) \simeq H_{\mot}^{3+k+k'}(\hat{\Ell}^{k,*} \times \hat{\Ell}^{k',*}, j)(\epsilon_k,\epsilon_{k'})
+\]
+which shows that $\lcBF^{k,k',j}$ lifts to $W_k\times W_{k'}$, which is $\KS_k$ when $k=k'$. Reversing the argument shows that $\lcBF^{k,k',j}$ pulls back to $\BF^{[k,k',j]}_{\mot}$. Indeed, its pull back from $\hat{\Ell}^{k,k',*}$ to $\Ell^{k,k'}$ factors through $U^{k,k'}$. But by definition, its image in the cohomology of $U^{k,k'}$ is the class~\eqref{eq:brunault-chida-lift}, which clearly pulls back to $\BF^{[k,k',j]}_{\mot}$ as the cuspidal contribution maps to zero.
+
+Hence $\lcBF^{k,k',j}$ is a lift of $\BF^{[k,k',j]}_{\mot}$ in the cohomology of $W_k\times W_{k'}$, as wanted. These motivic classes are the \emph{first version} of compactified Beilinson--Flach classes, as defined by Brunault and Chida. For any cohomology theory $\theory\in\{\et,\dR,\mathrm{Betti},\del,\syn,\rig\}$ we write $\lcBF^{k,k',j}_{\theory} \coloneqq \regulator{\theory}(\lcBF^{k,k',j})$.
+\begin{remark}
+    \label{rmk:pairing-unchanged}
+    Notice that the defect between $\BF^{[k,k',j]}_{\mot}$ and $\lcBF^{k,k',j}$ is supported purely on $Z^k\times \Ell^{k'}$. Therefore, its pairing with differential forms attached to cusp forms vanishes. Hence, as long as we stick to cusp forms, the classes $\lcBF^{k,k',j}$ and $\BF^{[k,k',j]}_{\mot}$ satisfy the same regulator formulæ. A precise statement is given in~\cite[Proposition~9.4]{brunaultchida16}, which we will recall later.
+\end{remark}
+
+We now define a second version of compactified Beilinson--Flach classes for the coincident weights case. Since the kernel of the map induced by $\hat{\Ell}^{k,k',*} \to U^{k,k'}$ is not guaranteed to be trivial, the class $\lcBF^{k,k',j}$ is not uniquely determined in general. Suppose now $k=k'$ and let $\rho'$ be the involution of $\KS_k = W_k\times W_k$ swapping the two components of the product.
+
+ \begin{definition}
+  The \emph{second version} of the motivic compactified Beilinson--Flach classes is
+  \[
+      \cBF^{k,k,j} \coloneqq \frac{1}{2}(\lcBF^{k,k,j} + (-1)^{k+j}(\rho')^*(\lcBF^{k,k,j})) \in H^{3+2k}_{\mot}(\hat{\Ell}^{k,k,*},2+2k-j)(\epsilon_k,\epsilon_k).
+  \]
+  By the same argument as before, we regard $\cBF^{k,k,j}\in H^{3+2k}_{\mot}(\KS_k,2+2k-j)(\epsilon_k,\epsilon_k)$. For any cohomology theory $\theory\in\{\et,\dR,\mathrm{Betti},\del,\syn,\rig\}$ we write $\cBF^{k,k',j}_{\theory} \coloneqq \regulator{\theory}(\cBF^{k,k',j})$.
+ \end{definition}
+
+ The element $\cBF^{k,k,j}$ is still a lifting of the non-compactified classes: its pull-back to $\Ell^{k,k}$ coincides with
+ \[
+  \frac{1}{2}(\BF^{[k,k,j]}_{\mot} + (-1)^{k+j}(\rho')^*\BF^{[k,k,j]}_{\mot}) = \frac{1}{2}(\BF^{[k,k,j]}_{\mot} + \BF^{[k,k,j]}_{\mot}) = \BF^{[k,k,j]}_{\mot}
+ \]
+ where we have used the fact that $(\rho')^*$ acts as $(-1)^{k+j}$ on $\BF^{k,k,j}$, as remarked in the previous section. Thus $\cBF^{k,k,j}$ is a lifting of $\BF^{k,k,j}$ compatible with the $\rho'$-action.
+
+
+\section*{Author context (source 1207--1260)}
+\subsection{Differential forms attached to cusp forms}
+\label{subsec:differential-forms}
+
+ In this subsection we seek a differential form to pair with the image of the compactified Beilinson--Flach classes under $\rD$ (see diagram in figure~\ref{diag:complex-compatibility}). Such a differential would belong to the cohomology group $H^{k+1,k+1}_{\dR}(\KS_k, \C)(\epsilon_k)$. In order to construct it we start from modular forms. Recall from Subsection~\ref{sec:de-rham-kuga-sato} that the middle Hodge component is isomorphic to $(S_{k+2}(N)\otimes \overline{S_{k+2}(N)}) \oplus (\overline{S_{k+2}(N)} \otimes S_{k+2}(N))$. Starting from cusp forms, the Eichler-Shimura isomorphism associates:
+ \begin{align*}
+     S_{k+2}(N) &\xrightarrow{\simeq} \Fil^1 H^{k+1}_{\dR}(W_k,\C)(\epsilon_k) \\
+     f &\mapsto \omega_f
+ \end{align*}
+ where $\omega_f$ is the unique $(k+1)$-form whose pull-back to $Y_1(N)$ (through $\Ell^k$) is
+ \[
+     (2\pi i)^{k+1} f(\tau)\ud\tau w^{(k,0)} = (2\pi i)^k f(q) \frac{\ud q}{q} w^{(k,0)} \in H^{1}_{\dR}(Y_1(N),\TSym^k \HS_{\dR,\C}).
+ \]
+ Here we are denoting with $w = \ud z$ the standard section of $\HS_{\dR, \C}(-1)$, and $w^{(r,s)} = w^r \overline{w}^s \in \TSym^k \HS_{\dR, \C}(-k)$. This prescription does not only define a de Rham cohomology class, but a true differential form.
+
+ Since the Eichler-Shimura isomorphism is Hecke-equivariant, the form $\omega_f$ is in the $f$-isotypical component of the de Rham cohomology group. The dual of $\omega_f$ under the Poincaré pairing belongs to the dual of $H^{k+1,0}_{\dR}(W_k,\C)$, which is $H^{0,k+1}_{\dR}(W_k,\C)$, and we denote the basis vector dual to $\omega_f$ by $\eta_{f^*}$. We can actually make this explicit:
+ \[
+     \eta_{f^*} = \frac{1}{(\omega_f,\overline{\omega_f})} \overline{\omega_f} \in H^{0,k+1}_{\dR}(W_k,\C)(\epsilon_k) \simeq \overline{S_{k+2}(N)}.
+ \]
+ The form $\eta_{f^*}$ lies in the $f^*$-isotypical component, as the Hecke operators act on it with eigenvalues which are conjugates of those of $f$. We also have the relation 
+ \begin{equation}
+  \label{eq:petersson}
+  (\omega_f,\overline{\omega_f}) = (-4\pi)^{k+1} \langle f,f \rangle.
+ \end{equation}
+ 
+ Suppose now that $f$ is a \emph{newform}. By Strong Multiplicity One $\omega_f$ spans the $f$-isotypical component inside the $(k+1,0)$ Hodge component, which is $1$-dimensional. Analogously, $\eta_f$ spans the $f$-isotypical component inside the $(0,k+1)$ Hodge component.
+ 
+ \begin{lemma}
+  If $f,g \in S_{k+2}(N)^{new}$ are newforms, then the $(f,g)$-isotypical component $M_{\dR}(f\otimes g) \otimes \C \subseteq H^{2k+2}_{\dR}(\KS_k, \C)(\epsilon_k)$ is $4$-dimensional with basis
+  \[
+    \{\omega_f\otimes \omega_g, \omega_f \otimes \eta_g, \eta_f\otimes \omega_g, \eta_f\otimes \eta_g\}.
+  \]
+ \end{lemma}
+ 
+ \begin{proof}
+  This follows from the decompositions~\eqref{eq:kunneth-components} simply by taking the relevant eigenspace.
+ \end{proof}
+
+Let $\Omega_{f,g} \coloneqq \omega_f \otimes \eta_g - \eta_f\otimes \omega_g \in M_{\dR}(f\otimes g)$. It is clear that $\Omega_{f,g} \neq 0$ as it comes from the composition of two linearly independent differential forms, hence it determines a $1$-dimensional subspace filtration:
+\[
+    0 \subseteq \langle \Omega_{f,g} \rangle \subseteq M_{\dR}(f\otimes g) \otimes \C.
+\]
+
+When $f=g$, $M_{\dR}(f\otimes f)$ already enjoys a filtration given by the direct sum decomposition:
+\[
+    M_{\dR}(f\otimes f) \simeq \wedge^2 M_{\dR}(f) \oplus \Sym^2 M_{\dR}(f)
+\]
+induced by the action of the involution swapping the two components in the tensor product. As $M_{\dR}(f)$ is $2$-dimensional, $\wedge^2 M_{\dR}(f\otimes f)$ is $1$-dimensional, and since $\Omega_{f,f}$ is non-zero and belongs to the anti-symmetric component by construction, the following result follows.
+\begin{proposition}
+    $\Omega_{f,f} \in \wedge^2 M_{\dR}(f)$ and it generates the anti-symmetric component.
+\end{proposition}
+This amounts to say that the above filtrations coincide. We note that $\Omega_{f,f}$ always lies in the $\wedge^2$-component, in accordance with the fact that we want to exploit classes there, see Subsubsection~\ref{subsubsec:swapping}.
+
+
+
+
+\section*{Author context (source 1376--1456)}
+By looking at the diagrams, it is natural to ask if one could find a preimage of $\Omega_{f,f}$ in the motivic cohomology group, so that both pieces of the regulator formula would have a source in motivic cohomology. For this purpose we take advantage of the extra row in de Rham cohomology. The isomorphism~\eqref{eq:isomorph-ext-0} is such that its composition with $\rD$ is the de Rham cycle class map, as explained in~\cite[§7]{esnaultviehweg}. This is coherent with the numerology, since $H^{2k+2}_{\mot}(\KS_k,k+1) \simeq \CH^{k+1}(\KS_k)$. Therefore, it suffices to show an element of the motivic cohomology group whose image under the cycle class map is $\Omega_{f,f}$. Summarising, we are searching for a rational equivalence class $[Z_f]\in\CH^{k+1}(\KS_k)$ of cycles of codimension $k+1$ such that
+\begin{align*}
+    \cl_{\dR} \colon H_{\mot}^{2k+2}(\KS_k,k+1) &\to H^{k+1,k+1}_{\dR}(\KS_k,\C) \\
+    [Z_f] &\mapsto C\cdot \Omega_{f,f}, \quad C \in \C^{\times}.
+\end{align*}
+In the remainder of this subsubsection we construct the subvariety $Z_f$ combining together three different correspondences.
+\begin{list}{}
+  {%
+    \setlength{\leftmargin}{0pt}% body indent from surrounding text
+    \setlength{\labelwidth}{-0.25cm}% reserved label width
+    \setlength{\labelsep}{0.25cm}% gap between label and body
+    \setlength{\itemsep}{0.5cm}
+    \renewcommand{\makelabel}[1]{\textbf{#1}:\hfil}%
+  }
+    \item[Projection onto $f$-eigenspace] Since $f$ is a newform, Strong Multiplicity One implies that its eigenspace in $S_{k+2}(N,\psi)$ is $1$-dimensional. The projection onto it can be realised by a Hecke operator: let $f=f_0,f_1,\ldots,f_c$ be a basis of $S_{k+2}(N,\psi)$ over $K_f$ consisting of eigenforms. For every $i=1,2,\ldots,c$ there exists a prime $\ell_i$ such that $a_{\ell_i}(f) \neq a_{\ell_i}(f_i)$. If $f_i\neq f_j$ are in the same Galois $G_{K_f}$-orbit, then we choose $\ell_i=\ell_j$. This is possible because $a_{\ell_i}(f_j) = a_{\ell_i}(f_i)^{\sigma}$ for some $\sigma\in G_{K_f}$, so either both or none of them equals $a_{\ell_i}(f)\in K_f$.
+
+        Define the operator:
+        \[
+            T_f \coloneqq \prod_{i=1}^c \frac{T_{\ell_i} - a_{\ell_i}(f_i)}{a_{\ell_i}(f) - a_{\ell_i}(f_i)} \in \mathbb{T}\otimes_{\Q} K_f.
+        \]
+        It is easy to see that $T_f(f_i) = 0$ for every $i=1,2,\ldots,c$ and $T_f(f) = f$. Therefore $T_f$ is the $f$-isotypical projector on $S_{k+2}(N,\psi)$. We regard $T_f$ also as a correspondence on $W_k$, yielding functorially a morphism in cohomology. Note that $T_f$ is a combination of correspondences defined over $\Q$ with coefficients in $K_f$. Indeed, the chosen basis contains all the Galois conjugates of a given eigenform, under the action of $G_{K_f}$ . As a consequence, the finite linear combination defined above is fixed by $G_{K_f}$, because the coefficients are permuted among themselves thanks to our choices. Therefore, it defines an element of the Hecke algebra $\mathbb{T}\otimes_{\Q} K_f$.
+    \item[Projection onto the middle Künneth component] Consider the morphisms
+        \[
+            \begin{tikzcd}
+                W_k \arrow[bend right=25,"i_1",swap]{r} & \KS_k \arrow[bend left=25,"\pi_2"]{r} \arrow[bend right=25,"\pi_1",swap]{l} & W_k \arrow[bend left=25,"i_2"]{l}
+            \end{tikzcd}
+        \]
+        Let $\delta_{\infty} \colon \CH^*(\KS_k) \to \CH^*(\KS_k)$ be the correspondence on $\KS_k$ given by the prescription
+        \[
+            \delta_{\infty}([Z]) = [Z] - i_{1,*}\circ\pi_{1,*}([Z]) - i_{2,*}\circ\pi_{2,*}([Z]).
+        \]
+        In~\cite[§2]{darmonrotger12} it is proved the action of $\delta_{\infty}$ on cohomology is to project onto the middle Künneth component in any degree. In particular
+        \[
+            \delta_{\infty}^* \colon H^{2k+2}_{\dR}(\KS_k,\C) \to \bigl(H^{k+1}_{\dR}(W_k,\C)\bigr)^{\otimes 2}.
+        \]
+    \item[Atkin-Lehner involution] Denote by $w_N$ the Atkin-Lehner involution induced by the action of $\bigl(\begin{smallmatrix} 0 & -1 \\ N & 0 \end{smallmatrix}\bigr)$, and with $\lambda_N(f)$ the pseudo-eigenvalue of $f$. Notice that $w_N$ is not defined over $\Q$, but only over $\Q(\mu_N)$, so it is actually only a correspondence on $W_{k,\Q(\mu_N)}$.
+\end{list}
+Denote also with $\mathrm{gr}$ the graph of a correspondence. For a correspondence $c$ from $C_1$ to $C_2$, its graph is a subset $\mathrm{gr}(c) \subseteq C_1 \times C_2$.
+
+\begin{definition}
+    Let $[Z_f]\in\CH^{k+1}(\KS_{k,\Q(\mu_N)})\otimes K_f$ be the class of the cycle $\delta_{\infty}(\mathrm{gr}(T_{f^*}\circ w_N))$.
+\end{definition}
+The composition $T_{f^*}\circ w_N$ is a correspondence on $W_k$, so its graph is a subvariety of $\KS_k$, and $\delta_{\infty}$ has a well-defined action on its equivalence class.
+\begin{proposition}
+    \label{prop:image-cycle-dr}
+ The above class satisfies $\cl_{\dR}(Z_f) = \lambda_N(f^*)\Omega_{f,f}$.
+\end{proposition}
+In the statement we are comparing classes in de Rham cohomology with coefficients in $\C$, so the base change to $\Q(\mu_N)$ and the extension of coefficients to $K_f$ do not play any role. Thanks to the flatness of $\C$, the equality would still hold over smaller fields, even though we will not use this fact.
+\begin{proof}
+    Let $T = T_{f^*} \circ w_N$ for notational simplicity. Denote by $\Delta \subseteq \KS_k$ the diagonal of $\KS_k$. By definition
+    \[
+        \cl_{\dR}(Z_f) = \rho \iff \int_{Z_f} \omega = \int_{\KS_k} \omega\rho = (\omega,\rho) \quad \forall \omega.
+    \]
+    In particular, if we vary $\omega$ in a basis, we can compute $\cl_{\dR}(Z_f)$ as an element of $H^{k+1,k+1}_{\dR}(\KS_k,\C)^{\vee}$ and then express it as a differential form by duality.
+    Consider a basis of $H^{k+1,k+1}_{\dR}(\KS_k,\C)$ determined by the direct sum decomposition given by the Künneth isomorphism. Let $\omega \in H^{k+1,k+1}_{\dR}(\KS_k,\C)$ be a differential form in this basis, then by a standard property of the pull-back
+    \[
+        \int_{Z_f} \omega = \int_{\mathrm{gr}(T)} \delta_{\infty}^* \omega = \begin{cases}
+            \int_{\mathrm{gr}(T)}\omega &\text{if $\omega \in (H^{k+1}_{\dR}(W_k,\C))^{\otimes 2}$} \\
+            0 &\text{otherwise}
+        \end{cases}
+    \]
+    The last equality holds because $\delta_{\infty}^*$ projects on the middle Künneth component. It suffices then to consider forms in a basis of $(H^{k+1}_{\dR}(W_k,\C))^{\otimes 2}$. Consider a basis of $H^{k+1}_{\dR}(W_k,\C)$ consisting of differential forms associated to cusp forms, which exists by the isomorphism~\eqref{eq:cohomology-decompositions}.
+    Write $\omega = \omega_1 \otimes \omega_2$ with $\omega_1$ and $\omega_2$ in this basis. Again by properties of the pull-back we have
+    \[
+        \int_{Z_f} \omega = \int_{\mathrm{gr}(T)} \delta_{\infty}^* \omega = \int_{\mathrm{gr}(T)} \omega = \int_{\Delta} \omega_1 \otimes w_N^* T_{f^*}^* \omega_2.
+    \]
+    By construction $T_{f^*}$ projects onto $M_{\dR}(f^*)\otimes \C$, which is generated by $\omega_{f^*}$ and $\eta_{f^*}$. In the first case we are left with
+    \[
+     = \int_{\Delta} \omega_1 \otimes w_N^* \omega_{f^*} = \int_{\Delta} \omega_1 \otimes \lambda_N(f^*)\omega_f = \lambda_N(f^*)(\omega_1,\omega_f).
+    \]
+ Since we are working with basis vectors, the cup product $(\omega_1,\omega_f)$ is non-zero only when $\omega_1$ is a scalar multiple of the dual of $\omega_f$, and equals $1$ exactly when $\omega_1 = -(\omega_f)^* = -\eta_{f^*}$. The argument then shows that
+   \[
+     \cl_{\dR}(Z_f)(-\lambda_N(f^*)^{-1}\eta_{f^*}\otimes\omega_{f^*}) = 1. \]
+  Similarly, we obtain
+  \[\cl_{\dR}(Z_f)(\lambda_N(f^*)^{-1}\omega_{f^*}\otimes\eta_{f^*}) = 1.\]
+ Therefore $\cl_{\dR}(Z_f)$ coincides with $(-\lambda_N(f^*)^{-1}\eta_{f^*} \otimes \omega_{f^*})^* + (\lambda_N(f^*)^{-1}\omega_{f^*} \otimes \eta_{f^*})^*$. To compute these observe:
+    \[
+        (\omega_{f^*}\otimes \eta_{f^*},\eta_f\otimes \omega_f) = (\omega_{f^*},\eta_f)\cdot (\eta_{f^*},\omega_f) = -1.
+    \]
+ So we get as a result $\lambda_N(f^*)(\omega_f \otimes \eta_f -\eta_f\otimes \omega_f )$. This proves the proposition.
+\end{proof}
+
+\section*{Author context (source 1542--1731)}
+  We recall that syntomic cohomology is characterised by sitting in a long exact sequence (induced by the Leray spectral sequence):
+  \begin{multline*}
+      \cdots \to H_{\syn}^{2k+2}(\KS_{k,\Q_p(\mu_N)},\Q_p(k+1)) \\
+      \to F^0 H_{\dR}^{2k+2}(\KS_{k,\Q_p(\mu_N)},\Q_p(k+1)) = F^{k+1} H_{\dR}^{2k+2}(\KS_{k,\Q_p(\mu_N)},\Q_p) \\
+      \to H_{\rig}^{2k+2}(\KS_{k,\Q_p(\mu_N)},\Q_p(k+1)) \to \cdots
+  \end{multline*}
+  We can thus write $Z_f^{\syn} = (\xi,\lambda)$ with $\xi$ and $\lambda$ respectively rigid and de Rham cohomology classes. By the compatibility of the regulator $\rsyn$ and $\cl_{\dR}$ in the Leray spectral sequence~\cite[Theorem~7.5]{besser00}, the composition of $\rsyn$ and the morphism to de Rham cohomology in the long exact sequence coincides with $\cl_{\dR}$. Therefore $\lambda$ is equal to the image of $\cl_{\dR}(Z_f) = \lambda_N(f^*)\Omega_{f,f}$ under the extension of the coefficients to $\Q_p$. Our first aim is to compute it.
+
+  We start by studying the behaviour of $\omega_f$ and $\eta_f$ in syntomic cohomology. In order to pass to de Rham cohomology with $(K_f\otimes\Q_p)$-coefficients we must start from classes defined over $K_f$ rather than over $\C$. According to~\cite[§6.1]{KLZ17} the differentials $\omega_f, \eta_f$ can be easily modified to be $K_f$-rational. Explicitly, if we define
+  \[
+      \omega_f' = \tau(\psi^{-1})\omega_f, \quad \eta_f' = \tau(\psi^{-1})\eta_f
+  \]
+  then $\omega_f', \eta_f' \in M_{\dR}(f)$, i.e.\ they are $K_f$-rational. We can then safely regard $\omega_f', \eta_f' \in M_{\dR}(f)_{\Q_p}$. 
+  
+  Since $p \nmid N$, the space $M_{\dR}(f)_{\Q_p}$ has an action of the Frobenius $\varphi$, by comparison with crystalline cohomology; and the eigenvalues of $\varphi$ are $\alpha_f$ and $\beta_f$.
+
+  \begin{lemma}
+   \label{lemma:frobenius-eigenspaces}
+   If $(f, \alpha_f)$ is non-critical (in the sense of \Cref{def:noble}), then the $\alpha_f$-eigenspace in $M_{\dR}(f)_{\Q_p}$ is one-dimensional and does not coincide with $\Fil^1 M_{\dR}(f)_{\Q_p}$.
+  \end{lemma}
+
+  \begin{proof}
+   Since $M_{\dR}(f)_{\Q_p}$ is a weakly admissible filtered $\varphi$-module, any $\varphi$-stable subspace must have its Newton polygon on or above its Hodge polygon. In particular, if $v_p(\alpha_f) < k+1$, the $\alpha_f$-eigenspace cannot intersect with $\Fil^1$ (so if $\alpha_f = \beta_f$, then $\varphi$ must be non-diagonalisable).
+   
+   In the case $v_p(\alpha_f) = k+1$, both the $\alpha_f$-eigenspace and the $\beta_f$-eigenspace are weakly admissible, and hence define one-dimensional $G_{\Q_p}$-subrepresentations of $M_{\et}(f)$. Thus $M_{\et}(f)|_{G_{\Q_p}}$ is the direct sum of two characters, contradicting the assumption that $(f, \alpha_f)$ is non-critical.
+  \end{proof}
+
+  We assume henceforth that $(f, \alpha_f)$ is noble. Since $\eta_f'$ is a generator of $M_{\dR}(f)_{\Q_p}/\Fil^1 M_{\dR}(f)_{\Q_p}$, by the above lemma it has a \emph{unique} lift to the eigenspace where $\phi$ acts as $\alpha_f$. Clearly there are several choices of a lift to $M_{\dR}(f)_{\Q_p}$, with an ambiguity given by an element of $\Fil^1 M_{\dR}(f)_{\Q_p}$. Thanks to the next lemma this ambiguity does not play any role in our future computations.
+
+  \begin{lemma}
+   Let $\eta_1, \eta_2 \in M_{\dR}(f)_{\Q_p}$ be two lifts of $\eta_f'$. Then $\omega_f' \otimes \eta_1 - \eta_1 \otimes \omega_f' = \omega_f' \otimes \eta_2 - \eta_2 \otimes \omega_f'$.
+  \end{lemma}
+
+  \begin{proof}
+   The difference of the two is:
+   \[
+    (\omega_f' \otimes \eta_1 - \eta_1 \otimes \omega_f') - (\omega_f'\otimes \eta_2 - \eta_2 \otimes \omega_f') = \omega_f' \otimes (\eta_1 - \eta_2) - (\eta_1 - \eta_2)\otimes \omega_f'.
+   \]
+   Now $\eta_1 - \eta_2 \in \Fil^1 M_{\dR}(f)_{\Q_p}$ which is a $1$-dimensional $K_f\otimes\Q_p$-vector space. By writing $\eta_1 - \eta_2 = u\omega_f'$ for some $u\in K_f\otimes\Q_p$ the claim follows.
+  \end{proof}
+
+  Since we will only consider linear combinations of this kind, we can choose as a ``favourite'' lift the unique lift $\eta^{\alpha_f} \in V_{\phi}(\alpha_f)$ satisfying $\phi(\eta^{\alpha_f}) = \alpha_f\eta^{\alpha_f}$.
+
+  The above argument proves that the image of $\tau(\psi^{-1})^2\Omega_{f,f}$ under extension of scalars to $\Q_p$ can be identified with $\omega_f'\otimes\eta^{\alpha_f} -\eta^{\alpha_f}\otimes\omega_f'$. We sum up this discussion in the following proposition.
+
+  \begin{proposition}
+    \label{prop:pair-representing-syn}
+   $Z_f^{\syn}$ is represented by the pair $(\xi, \lambda_N(f^*)\tau(\psi^{-1})^{-2}(\omega_f'\otimes\eta^{\alpha_f} - \eta^{\alpha_f}\otimes\omega_f'))$.
+  \end{proposition}
+
+  We now study the situation over the non-proper variety $\Ell^{k,k}$. The analogue of the long exact sequence above holds for cohomology with compact support:
+  \begin{multline*}
+   \cdots \to H_{\syn,c}^{2k+2}(\Ell^{k,k}_{\Q_p(\mu_N)},\Q_p(k+1)) \to F^0 H_{\dR,c}^{2k+2}(\Ell^{k,k}_{\Q_p(\mu_N)}, \Q_p(k+1)) \\
+   \to H_{\rig,c}^{2k+2}(\Ell^{k,k}_{\Q_p(\mu_N)},\Q_p(k+1)) \to \cdots
+  \end{multline*}
+
+  Recall that $\lambda_N(f^*)\tau(\psi^{-1})^2\Omega_{f,f}$ belongs to $M_{\dR}(f\otimes f)$, which has canonical inclusions as a direct summand of the cohomology of $\Ell^{k,k}$ with and without compact support. Therefore $\lambda_N(f^*)\tau(\psi^{-1})^2\Omega_{f,f}$ has a canonical image in compactly supported de Rham cohomology, under extension of scalars to $\Q_p$. By the above exact sequence, the preimage of a compactly supported de Rham cohomology class is a compactly supported syntomic cohomology class. By putting everything together we deduce the following result.
+
+  \begin{proposition}
+   \label{prop:syntomic-compact-support}
+   There exists a canonical compactly supported cohomology class $Z^{\syn}_{f,c} \in H^{2k+2}_{\syn,c}(\Ell^{k,k}_{\Q_p(\mu_N)}, \Q_p(k+1))$ that maps to $Z_f^{\syn}$ in $H^{2k+2}_{\syn}(\Ell^{k,k}_{\Q_p(\mu_N)}, \Q_p(k+1))$.
+  \end{proposition}
+
+  \subsubsection*{Splitting the pairing}
+
+   The pairing that we are interested in computing is:
+   \[
+       \langle \rsyn(\cBF^{k,k,j}), Z_f^{\syn} \rangle_{\syn, \KS_k}.
+   \]
+   Since our aim is to split this computation into an ``open'' and a ``cuspidal'' part, the standard strategy would be to use the Gysin long exact sequence induced by the embedding $\Ell^{k,k} \hookrightarrow \KS_k$. In our case it suffices to use the existence of Gysin maps in the category, and the following projection formula due to Besser. The theorem is stated in terms of finite-polynomial cohomology, of which syntomic cohomology is a particular case.
+
+   \begin{theorem}[{\cite[Corollary~5.3]{besser12}}]
+    Let $\iota\colon X\to Y$ be a morphism of smooth integral $\ringint{O}_K$-schemes, and identify the groups $H^{2\dim (X)+1}_{\fp,c}(X) \simeq K$ and $H^{2\dim (Y)+1}_{\fp,c}(Y) \simeq K$ via the respective trace maps. Let $d = \dim(Y) - \dim(X)$. Let $x\in H^j_{\fp,c}(X,m)$ and $y\in H^i_{\fp}(Y,n)$, and suppose $i+j = 2\dim (X)+1$ and $n+m > \dim (X)$. Then there exists a push-forward map in any degree
+    \begin{gather*}
+     \iota_* \colon H^{\bullet}_{\fp}(X,d_0) \to H^{\bullet+2d}_{\fp}(Y,d_0+d)
+     \shortintertext{for all $d_0\in\N$, and}
+     y \cup \iota_* x = \iota^* y \cup x.
+    \end{gather*}
+   \end{theorem}
+
+   In our case, $\KS_k$ and $\Ell^{k,k}$ are both schemes with a model over $\Z[1/N]$, so they can be regarded as smooth $\Z_p$-schemes; and their base changes to $\Q_p(\mu_N)$ can be regarded as smooth $\ringint{O}_{\Q_p(\mu_N)}$-schemes. The embedding $\iota\colon \Ell^{k,k} \hookrightarrow \KS_k$ is a smooth morphism, so we are in a position to apply the theorem with $d=0$. Moreover, $Z_f^{\syn} \in H^{2k+2}_{\syn}(\Ell^{k,k}_{\Q_p(\mu_N)},\Q_p(k+1))$ is associated to a canonical compactly supported class $Z^{\syn}_{f,c}$ by Proposition~\ref{prop:syntomic-compact-support}. If we choose
+   \[
+       x = Z^{\syn}_{f,c}, \quad y = \rsyn(\cBF^{k,k,j})
+   \]
+   the hypotheses of the theorem are verified, since the sums of degrees and twists are
+   \begin{gather*}
+       2+2k+3+2k = 5+4k = 2\dim \Ell^{k,k} +1, \\
+       k+1+2+2k-j = 3+3k-j > \dim \Ell^{k,k}.
+   \end{gather*}
+   We can thus apply the theorem to find
+   \[
+       \mathrm{tr}_{\KS_k} (\rsyn(\cBF^{k,k,j}) \cup \iota_* Z_{f,c}^{\syn}) = \mathrm{tr}_{\Ell^{k,k}} (\iota^* \rsyn(\cBF^{k,k,j}) \cup Z_{f,c}^{\syn}).
+   \]
+   We can now make the following consideration:
+   \begin{enumerate}
+       \item $\iota_* Z_{f,c}^{\syn} = Z_f^{\syn}$ since they are represented by the same pair of cohomology classes (in rigid and de Rham cohomology, $M_{\star}(f\otimes f)$ has canonical isomorphisms between cohomologies of $\KS_k$ and $\Ell^{k,k}$ with and without compact support);
+       \item $\iota^*\rsyn(\cBF^{k,k,j}) = \rsyn(\iota^*\cBF^{k,k,j})$ by compatibility of regulators and pull-backs, and by construction of $\cBF^{k,k,j}$
+           \[
+               \iota^*\cBF^{k,k,j} = \frac{1}{2}\iota^*\lcBF^{k,k,j} + \frac{(-1)^{k+j}}{2}\iota^*(\rho')^*\lcBF^{k,k,j}.
+           \]
+           Now $\iota^*(\rho')^* = (\rho'\circ \iota)^* = (\iota\circ \rho')^*$ because the two morphisms commute. Indeed, $\rho'$ swaps the two components of the fibre product, while $\iota$ embeds $\Ell^{k,k}$ into $\KS_k$. The two compositions become then, for every $P,Q\in\Ell^k$:
+           \[
+            \iota\circ\rho'(P,Q) = \iota(Q,P) = (Q,P) = \rho'(P,Q) = \rho'\circ \iota(P,Q).
+           \]
+           We deduce
+           \[
+               \iota^*\cBF^{k,k,j} = \frac{1}{2}\iota^*\lcBF^{k,k,j} + \frac{(-1)^{k+j}}{2}(\rho')^*\iota^*\lcBF^{k,k,j}.
+           \]
+           The inner pull-back unravels as:
+           \begin{equation}
+               \label{eq:pull-back-lcbf}
+               \begin{split}
+                   \iota^* \lcBF^{k,k,j} &= \iota^*(\lBF^{[k,k,j]}_{\mot} + i_{\mathrm{cusp},*}(\xi)) \\
+                   &= \iota^*(\lBF^{[k,k,j]}_{\mot}) + \iota^*(i_{\mathrm{cusp},*}(\xi)) = \BF^{[k,k,j]}_{\mot} + \iota^*(i_{\mathrm{cusp},*}(\xi)).
+               \end{split}
+           \end{equation}
+           Finally, putting everything together:
+           \begin{equation}
+               \label{eq:pull-back-cbf}
+               \begin{split}
+                   \iota^* \cBF^{k,k,j} &= \frac{1}{2}\bigl(\BF^{[k,k,j]}_{\mot} + \iota^*(i_{\mathrm{cusp},*}(\xi))\bigr) + \frac{(-1)^{k+j}}{2}\bigl((\rho')^*\BF^{k,k,j}_{\mot} + (\rho')^*\iota^*(i_{\mathrm{cusp},*}(\xi))\bigr) \\
+                   &= \BF^{[k,k,j]}_{\mot} + \frac{1}{2}\iota^*(i_{\mathrm{cusp},*}(\xi)) + \frac{(-1)^{k+j}}{2}(\rho')^*\iota^*(i_{\mathrm{cusp},*}(\xi)).
+               \end{split}
+           \end{equation}
+   \end{enumerate}
+By linearity of the trace map, we conclude that
+\begin{equation}
+    \label{eq:pairing-in-two}
+    \begin{split}
+        \langle \rsyn(\cBF^{k,k,j}),Z_f^{\syn} \rangle_{\syn, \KS_k} &= \langle \BF^{[k,k,j]}_{\syn}, Z_{f,c}^{\syn} \rangle_{\syn,\Ell^{k, k}} \\
+        &+ \frac{1}{2}\langle \iota^*(i_{\mathrm{cusp},*}(\xi))_{\syn}, Z_{f,c}^{\syn} \rangle_{\syn,\Ell^{k, k}} \\
+        &+ \frac{(-1)^{k+j}}{2}\langle \iota^*(i_{\mathrm{cusp},*}(\xi))_{\syn}, (\rho')^* Z_{f,c}^{\syn} \rangle_{\syn,\Ell^{k, k}}.
+    \end{split}
+\end{equation}
+
+   We have therefore written the sought pairing as the sum of three terms. The first is nothing other than the pairing of the non-compactified Beilinson--Flach classes with $Z_{f,c}^{\syn}$ on the open variety, while the other two represent the contributions at the cuspidal locus. In the remainder of this subsection we will evaluate them separately, showing that the first contribution gives a $p$-adic $L$-value, while the others vanish.
+
+   By comparing equations~\eqref{eq:pull-back-lcbf} and~\eqref{eq:pull-back-cbf} we also notice that the difference between $\iota^*\lcBF^{k,k,j}$ and $\iota^*\cBF^{k,k,j}$ is supported only on the cuspidal locus. Therefore, the pairings of their syntomic realisations with $Z_f^{\syn}$ differ only by some contributions of the form $\langle \iota^*(i_{\mathrm{cusp},*}(\xi ))_{\syn}, - \rangle_{\syn}$.
+
+\subsubsection*{Computing the first term}
+We now compute the first pairing in equation~\eqref{eq:pairing-in-two}. Reasoning as we did for étale cohomology, we can use the edge map and the projection onto the $(f,f)$-isotypical component to link compatibly the row giving the pairing in syntomic cohomology
+\begin{multline*}
+    H^{3+2k}_{\syn}(\Ell^{k,k}_{\Q_p(\mu_N)},\Q_p(2+2k-j)) \times H^{2+2k}_{\syn,c}(\Ell^{k,k}_{\Q_p(\mu_N)},\Q_p(k+1)) \\
+    \xrightarrow{\langle , \rangle_{\syn}} H^1_{\syn}(\Q_p(\mu_N),\Q_p(1+k-j))
+\end{multline*}
+with the following row
+\begin{multline*}
+        H^1(\ringint{O}_{\Q_p(\mu_N)},M_{\rig}(f\otimes f)^*(-j)) \times H^0(\ringint{O}_{\Q_p(\mu_N)},M_{\rig,c}(f\otimes f)(k+1)) \\
+    \xrightarrow{\langle , \rangle_{f,f}} H^1_{\syn}(\Q_p(\mu_N),\Q_p(1+k-j)).
+\end{multline*}
+The two rows together form a commutative diagram. We can therefore compute the pairing along the latter one. To go even further, one can compose every map from the first row to the second, with an isomorphism, to obtain as the composition the syntomic Abel--Jacobi map $\AJ_{\syn}$. Since these isomorphisms are compatible with the cup-product and the trace map, all three rows compute the same pairing, in particular
+\[
+    \langle \BF^{[k,k,j]}_{\syn},Z_{f,c}^{\syn}\rangle_{\syn} = \langle \AJ_{\syn}(\BF^{[k,k,j]}_{\syn}),\AJ_{\syn}(Z_{f,c}^{\syn})\rangle_{f,f}.
+\]
+By~\cite[Proposition~6.3.1]{KLZ20} the pairing $\langle \AJ_{\syn}(-), \tilde{\lambda} \rangle_{f,f}$ depends only on the class of $\tilde{\lambda}$ in de Rham cohomology. This result comes from the fact that the Abel-Jacobi map has as target a quotient of $M_{\dR}(f\otimes f)_{\Q_p}$. We can then compute the above pairing regardless of the associated rigid cohomology class. By Propositions~\ref{prop:pair-representing-syn} and~\ref{prop:syntomic-compact-support} and since $M_{\dR}(f\otimes f)$ has canonical isomorphisms between cohomologies of $\KS_k$ and $\Ell^{k,k}$ with compact support, the image of $Z_{f,c}^{\syn}$ in de Rham cohomology is the class of $\lambda_N(f^*)\tau(\psi^{-1})^{-2}(\omega_f'\otimes\eta^{\alpha_f} -\eta^{\alpha_f}\otimes\omega_f')$. Therefore the pairing computes to
+\[
+ \langle \BF^{[k,k,j]}_{\syn},Z_{f,c}^{\syn}\rangle_{\syn} = \lambda_N(f^*)\tau(\psi^{-1})^{-2}\langle \AJ_{\syn}(\BF^{[k,k,j]}_{\syn}),\omega_f'\otimes\eta^{\alpha_f} -\eta^{\alpha_f}\otimes\omega_f')\rangle_{f,f}.
+\]
+
+The following theorem links explicitly the pairing in syntomic cohomology with the Rankin--Selberg $p$-adic $L$-function.
+\begin{theorem}[{\cite[Theorem~6.5.9 and Remark~6.5.10]{KLZ20}}]
+    \label{thm:klz-regulator-formula}
+    If $E(f,f,j+1)\neq 0$, then
+    \begin{multline*}
+        \langle \AJ_{\syn}(\BF^{[k,k,j]}_{\syn}),\eta^{\alpha_f}\otimes \omega_f'\rangle \\
+        = (-1)^{k-j+1}k!\binom{k}{j}\tau(\psi^{-1})^2\frac{E(f)E^*(f)}{E(f,f,j+1)}\Lgeom(F,F)(k,k,j+1).
+    \end{multline*}
+\end{theorem}
+\begin{remark}
+    Theorem~6.5.9 in \cite{KLZ20} states the above result for the case of $f$ ordinary. Remark~6.5.10 therein covers the case of $f$ supersingular, by using the geometric $p$-adic $L$-function.
+\end{remark}
+
+\begin{lemma}
+    We have
+    \[
+        \langle \AJ_{\syn}(\BF^{[k,k,j]}_{\syn,N}),\omega_f'\otimes\eta^{\alpha_f}\rangle = (-1)^{j+1} \langle \AJ_{\syn}(\BF^{[k,k,j]}_{\syn,N}),\eta^{\alpha_f}\otimes \omega_f'\rangle.
+    \]
+\end{lemma}
+  \begin{proof}
+   The non-compactified Beilinson--Flach classes live in the cohomology of $\Ell^{k, k}$ and of $Y_1(N)^2$. We regard them and the involved differentials as classes in the cohomology of $Y_1(N)^2$. The differential forms are then in the second cohomology group, for which the Künneth isomorphism reads
+   \[
+    H^2_{\dR}(Y_1(N)^2,\TSym^{[k,k]} \HS_{\dR}) \simeq \bigl(H^1_{\dR}(Y_1(N),\TSym^k \HS_{\dR})\bigr)^{\otimes 2}.
+   \]
+   Let $s$ be the map that swaps the factors in the tensor product, and $\rho$ the morphism exchanging the two factors of $Y_1(N)^2$. Since the isomorphism is induced by the cup product, $s$ and $\rho^*$ differ by a sign that depends on the degree. We deduce $\omega_f'\otimes\eta^{\alpha_f} = s(\eta^{\alpha_f}\otimes\omega_f') = -\rho^*(\eta^{\alpha_f}\otimes\omega_f')$. Now~\cite[Proposition~5.2.3]{KLZ17} implies
+   \begin{align*}
+    \langle \AJ_{\syn}(\BF^{[k,k,j]}_{\syn,N}), \omega_f'\otimes\eta^{\alpha_f} \rangle &= \langle \AJ_{\syn}(\BF^{[k,k,j]}_{\syn,N}), -\rho^*(\eta^{\alpha_f}\otimes\omega_f') \rangle \\
+    &= -\langle \rho^*(\AJ_{\syn}(\BF^{[k,k,j]}_{\syn,N})), \eta^{\alpha_f}\otimes\omega_f' \rangle \\
+    &= (-1)^{j+1} \langle \AJ_{\syn}(\BF^{[k,k,j]}_{\syn,N}), \eta^{\alpha_f}\otimes \omega_f' \rangle.\qedhere
+   \end{align*}
+  \end{proof}
+
+\section*{Author context (source 1738--1753)}
+\begin{theorem}
+    \label{thm:first-term}
+    If $j$ is even, $0\leq j\leq k$ and $E(f,f,j+1)\neq 0$, then
+    \[
+        \langle \BF^{[k,k,j]}_{\syn},Z_{f,c}^{\syn}\rangle_{\syn} = (-1)^k k!\binom{k}{j}\lambda_N(f^*)\frac{2E(f)E^*(f)}{E(f,f,j+1)}\Lgeom(F,F)(k,k,j+1).
+    \]
+\end{theorem}
+
+\subsubsection*{Computing the cuspidal terms}
+It remains to compute the other terms on the right hand side of equation~\eqref{eq:pairing-in-two}. As we have shown that the first one computes to a $p$-adic $L$-value, the second and third one have to be regarded as ``error terms''. We now show that they vanish, by showing that the cohomology class corresponding to $\iota^*(i_{\mathrm{cusp},*}(\xi))$ is already zero in motivic cohomology.
+\begin{lemma}
+    \label{lemma:cuspidal-is-zero}
+    We have $\iota^*(i_{\mathrm{cusp},*}(\xi)) = 0$.
+\end{lemma}
+
+\begin{proof} See \cite[Proposition~9.4]{brunaultchida16}.\end{proof}
+\section*{Selected author statement}
+\begin{theorem}
+    If $j$ is even, $0\leq j\leq k$ and $E(f,f,j+1)\neq 0$, then
+\begin{multline*}
+    \langle \rsyn(\cBF^{k,k,j}),Z_f^{\syn} \rangle_{\syn, \KS_k} = \langle \rsyn(\lcBF^{k,k,j}),Z_f^{\syn} \rangle_{\syn, \KS_k} \\
+ = (-1)^k k!\binom{k}{j}\lambda_N(f^*)\frac{2E(f)E^*(f)}{E(f,f,j+1)}\Lgeom(F,F)(k,k,j+1).
+\end{multline*}
+\end{theorem}
+\section*{Complete author proof}
+\begin{proof}
+    By Lemma~\ref{lemma:cuspidal-is-zero}, all the terms in equation~\eqref{eq:pairing-in-two} vanish bar the first, hence
+    \[
+        \langle \rsyn(\cBF^{k,k,j}),Z_f^{\syn} \rangle_{\syn, \KS_k} = \langle \BF^{[k,k,j]}_{\syn}, Z_{f,c}^{\syn} \rangle_{\syn,\Ell^{k, k}}.
+    \]
+    Applying Theorem~\ref{thm:first-term} shows that this computes to the $p$-adic $L$-value in the statement of the theorem. The other equality follows from the discussion after equation~\eqref{eq:pairing-in-two}. Indeed, the difference of the two pairings equals
+    \[
+        \frac{(-1)^{k+j}}{2}\langle \iota^*(i_{\mathrm{cusp},*}(\xi))_{\syn}, (\rho')^* Z_{f,c}^{\syn} \rangle_{\syn,\Ell^{k,k}} - \frac{1}{2}\langle \iota^*(i_{\mathrm{cusp},*}(\xi))_{\syn}, Z_{f,c}^{\syn} \rangle_{\syn,\Ell^{k,k}}
+    \]
+    which is again zero by the proved results.
+\end{proof}
+\begin{thebibliography}{99}
+\bibitem[KLZ17]{KLZ17}
+G.~Kings, D.~Loeffler, and S.~L. Zerbes,
+  \articlehref{http://doi.org/10.4310/CJM.2017.v5.n1.a1}{\emph{{R}ankin--{E}isenstein
+  classes and explicit reciprocity laws}}, Cambridge J. Math. \textbf{5}
+  (2017), no.~1, 1--122. \MR{3637653}
+
+\bibitem[KLZ20]{KLZ20}
+\bysame,
+  \articlehref{http://doi.org/10.1353/ajm.2020.0002}{\emph{{R}ankin--{E}isenstein
+  classes for modular forms}}, Amer. J. Math. \textbf{142} (2020), no.~1,
+  79--138.
+
+\bibitem[Bes00]{besser00}
+A.~Besser, \articlehref{http://doi.org/10.1007/BF02834843}{\emph{Syntomic
+  regulators and {$p$}-adic integration. {I}. {R}igid syntomic regulators}},
+  Israel J. Math. \textbf{120} (2000), no.~1, 291--334. \MR{1809626}
+
+\bibitem[Bes12]{besser12}
+\bysame, \articlehref{http://doi.org/10.1007/s11856-011-0188-0}{\emph{On the
+  syntomic regulator for {$K_1$} of a surface}}, Israel J. Math. \textbf{190}
+  (2012), no.~1, 29--66. \MR{2956231}
+
+\bibitem[BC16]{brunaultchida16}
+F.~Brunault and M.~Chida,
+  \articlehref{http://doi.org/10.1007/s40316-015-0043-5}{\emph{Regulators
+  for {R}ankin--{S}elberg products of modular forms}}, Ann. Math. Qu\'ebec
+  \textbf{40} (2016), no.~2, 221--249. \MR{3529182}
+
+\bibitem[CE98]{colemanedixhoven98}
+R.~Coleman and B.~Edixhoven,
+  \articlehref{http://doi.org/10.1007/s002080050140}{\emph{On the
+  semi-simplicity of the {$U_p$}-operator on modular forms}}, Math. Ann.
+  \textbf{310} (1998), no.~1, 119--127. \MR{1600034}
+
+\bibitem[DRS12]{darmonrotger12}
+H.~Darmon, V.~Rotger, and I.~Sols, \emph{Iterated integrals, diagonal cycles
+  and rational points on elliptic curves}, Publications math\'ematiques de
+  {B}esan\c con. {A}lg\`ebre et th\'eorie des nombres, 2012/2, Presses Univ.
+  Franche-Comt\'e, Besan\c con, 2012, pp.~19--46. \MR{3074917}
+
+\bibitem[EV88]{esnaultviehweg}
+H.~Esnault and E.~Viehweg, \emph{Deligne-{B}e{\u\i}linson cohomology},
+  Be{\u\i}linson's conjectures on special values of {$L$}-functions
+  (M.~Rapoport, N.~Schappacher, and P.~Schneider, eds.), Perspect. Math.,
+  vol.~4, Academic Press, Boston, MA, 1988, pp.~43--91. \MR{944991}
+
+\bibitem[LLZ14]{leiloefflerzerbes14}
+A.~Lei, D.~Loeffler, and S.~L. Zerbes,
+  \articlehref{http://doi.org/10.4007/annals.2014.180.2.6}{\emph{Euler
+  systems for {R}ankin--{S}elberg convolutions of modular forms}}, Ann. of
+  Math. (2) \textbf{180} (2014), no.~2, 653--771. \MR{3224721}
+
+\bibitem[LZ16]{loefflerzerbes16}
+D.~Loeffler and S.~L. Zerbes,
+  \articlehref{http://doi.org/10.1186/s40687-016-0077-6}{\emph{Rankin--{E}isenstein
+  classes in {C}oleman families}}, Res. Math. Sci. \textbf{3} (2016), no.~29,
+  special collection in honour of R.F.~Coleman. \MR{3552987}
+\end{thebibliography}
+\end{document}

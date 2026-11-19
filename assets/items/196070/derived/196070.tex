@@ -1,0 +1,473 @@
+\documentclass[10pt,a4paper]{amsart}
+\usepackage[margin=19mm]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage[scr=rsfs,cal=euler]{mathalfa}
+\usepackage{xfrac}
+\usepackage[unicode,hidelinks,bookmarks=false]{hyperref}
+\newcommand{\ie}{i.e.\ }
+\newcommand{\cf}{cf.\ }
+\newcommand{\resp}{respectively\ }
+\newcommand{\Subsection}{\subsection}
+\providecommand{\nobreakdash}{\nobreak\hbox{-}}
+\setlength{\emergencystretch}{2em}
+\multlinegap0pt
+\usepackage{amssymb}
+\usepackage{algorithm}\usepackage{algpseudocode}
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{mathtools}
+\usepackage{bm}
+\newtheorem{assumption}{Assumption}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\renewcommand{\Re}{{\mathbb{R}}}
+\title[Author proof 196070]{\LARGE \bf A Unifying Primal-Dual Proximal Framework for Distributed Nonconvex Optimization}
+\author{Zichong Ou, Jie Lu}
+\date{Source: arXiv:2603.09524v1 (CC BY 4.0)}
+\providecommand{\bx}{{\mathbf{x}}}\providecommand{\bH}{{\mathbf{H}}}
+\begin{document}
+\maketitle
+\noindent\textbf{Reviewed difficulty: H2. Legacy admission not reassessed; count 0.} The H2 burden includes the joint algorithm-specific supporting chain at source 1463--1629: time-varying primal metrics, modified augmented-Lagrangian potential, cross-step metric-change absorption, and the potential lower/initial bounds. The complete chain remains below as necessary author context. Ordinary spectral inequalities and telescoping alone do not supply the H2 assessment. The prior difficulty hold is cleared; this review does not make the entry eligible or counted.\par\medskip
+
+\noindent\emph{Source and licence.} A Unifying Primal-Dual Proximal Framework for Distributed Nonconvex Optimization. Version arXiv:2603.09524v1 (CC BY 4.0), distributed by arXiv under the Creative Commons Attribution 4.0 International licence, http://creativecommons.org/licenses/by/4.0/, as recorded in the arXiv licence metadata for this exact version and shown on the abstract page https://arxiv.org/abs/2603.09524v1. Full licence notice: \path{licenses/arxiv-2603.09524-CC-BY-4.0.txt}.\par\smallskip
+
+\noindent\textit{Editorial scope.} Selected statement: original source lines 823--845. The original main-text proof pointer is retained. The actual author appendix proof at lines 1630--1701 is included below. All author mathematics in these spans is preserved. Standard prerequisites may be cited directly.\par\smallskip
+
+\small
+
+\section*{Author context (source 120--122)}
+
+\begin{equation}
+\min _{x \in \mathbb{R}^{d}} f(x)= \sum_{i=1}^{N} f_{i}(x), \label{p1}
+\end{equation}
+
+
+\section*{Author context (source 186--186)}
+
+\emph{Notation:} For any differentiable function $f$, $\nabla f$ denotes its gradient. The null space and range space of a matrix argument are represented by $\operatorname{Null}(\cdot)$ and $\operatorname{span}(\cdot)$, respectively. We denote the $n$-dimensional column vector of all ones (zeros) by $\mathbf{1}_n$ ($\mathbf{0}_n$), and the $n$-dimensional identity and zero matrix by $\mathbf{I}_n$ and $\mathbf{O}_n$, respectively. The ceiling of $a\in\mathbb{R}$ is denoted by $\lceil a \rceil$. For $a_i\in \mathbb{R}$ ($i=1,\dots,n$), $\operatorname{diag}(a_1,\cdots,a_n)$ is the $n$-dimensional diagonal matrix with $a_i$ as its $i$-th diagonal entry. We use $\langle \cdot,\cdot \rangle$, $\otimes$ and $\|\cdot\|$ to denote the Euclidean inner product, Kronecker product and $\ell_2$ norm, respectively. For $\mathbf{A},\mathbf{B}\in \mathbb{R}^{d\times d}$, $\mathbf{A}\succ \mathbf{B}$ means $\mathbf{A}-\mathbf{B}$ is positive definite, and $\mathbf{A} \succeq \mathbf{B}$ means $\mathbf{A}-\mathbf{B}$ is positive semi-definite. The Moore-Penrose inverse of a matrix $\mathbf{A}$ is denoted by $\mathbf{A}^{\dagger}$, and $\lambda_i^\mathbf{A}$ is the $i$-th largest eigenvalue of $\mathbf{A}$. For symmetric $\mathbf{A} \succeq \mathbf{O}_d$ and $\mathbf{x}\in \mathbb{R}^d$, the weighted norm is defined as $\|\mathbf{x}\|^2_\mathbf{A}:=\mathbf{x}^{\mathsf{T}}\mathbf{A}\mathbf{x}$.
+
+
+\section*{Author context (source 191--195)}
+
+We solve problem~\eqref{p1} in a distributed way over a connected, undirected graph $\mathcal{G} = (\mathcal{V},\mathcal{E})$, where the vertex set $\mathcal{V} = \{1, \dots, N\}$ is the set of $N$ nodes and the edge set $\mathcal{E} \subseteq \{\{i,j\}|i,j \in \mathcal{V},i \neq j\}$ captures the underlying interactions among the nodes. Specifically, each node $i$ communicates only with the neighboring nodes in $\mathcal{N}_i=\{j\in\mathcal{V}:\{i,j\}\in\mathcal{E}\}$.
+To solve problem~\eqref{p1} over the graph $\mathcal{G}$, we let each node $i \in \mathcal{V}$ maintain a local estimate $x_i \in \mathbb{R}^d$ of the global decision $x \in \mathbb{R}^d$ in problem~\eqref{p1}. We define 
+\begin{equation}
+\tilde{f}(\mathbf{x}) := \sum _{i \in \mathcal{V}} f_i(x_i),\quad \mathbf{x} = (x_1^{\mathsf{T}}, \dots, x_N^{\mathsf{T}})^{\mathsf{T}} \in \Re ^{Nd}.
+\end{equation}
+
+
+\section*{Author context (source 204--213)}
+
+\begin{assumption}\label{assumption smooth}
+The global objective $\tilde{f}:\Re^{Nd}\rightarrow\Re$ is $\bar{M}$-smooth for some $\bar{M}> 0$, i.e.,
+\begin{equation}
+\|\nabla \tilde{f}(\mathbf{x}) - \nabla \tilde{f}(\mathbf{y})\|\leq \bar{M}\|\mathbf{x}-\mathbf{y}\|,\quad\forall \mathbf{x},\mathbf{y}\in \Re^{Nd}.\label{smooth}
+\end{equation}
+\end{assumption}
+
+\begin{assumption}\label{assumption: optimality}
+The optimal set $\mathbb{X}^*$ of problem~\eqref{p1} is nonempty and the optimal value $f^* >-\infty$.
+\end{assumption}
+
+
+\section*{Author context (source 259--263)}
+
+\begin{align}
+    \label{zk final} \mathbf{z}^{k} &= \nabla \tilde{f}(\mathbf{x}^k) + \theta\mathbf{q}^k + \rho \mathbf{D}^k \mathbf{x}^k,\\
+	\label{xk+1 final} \mathbf{x}^{k+1} &= \mathbf{x}^k - \mathbf{G}^k \mathbf{z}^k,\\ 
+	\label{qk+1 final} \mathbf{q}^{k+1} &= \mathbf{q}^{k}+\rho \tilde{\mathbf{D}}^k\bx^{k+1}.
+\end{align}
+
+
+\section*{Author context (source 289--297)}
+
+\begin{assumption}\label{assumption: distributed}
+    The matrix $\mathbf{P}=(p_{ij})_{N\times N}$ satisfies the following conditions:
+    \begin{itemize}
+        \item[($\romannumeral1$)] $\mathbf{P}$ is symmetric and positive semi-definite.
+        \item[($\romannumeral2$)] $\operatorname{Null}(\mathbf{P})=\operatorname{span}(\mathbf{1}_N)$.
+        \item[($\romannumeral3$)] $p_{ij}=p_{ji}>0, \forall \{i,j\}\in \mathcal{E}$.
+        \item[($\romannumeral4$)] $p_{ij}=p_{ji}=0, \forall i\in \mathcal{V},\,\forall j\notin \mathcal{N}_i\cup \{i\}$.
+    \end{itemize}
+\end{assumption}
+
+
+\section*{Author context (source 444--448)}
+
+Based on \eqref{zk final}--\eqref{qk+1 final}, we introduce the following variable selections: Let $\theta = 1$, $\mathbf{D}^k=\mathbf{\tilde{D}}^k = \mathbf{L}=P_{\tau_e}(\bH)=\sum_{t=1}^{\tau_e} e_t\bH^t$, $\tau_e\geq 1$, $e_1,\dots,e_{\tau_e}\in \mathbb{R}$, and $\mathbf{G}^k\succ \mathbf{O}_{Nd}$. Then, UPP reduces to
+\begin{align}
+	\label{xk+1 opt} \mathbf{x}^{k+1} & = \mathbf{x}^k - \mathbf{G}^k (\nabla \tilde{f}(\mathbf{x}^k) + \rho \mathbf{L} \mathbf{x}^k + \mathbf{q}^k),\\
+	\label{qk+1 opt} \mathbf{q}^{k+1} &= \mathbf{q}^{k}+\rho \mathbf{L} \mathbf{x}^{k+1}.
+\end{align}
+
+
+\section*{Author context (source 676--676)}
+
+where $\mathbf{J}=\frac{1}{N}\mathbf{1}_N \mathbf{1}_N ^{\mathsf{T}} \otimes \mathbf{I}_d$. 
+
+
+\section*{Author context (source 741--821)}
+
+	\begin{equation}
+		\operatorname{AL}(\mathbf{x},\mathbf{v})=\tilde{f}(\mathbf{x})+(\mathbf{v})^{\mathsf{T}} \mathbf{L}^{\frac{1}{2}}\mathbf{x}+\frac{\rho}{2}\|\mathbf{x}\|^2_\mathbf{L}. \label{AL}
+	\end{equation}
+	For convenience, we denote $\operatorname{AL}(\mathbf{x}^k,\mathbf{v}^k)$ by $\operatorname{AL}^k$. Moreover, the first-order optimality condition arising from such a primal update (with $\theta=1$) gives
+	\begin{equation}
+		\label{first-order opt modified} \nabla \tilde{f}(\mathbf{x}^k) + \mathbf{L}^{\frac{1}{2}}\mathbf{v}^k + \rho \mathbf{L} \mathbf{x}^{k+1}+ \mathbf{B}^k(\mathbf{x}^{k+1} - \mathbf{x}^k)=0,
+	\end{equation}
+	which is an important equation for our derivations. Then, the update equations \eqref{xk+1 opt}--\eqref{qk+1 opt} of UPP-SC can be obtained by the changes of variable $\mathbf{q}^k=\mathbf{L}^{\frac{1}{2}}\mathbf{v}^k$, $\mathbf{G}^k = (\mathbf{B}^k+\rho \mathbf{L})^{-1}$. Note that \eqref{qk+1 opt} is equivalent to 
+	\begin{equation}
+		\mathbf{v}^{k+1}=\mathbf{v}^k+\rho \mathbf{L}^{\frac{1}{2}}\mathbf{x}^{k+1}. \label{vk+1 opt}
+	\end{equation}
+
+
+With the above reinterpretation, we provide the convergence analysis for UPP-SC. The following lemma connects the primal and dual variables, in which we define 
+\begin{gather}
+	\label{kappa B} \lambda_1^{\mathbf{B}}:= \max_{k \geq 0} \lambda_1^{\mathbf{B}^k}, \quad \lambda_N^{\mathbf{B}}:= \min_{k \geq 0} \lambda_N^{\mathbf{B}^k}, \quad \kappa_{\mathbf{B}} = {\lambda_1^{\mathbf{B}}}/{\lambda_N^{\mathbf{B}}},\\
+	\label{tilde kappa} \tilde{\kappa} := {\lambda_1^{\mathbf{B}}}/({\rho \lambda_{N-1}^{\mathbf{L}}}), \\ 
+	\label{wk+1} \mathbf{w}^{k+1} := (\mathbf{x}^{k+1}-\mathbf{x}^{k})-(\mathbf{x}^{k}-\mathbf{x}^{k-1}).
+\end{gather}
+
+\begin{lemma} \label{lemma vk+1 - vk}
+	Suppose Assumptions~\ref{assumption smooth}--\ref{assumption: distributed} hold. Let $\{\mathbf{x}^k\}$ be the sequence generated by UPP-SC with $\mathbf{O}\prec \lambda_N^{\mathbf{B}^k} \mathbf{I}\preceq \mathbf{B}^{k}\preceq \lambda_1^{\mathbf{B}^k}\mathbf{I} $. Then, for all $k\geq 0$,
+	\begin{align}
+		&\rho\|\mathbf{x}^{k+1}\|^2_{\mathbf{L}}=\frac{1}{\rho}\|\mathbf{v}^{k+1}-\mathbf{v}^k\|^2\leq 3\tilde{\kappa} \big((c_{\mathbf{B}}+\bar{M}^2)\|\mathbf{x}^k-\mathbf{x}^{k-1}\|^2_{(\mathbf{B}^{k})^{-1}}+\|\mathbf{w}^{k+1}\|^2_{\mathbf{B}^k}\big), \label{vk+1 - vk}
+	\end{align}
+	where $c_{\mathbf{B}}=4(\lambda_1^\mathbf{B})^2$ and $\{\mathbf{v}^k\}_{k=0}^\infty$ is given by \eqref{vk+1 opt}.
+\end{lemma}
+\begin{proof}
+	See Appendix~\ref{proof lemma vk+1 - vk}.
+\end{proof}
+
+In the next lemma, we bound the decrease of the AL function \eqref{AL}.
+
+\begin{lemma} \label{lemma ALk+1 - ALk}
+	Suppose all the conditions in Lemma~\ref{lemma vk+1 - vk} hold. For all $k\geq 0$,
+	\begin{align}
+		&\operatorname{AL}^{k+1}-\operatorname{AL}^{k} \leq  -\|\mathbf{x}^{k+1}-\mathbf{x}^{k}\|^2_{\mathbf{B}^k+\frac{1}{2}\rho \mathbf{L}-\frac{\bar{M}}{2}\mathbf{I}_{Nd}} + \rho\|\mathbf{x}^{k+1}\|^2_{\mathbf{L}}. \label{ALk+1 - ALk lemma}
+	\end{align}
+\end{lemma}
+
+% \begin{proof}
+% 	See Appendix~\ref{proof lemma ALk+1 - ALk}.
+% \end{proof}
+ 
+
+Subsequently, we generate the following decreasing sequence (for some $\tilde{c},\tilde{\kappa}>0$):
+\begin{align}
+	\tilde{P}^{k+1}=&\operatorname{AL}^{k+1}+\|\mathbf{x}^{k+1}-\mathbf{x}^k\|^2_{3\tilde{\kappa} (c_{\mathbf{B}}+\bar{M}^2)(\mathbf{B}^{k+1})^{-1}}+\frac{\tilde{c}}{2}\big(\rho\|\mathbf{x}^{k+1}\|^2_\mathbf{L}\notag\\
+    &+\|\mathbf{x}^{k+1}-\mathbf{x}^k\|^2_{\mathbf{B}^{k+1}+3\bar{M}\mathbf{I}_{Nd}+3\tilde{\kappa} (c_{\mathbf{B}}+\bar{M}^2)(\mathbf{B}^{k+1})^{-1}+\rho \mathbf{L}}\big). \label{tilde Pk+1}
+\end{align}
+In the next lemma, we show that, with proper parameters, the auxiliary functions will decrease along iterations. 
+
+\begin{lemma}\label{lemma tildePk+1 nonincreasing}
+	Suppose all the conditions in Lemma~\ref{lemma vk+1 - vk} hold.  Let $\{\mathbf{x}^k\}$ be the sequence generated by UPP-SC with the parameters selected as follows:
+	\begin{align}
+		\label{define tilde c}& 1 \geq \tilde{c}\geq 9\tilde{\kappa}=\max_{k\geq 0}\frac{9\lambda_1^{\mathbf{B}^k}}{\rho \lambda_{N-1}^{\mathbf{L}}}>0, \\
+		\label{Bk+rhoL-c/2Bk-1}& \frac{1}{4}(\mathbf{B}^k+\rho \mathbf{L})-\frac{\tilde{c}}{2}(\mathbf{B}^{k+1}-\mathbf{B}^k+\mathbf{B}^{k-1})\!-\!(\frac{1}{2}+2\tilde{c})\bar{M}\mathbf{I}_{Nd}-\frac{\tilde{c}(2+\tilde{c})}{6}(c_{\mathbf{B}}+\bar{M}^2)(\mathbf{B}^{k+1})^{-1} \succeq \mathbf{O}_{Nd}.
+	\end{align}
+	Then, for all $k\geq 0$, we have
+	\begin{align}
+		\tilde{P}^{k+1}-\tilde{P}^{k}\leq& -\|\mathbf{x}^{k+1}-\mathbf{x}^k\|^2_{\frac{1}{4}(\mathbf{B}^k+\rho \mathbf{L})}-\frac{\tilde{c}}{2} \|\mathbf{w}^{k+1}\|^2_{\frac{(1-\tilde{c})}{3}\mathbf{B}^k+\mathbf{B}^{k-1}}\leq 0.  \label{tildePk+1 - tildePk lemma}
+	\end{align}
+\end{lemma}
+
+\begin{proof}
+	See Appendix~\ref{proof lemma tildePk+1 nonincreasing}.
+\end{proof}
+
+Next, we show the boundedness of $\tilde{P}^{k+1}$.
+\begin{lemma}\label{lemma tildePk+1 geq f*}
+	Suppose all the conditions in Lemma~\ref{lemma vk+1 - vk} hold. Let $\{\mathbf{x}^k\}$ be the sequence generated by UPP-SC with the parameters selected by \eqref{define tilde c} and \eqref{Bk+rhoL-c/2Bk-1}. Also let $\mathbf{x}^{-1}=\mathbf{v}^{-1}=0$, and $\mathbf{G}^{-1}=\mathbf{G}^0$. Then,
+	\begin{equation*}
+		\tilde{P}^{k+1}\geq f^*, \forall k >0, \quad \tilde{P}^{0}\leq \tilde{f}(\mathbf{x}^0)+\frac{6\tilde{c}+7}{8\bar{M}}\|\nabla \tilde{f}(0)\|^2,
+	\end{equation*}
+	where $f^*$ is defined in Assumption~\ref{assumption: optimality}.
+\end{lemma}
+
+\begin{proof}
+	See Appendix~\ref{proof lemma tildePk+1 geq f*}.
+\end{proof}
+
+
+
+\section*{Author context (source 1463--1629)}
+
+\subsubsection{Proof of Lemma~\ref{lemma vk+1 - vk}}\label{proof lemma vk+1 - vk}
+From \eqref{vk+1 opt}, \eqref{wk+1} and the first-order optimality condition \eqref{first-order opt modified}, we have
+\vspace{-0.2cm}
+\begin{align}
+	&\mathbf{L}^{\frac{1}{2}}(\mathbf{v}^{k+1}-\mathbf{v}^k)=-(\nabla \tilde{f}(\mathbf{x}^k)-\nabla \tilde{f}(\mathbf{x}^{k-1}))-\mathbf{B}^k\mathbf{w}^{k+1}-(\mathbf{B}^{k}-\mathbf{B}^{k-1})(\mathbf{x}^k-\mathbf{x}^{k-1}), \quad \forall k \geq 0.\label{qk+1 - qk}
+\end{align}
+Due to \eqref{vk+1 opt}, \eqref{qk+1 - qk}, Assumption~\ref{assumption smooth} and $\mathbf{v}^{k+1}-\mathbf{v}^k \in \mathcal{S}^{{\perp}} \,\forall k\geq 0$,
+% \begin{align}
+% 	&(\sqrt{\rho}(\mathbf{B}^k)^{-\frac{1}{2}}\mathbf{L}^{\frac{1}{2}})\frac{1}{\sqrt{\rho}}(\mathbf{v}^{k+1}-\mathbf{v}^k) \notag\\
+%     =&-(\mathbf{B}^k)^{-\frac{1}{2}}(\nabla \tilde{f}(\mathbf{x}^{k})-\nabla \tilde{f}(\mathbf{x}^{k-1}))-(\mathbf{B}^k)^{\frac{1}{2}}\mathbf{w}^{k+1}.
+% \end{align}
+\vspace{-0.2cm}
+\begin{align}
+	&\rho\|\mathbf{x}^{k+1}\|^2_{\mathbf{L}}=\frac{1}{\rho}\|\mathbf{v}^{k+1}-\mathbf{v}^k\|^2\notag \\ 
+    \leq& \frac{1}{\rho\lambda_{N-1}^{\mathbf{L}}}\|\nabla \tilde{f}(\mathbf{x}^k)-\nabla \tilde{f}(\mathbf{x}^{k-1})+\mathbf{B}^k\mathbf{w}^{k+1}+(\mathbf{B}^{k}-\mathbf{B}^{k-1})(\mathbf{x}^k-\mathbf{x}^{k-1})\|^2  \notag \\
+	\leq &\frac{3}{\rho\lambda_{N-1}^{\mathbf{L}}}\big(\|\nabla \tilde{f}(\mathbf{x}^k)-\nabla \tilde{f}(\mathbf{x}^{k-1})\|^2+\|\mathbf{w}^{k+1}\|^2_{(\mathbf{B}^k)^2}+ \|\mathbf{x}^k-\mathbf{x}^{k-1}\|^2_{(\mathbf{B}^{k}-\mathbf{B}^{k-1})^2}\big) \notag\\
+	\leq & \frac{3}{\rho\lambda_{N-1}^{\mathbf{L}}}\big(\bar{M}^2\|\mathbf{x}^k-\mathbf{x}^{k-1}\|^2+\|\mathbf{w}^{k+1}\|^2_{(\mathbf{B}^k)^2}+ 4(\lambda_1^\mathbf{B})^2\|\mathbf{x}^k-\mathbf{x}^{k-1}\|^2\big) \notag\\
+	\leq &3\tilde{\kappa} \big((c_{\mathbf{B}}+\bar{M}^2)\|\mathbf{x}^k-\mathbf{x}^{k-1}\|^2_{(\mathbf{B}^{k})^{-1}}+\|\mathbf{w}^{k+1}\|^2_{\mathbf{B}^k}\big), \label{rho xk+1 leq 3 tildekappa}
+\end{align}
+where $c_{\mathbf{B}}=4(\lambda_1^\mathbf{B})^2$ and $\tilde{\kappa} = {\lambda_1^{\mathbf{B}}}/({\rho \lambda_{N-1}^{\mathbf{L}}})$. 
+
+\subsubsection{Proof of Lemma~\ref{lemma ALk+1 - ALk}}\label{proof lemma ALk+1 - ALk}
+Due to Assumption~\ref{assumption smooth}, \eqref{xk+1 opt}, \eqref{AL} and $\mathbf{G}^k=(\mathbf{B}^k+\rho \mathbf{L})^{-1}$, we have
+\begin{align}
+	& \operatorname{AL}(\mathbf{x}^{k+1},\mathbf{v}^{k})-\operatorname{AL}(\mathbf{x}^{k},\mathbf{v}^{k})\notag\\
+	% =&\tilde{f}(\mathbf{x}^{k+1})-\tilde{f}(\mathbf{x}^{k})+\langle \mathbf{x}^{k+1}-\mathbf{x}^k,\mathbf{L}^{\frac{1}{2}}\mathbf{v}^k \rangle \notag\\
+	% &+\frac{\rho}{2}\|\mathbf{x}^{k+1}\|^2_\mathbf{L}-\frac{\rho}{2}\|\mathbf{x}^{k}\|^2_\mathbf{L}  \notag\\
+	{\leq}& \langle \nabla \tilde{f}(\mathbf{x}^k)+\mathbf{L}^{\frac{1}{2}}\mathbf{v}^k,\mathbf{x}^{k+1}-\mathbf{x}^k \rangle + \frac{\bar{M}}{2}\|\mathbf{x}^{k+1}-\mathbf{x}^k\|^2  + \frac{\rho}{2}\|\mathbf{x}^{k+1}\|^2_\mathbf{L} - \frac{\rho}{2}\|\mathbf{x}^{k}\|^2_\mathbf{L} \notag\\
+	% =& \langle \nabla \tilde{f}(\mathbf{x}^k)+\mathbf{L}^{\frac{1}{2}}\mathbf{v}^k + \rho \mathbf{L}\mathbf{x}^k,\mathbf{x}^{k+1}-\mathbf{x}^k \rangle +\frac{\bar{M}}{2}\|\mathbf{x}^{k+1}-\mathbf{x}^k\|^2\notag\\
+    % &+ \frac{\rho}{2}\|\mathbf{x}^{k+1}\|^2_\mathbf{L} + \frac{\rho}{2}\|\mathbf{x}^{k}\|^2_\mathbf{L} -\langle \rho \mathbf{L} \mathbf{x}^k,\mathbf{x}^{k+1} \rangle \notag\\
+	=& -\|\mathbf{x}^{k+1}-\mathbf{x}^k\|^2_{(\mathbf{G}^k)^{-1}-\frac{\bar{M}}{2}\mathbf{I}_{Nd}-\frac{1}{2}\rho \mathbf{L}}\notag\\
+	=& -\|\mathbf{x}^{k+1}-\mathbf{x}^k\|^2_{\mathbf{B}^k+\frac{1}{2}\rho \mathbf{L}-\frac{\bar{M}}{2}\mathbf{I}_{Nd}}. \label{ALxk+1 vk}
+\end{align}
+
+From \eqref{vk+1 opt} and \eqref{ALxk+1 vk},
+\vspace{-0.2cm}
+\begin{align*}
+	\operatorname{AL}^{k+1} - \operatorname{AL}^k =
+    & \operatorname{AL}(\mathbf{x}^{k+1},\mathbf{v}^{k})-\operatorname{AL}(\mathbf{x}^{k},\mathbf{v}^{k}) + \langle \mathbf{L}^{\frac{1}{2}}(\mathbf{v}^{k+1}-\mathbf{v}^k),\mathbf{x}^{k+1}\rangle \notag\\
+	{\leq} & -\|\mathbf{x}^{k+1}-\mathbf{x}^{k}\|^2_{\mathbf{B}^k+\frac{1}{2}\rho \mathbf{L} -\frac{\bar{M}}{2}\mathbf{I}_{Nd}} + \rho\|\mathbf{x}^{k+1}\|^2_\mathbf{L} .
+	% {\leq} & -\|\mathbf{x}^{k+1}-\mathbf{x}^{k}\|^2_{\mathbf{B}^k+\frac{1}{2}\rho \mathbf{L} -\frac{\bar{M}}{2}\mathbf{I}_{Nd}} \notag\\
+    % &+ 3\tilde{\kappa} \big((c_{\mathbf{B}}+\bar{M}^2)\|\mathbf{x}^k-\mathbf{x}^{k-1}\|^2_{(\mathbf{B}^{k})^{-1}}+\|\mathbf{w}^{k+1}\|^2_{\mathbf{B}^k}\big). 
+\end{align*}
+Hence, we obtain \eqref{ALk+1 - ALk lemma}.
+
+\subsubsection{Proof of Lemma~\ref{lemma tildePk+1 nonincreasing}}\label{proof lemma tildePk+1 nonincreasing}
+From \eqref{first-order opt modified}, \eqref{vk+1 opt} and Assumption~\ref{smooth}, we derive
+\vspace{-0.2cm}
+\begin{align}
+	0=& -\langle \mathbf{B}^k (\mathbf{x}^{k+1}-\mathbf{x}^k)-\mathbf{B}^{k-1}(\mathbf{x}^{k}-\mathbf{x}^{k-1})+\nabla \tilde{f}(\mathbf{x}^k) \notag\\
+    &-\nabla \tilde{f}(\mathbf{x}^{k-1}) + \mathbf{L}^{\frac{1}{2}}(\mathbf{v}^{k+1}-\mathbf{v}^k), \mathbf{x}^{k+1}-\mathbf{x}^k-(\mathbf{x}^{k}-\mathbf{x}^{k-1})\rangle\notag\\
+	\leq & \frac{1}{2}\|\mathbf{x}^{k+1} - \mathbf{x}^{k}\|^2_{\mathbf{B}^k}+\frac{1}{2}\|\mathbf{x}^{k} - \mathbf{x}^{k-1}\|^2_{\mathbf{B}^k}-\frac{1}{2}\|\mathbf{w}^{k+1}\|^2_{\mathbf{B}^k}\notag\\
+    & - \frac{1}{2}\|\mathbf{x}^{k} - \mathbf{x}^{k-1}\|^2_{\mathbf{B}^{k-1}}+\frac{1}{2}\|\mathbf{x}^{k+1} - \mathbf{x}^{k}\|^2_{\mathbf{B}^{k-1}}-\frac{1}{2}\|\mathbf{w}^{k+1}\|^2_{\mathbf{B}^{k-1}}\notag\\
+	& + \frac{\bar{M}}{2}\|\mathbf{x}^{k} - \mathbf{x}^{k-1}\|^2+\frac{\bar{M}}{2}\|\mathbf{x}^{k+1} - \mathbf{x}^{k}\|^2+\bar{M}\|\mathbf{x}^{k} - \mathbf{x}^{k-1}\|^2\notag\\
+	& -\frac{\rho}{2}\|\mathbf{x}^{k+1}\|^2_\mathbf{L} + \frac{\rho}{2}\|\mathbf{x}^k\|^2_\mathbf{L}- \frac{\rho}{2}\|\mathbf{x}^{k+1}- \mathbf{x}^{k}\|^2_\mathbf{L}+\frac{\rho}{2}\|\mathbf{x}^{k+1}\|^2_\mathbf{L} + \frac{\rho}{2}\|\mathbf{x}^{k}- \mathbf{x}^{k-1}\|^2_\mathbf{L}. \label{0=-<>}
+	% =& -\langle \mathbf{B}^k\big((\mathbf{x}^{k+1}-\mathbf{x}^k)-(\mathbf{x}^{k}-\mathbf{x}^{k-1})\big),\mathbf{x}^{k+1}-\mathbf{x}^k\rangle \notag\\
+	% & + \langle \mathbf{B}^{k-1}\big((\mathbf{x}^{k+1}-\mathbf{x}^k)-(\mathbf{x}^{k}-\mathbf{x}^{k-1})\big), \mathbf{x}^{k}-\mathbf{x}^{k-1}\rangle \notag\\
+	% &-\langle \nabla \tilde{f}(\mathbf{x}^k) -\nabla \tilde{f}(\mathbf{x}^{k-1}), \mathbf{x}^{k+1}-\mathbf{x}^k-(\mathbf{x}^{k}-\mathbf{x}^{k-1})\rangle \notag\\
+    % &-\langle \rho \mathbf{L} \mathbf{x}^{k+1}, \mathbf{x}^{k+1}-\mathbf{x}^k-(\mathbf{x}^{k}-\mathbf{x}^{k-1})\rangle\notag\\
+	% =&- \frac{1}{2}\|\mathbf{x}^{k+1} - \mathbf{x}^{k}\|^2_{\mathbf{B}^k}+\frac{1}{2}\|\mathbf{x}^{k} - \mathbf{x}^{k-1}\|^2_{\mathbf{B}^k}-\frac{1}{2}\|\mathbf{w}^{k+1}\|^2_{\mathbf{B}^k}\notag\\
+    % & - \frac{1}{2}\|\mathbf{x}^{k} - \mathbf{x}^{k-1}\|^2_{\mathbf{B}^{k-1}}+\frac{1}{2}\|\mathbf{x}^{k+1} - \mathbf{x}^{k}\|^2_{\mathbf{B}^{k-1}}-\frac{1}{2}\|\mathbf{w}^{k+1}\|^2_{\mathbf{B}^{k-1}}\notag\\
+	% &-\langle \nabla \tilde{f}(\mathbf{x}^k) -\nabla \tilde{f}(\mathbf{x}^{k-1}), \mathbf{x}^{k+1}-\mathbf{x}^k-(\mathbf{x}^{k}-\mathbf{x}^{k-1})\rangle \notag\\
+    % &-\frac{\rho}{2}\|\mathbf{x}^{k+1}\|^2_\mathbf{L} + \frac{\rho}{2}\|\mathbf{x}^k\|^2_\mathbf{L}  \notag\\
+    % &- \frac{\rho}{2}\|\mathbf{x}^{k+1}- \mathbf{x}^{k}\|^2_\mathbf{L}  +\langle \rho \mathbf{L} \mathbf{x}^{k+1}, \mathbf{x}^{k}-\mathbf{x}^{k-1}\rangle \notag\\
+	% \overset{\eqref{smooth}}{\leq} &-\frac{1}{2}\|\mathbf{x}^{k+1} - \mathbf{x}^{k}\|^2_{\mathbf{B}^k-\mathbf{B}^{k-1}+\rho \mathbf{L}} -\frac{\rho}{2}\|\mathbf{x}^{k+1}\|^2_{\mathbf{L}} \notag\\
+    % &+\frac{1}{2}\|\mathbf{x}^{k} - \mathbf{x}^{k-1}\|^2_{\mathbf{B}^k-\mathbf{B}^{k-1}+\rho \mathbf{L}}+ \frac{\rho}{2}\|\mathbf{x}^k\|^2_\mathbf{L} \notag\\
+	% & + \frac{\bar{M}}{2}\|\mathbf{x}^{k+1} - \mathbf{x}^{k}\|^2 + \frac{3\bar{M}}{2}\|\mathbf{x}^{k} - \mathbf{x}^{k-1}\|^2 \notag\\
+    % &-\frac{1}{2}\|\mathbf{w}^{k+1}\|^2_{\mathbf{B}^k+\mathbf{B}^{k-1}} +\frac{\rho}{2}\|\mathbf{x}^{k+1}\|^2_{\mathbf{L}}\notag\\
+	% \overset{\eqref{vk+1 - vk}}{\leq}&-\frac{1}{2}\|\mathbf{x}^{k+1} - \mathbf{x}^{k}\|^2_{\mathbf{B}^k-\mathbf{B}^{k-1}+\rho \mathbf{L}} -\frac{\rho}{2}\|\mathbf{x}^{k+1}\|^2_{\mathbf{L}} \notag\\
+    % &+\frac{1}{2}\|\mathbf{x}^{k} - \mathbf{x}^{k-1}\|^2_{\mathbf{B}^k-\mathbf{B}^{k-1}+\rho \mathbf{L}+2\tilde{\kappa}\bar{M}^2(\mathbf{B}^k)^{-1}}+ \frac{\rho}{2}\|\mathbf{x}^k\|^2_\mathbf{L} \notag\\
+	% & + \frac{\bar{M}}{2}\|\mathbf{x}^{k+1} - \mathbf{x}^{k}\|^2 + \frac{3\bar{M}}{2}\|\mathbf{x}^{k} - \mathbf{x}^{k-1}\|^2 \notag\\
+    % &-\frac{1}{2}\|\mathbf{w}^{k+1}\|^2_{\mathbf{B}^k+\mathbf{B}^{k-1}-2\tilde{\kappa}\mathbf{B}^k}, \label{0=-<>}
+\end{align}
+% Next, we partition the right-hand side of the above equation into three parts and provide upper bounds of them. First,
+% \begin{align}
+% 	&-\langle \mathbf{B}^k(\mathbf{x}^{k+1}-\mathbf{x}^k),(\mathbf{x}^{k+1}-\mathbf{x}^k)-(\mathbf{x}^{k}-\mathbf{x}^{k-1})\rangle \notag\\
+% 	&+ \langle \mathbf{B}^{k-1}(\mathbf{x}^{k}-\mathbf{x}^{k-1}), (\mathbf{x}^{k+1}-\mathbf{x}^k)-(\mathbf{x}^{k}-\mathbf{x}^{k-1})\rangle \notag\\
+% 	&=- \frac{1}{2}\|\mathbf{x}^{k+1} - \mathbf{x}^{k}\|^2_{\mathbf{B}^k}+\frac{1}{2}\|\mathbf{x}^{k} - \mathbf{x}^{k-1}\|^2_{\mathbf{B}^k}-\frac{1}{2}\|\mathbf{w}^{k+1}\|^2_{\mathbf{B}^k}\notag\\
+%     & - \frac{1}{2}\|\mathbf{x}^{k} - \mathbf{x}^{k-1}\|^2_{\mathbf{B}^{k-1}}+\frac{1}{2}\|\mathbf{x}^{k+1} - \mathbf{x}^{k}\|^2_{\mathbf{B}^{k-1}}-\frac{1}{2}\|\mathbf{w}^{k+1}\|^2_{\mathbf{B}^{k-1}}. \label{0=-<> term1}
+% \end{align}
+% Second, from the Cauchy-Schwarz inequality and Assumption~\ref{assumption smooth},
+% \begin{align}
+% 	&-\langle \nabla \tilde{f}(\mathbf{x}^k) -\nabla \tilde{f}(\mathbf{x}^{k-1}), \mathbf{x}^{k+1}-\mathbf{x}^k-(\mathbf{x}^{k}-\mathbf{x}^{k-1})\rangle \notag\\
+% 	\leq &  \frac{\bar{M}}{2}\|\mathbf{x}^{k} - \mathbf{x}^{k-1}\|^2+\frac{\bar{M}}{2}\|\mathbf{x}^{k+1} - \mathbf{x}^{k}\|^2+\bar{M}\|\mathbf{x}^{k} - \mathbf{x}^{k-1}\|^2. \label{0=-<> term2}
+% \end{align}
+% Third, due to \eqref{vk+1 opt} and the Cauchy-Schwarz inequality,
+% \begin{align}
+% 	&-\langle \mathbf{L}^{\frac{1}{2}}(\mathbf{v}^{k+1}-\mathbf{v}^k), \mathbf{x}^{k+1}-\mathbf{x}^k-(\mathbf{x}^{k}-\mathbf{x}^{k-1})\rangle \notag\\
+% 	=&-\langle \rho \mathbf{L} \mathbf{x}^{k+1}, \mathbf{x}^{k+1}-\mathbf{x}^k-(\mathbf{x}^{k}-\mathbf{x}^{k-1})\rangle \notag\\
+% 	\leq & -\frac{\rho}{2}\|\mathbf{x}^{k+1}\|^2_\mathbf{L} + \frac{\rho}{2}\|\mathbf{x}^k\|^2_\mathbf{L}- \frac{\rho}{2}\|\mathbf{x}^{k+1}- \mathbf{x}^{k}\|^2_\mathbf{L} \notag\\
+% 	& +\frac{\rho}{2}\|\mathbf{x}^{k+1}\|^2_\mathbf{L} + \frac{\rho}{2}\|\mathbf{x}^{k}- \mathbf{x}^{k-1}\|^2_\mathbf{L}.\label{0=-<> term3}
+% 	% \leq & -\frac{\rho}{2}\|\mathbf{x}^{k+1}\|^2_\mathbf{L} + \frac{\rho}{2}\|\mathbf{x}^k\|^2_\mathbf{L}- \frac{\rho}{2}\|\mathbf{x}^{k+1}- \mathbf{x}^{k}\|^2_\mathbf{L} + \frac{\rho}{2}\|\mathbf{x}^{k}- \mathbf{x}^{k-1}\|^2_\mathbf{L}\notag\\
+% 	% &+\frac{3\tilde{\kappa}}{2} \big((c_{\mathbf{B}}+\bar{M}^2)\|\mathbf{x}^k-\mathbf{x}^{k-1}\|^2_{(\mathbf{B}^{k})^{-1}}+\|\mathbf{w}^{k+1}\|^2_{\mathbf{B}^k}\big)
+% \end{align}
+By using $\mathbf{B}^{k-1}\succ \mathbf{O}$ and \eqref{vk+1 - vk}, we obtain
+\begin{align}
+	&\frac{1}{2}\|\mathbf{x}^{k+1} - \mathbf{x}^{k}\|^2_{\mathbf{B}^k-\mathbf{B}^{k-1}+\rho \mathbf{L}-\bar{M}\mathbf{I}}+\frac{\rho}{2}\|\mathbf{x}^{k+1}\|^2_{\mathbf{L}}\notag\\
+	\leq& \frac{1}{2}\|\mathbf{x}^{k} - \mathbf{x}^{k-1}\|^2_{\mathbf{B}^k+\rho \mathbf{L}+3\tilde{\kappa}(c_{\mathbf{B}}+\bar{M}^2)(\mathbf{B}^k)^{-1}+3\bar{M}\mathbf{I}_{Nd}} + \frac{\rho}{2}\|\mathbf{x}^k\|^2_\mathbf{L}-\frac{1}{2}\|\mathbf{w}^{k+1}\|^2_{\mathbf{B}^k+\mathbf{B}^{k-1}-3\tilde{\kappa}\mathbf{B}^k}.\label{0 geq -Bk xk+1 - xk - Bk-1 xk - xk-1}
+\end{align}
+% where the first inequality holds since the Cauchy-schwarz inequality and \eqref{smooth}, and the last inequality follows from \eqref{vk+1 - vk}. 
+Next, from \eqref{tilde Pk+1}, \eqref{ALk+1 - ALk lemma}, \eqref{vk+1 - vk} and \eqref{0 geq -Bk xk+1 - xk - Bk-1 xk - xk-1},
+\begin{align}
+	&\tilde{P}^{k+1}-\tilde{P}^{k}\notag\\
+    % &= \operatorname{AL}^{k+1}-\operatorname{AL}^{k} + 3\tilde{\kappa}(c_{\mathbf{B}}+\bar{M}^2)\big(\|\mathbf{x}^{k+1}-\mathbf{x}^k\|^2_{(\mathbf{B}^{k+1})^{-1}} \notag\\
+	% &-\|\mathbf{x}^{k}-\mathbf{x}^{k-1}\|^2_{(\mathbf{B}^k)^{-1}}\big)+\frac{\tilde{c}}{2}\big(\rho \|\mathbf{x}^{k+1}\|^2_{\mathbf{L}}\notag\\
+	% &+\|\mathbf{x}^{k+1}-\mathbf{x}^{k}\|^2_{\mathbf{B}^{k+1}+3\bar{M}\mathbf{I}_{Nd}+3\tilde{\kappa} (c_{\mathbf{B}}+\bar{M}^2)(\mathbf{B}^{k+1})^{-1}+\rho \mathbf{L}}\notag\\
+	% &-(\rho\|\mathbf{x}^{k}\|^2_\mathbf{L}+\|\mathbf{x}^{k}-\mathbf{x}^{k-1}\|^2_{\mathbf{B}^{k}+3\bar{M}\mathbf{I}_{Nd}+3\tilde{\kappa} (c_{\mathbf{B}}+\bar{M}^2)(\mathbf{B}^{k})^{-1}+\rho \mathbf{L}})\big)\notag\\
+	&{\leq} -\|\mathbf{x}^{k+1}-\mathbf{x}^{k}\|^2_{\mathbf{B}^{k}+\frac{1}{2}\rho \mathbf{L} -\frac{\bar{M}}{2}\mathbf{I}_{Nd}}\notag\\
+    &+3\tilde{\kappa} \big((c_{\mathbf{B}}+\bar{M}^2)\|\mathbf{x}^{k}-\mathbf{x}^{k-1}\|^2_{(\mathbf{B}^k)^{-1}}+\|\mathbf{w}^{k+1}\|^2_{\mathbf{B}^k}\big)\notag\\
+	&+3\tilde{\kappa} (c_{\mathbf{B}}+\bar{M}^2)\big(\|\mathbf{x}^{k+1}-\mathbf{x}^{k}\|^2_{(\mathbf{B}^{k+1})^{-1}}-\|\mathbf{x}^{k}-\mathbf{x}^{k-1}\|^2_{(\mathbf{B}^k)^{-1}}\big)\notag\\
+	&+\frac{\tilde{c}}{2}\|\mathbf{x}^{k+1}-\mathbf{x}^{k}\|^2_{\mathbf{B}^{k+1}-\mathbf{B}^k+\mathbf{B}^{k-1}+4\bar{M}\mathbf{I}_{Nd}+3\tilde{\kappa} (c_{\mathbf{B}}+\bar{M}^2)(\mathbf{B}^{k+1})^{-1}}\notag\\
+	&+\frac{\tilde{c}}{2}\big(\rho\|\mathbf{x}^{k+1}\|^2_\mathbf{L}+\|\mathbf{x}^{k+1}-\mathbf{x}^k\|^2_{\mathbf{B}^k-\mathbf{B}^{k-1}+\rho \mathbf{L}-\bar{M}\mathbf{I}_{Nd}}\notag\\
+    &-(\rho \|\mathbf{x}^k\|^2_\mathbf{L}+\|\mathbf{x}^k-\mathbf{x}^{k-1}\|^2_{\mathbf{B}^k+3\bar{M}\mathbf{I}_{Nd}+3\tilde{\kappa} (c_{\mathbf{B}}+\bar{M}^2)(\mathbf{B}^k)^{-1}+\rho \mathbf{L}})\big)\notag\\
+	& \overset{\eqref{0 geq -Bk xk+1 - xk - Bk-1 xk - xk-1}}{\leq}-\|\mathbf{x}^{k+1}-\mathbf{x}^{k}\|^2_{\mathbf{B}^k+\frac{1}{2}\rho \mathbf{L} -\frac{\tilde{c}}{2}(\mathbf{B}^{k+1}-\mathbf{B}^k+\mathbf{B}^{k-1})}\notag\\
+    &-\|\mathbf{x}^{k+1}-\mathbf{x}^{k}\|^2_{-(\frac{1}{2}+2\tilde{c})\bar{M}\mathbf{I}_{Nd}-\frac{3(2+\tilde{c})\tilde{\kappa}}{2} \bar{M}^2(\mathbf{B}^{k+1})^{-1}}\notag\\
+	&-\frac{\tilde{c}}{2}\|\mathbf{w}^{k+1}\|^2_{\mathbf{B}^k+\mathbf{B}^{k-1}-3\tilde{\kappa}\mathbf{B}^k}+3\tilde{\kappa}\|\mathbf{w}^{k+1}\|^2_{\mathbf{B}^k}.\notag
+	% \overset{\eqref{define tilde c}\eqref{Bk+rhoL-c/2Bk-1}}{\leq}& -\|\mathbf{x}^{k+1}-\mathbf{x}^{k}\|^2_{\frac{1}{4}(\mathbf{B}^k+\rho \mathbf{L})}-\frac{\tilde{c}}{2}\|\mathbf{w}^{k+1}\|^2_{\frac{1-\tilde{c}}{2}\mathbf{B}^k+\mathbf{B}^{k-1}}. 
+\end{align}
+This, combining with \eqref{define tilde c} and \eqref{Bk+rhoL-c/2Bk-1}, yields \eqref{tildePk+1 - tildePk lemma}.
+
+\subsubsection{Proof of Lemma~\ref{lemma tildePk+1 geq f*}}\label{proof lemma tildePk+1 geq f*}
+According \eqref{AL} and \eqref{vk+1 opt}, 
+% $\operatorname{AL}^{k+1}-\tilde{f}(\mathbf{x}^{k+1})-\frac{\rho}{2}\|\mathbf{x}^{k+1}\|^2_\mathbf{L}= \langle \mathbf{v}^{k+1},\mathbf{L}^{\frac{1}{2}}\mathbf{x}^{k+1} \rangle= \frac{1}{\rho} \langle \mathbf{v}^{k+1},\mathbf{v}^{k+1}- \mathbf{v}^{k}\rangle =\frac{1}{2\rho}(\|\mathbf{v}^{k+1}\|^2-\|\mathbf{v}^{k}\|^2+\|\mathbf{v}^{k+1}-\mathbf{v}^{k}\|^2 ).$
+\begin{align}
+	&\operatorname{AL}^{k+1}-\tilde{f}(\mathbf{x}^{k+1})-\frac{\rho}{2}\|\mathbf{x}^{k+1}\|^2_\mathbf{L}= \langle \mathbf{v}^{k+1},\mathbf{L}^{\frac{1}{2}}\mathbf{x}^{k+1} \rangle\notag\\
+	=& \frac{1}{\rho} \langle \mathbf{v}^{k+1},\mathbf{v}^{k+1}- \mathbf{v}^{k}\rangle  \notag\\
+	=&\frac{1}{2\rho}(\|\mathbf{v}^{k+1}\|^2-\|\mathbf{v}^{k}\|^2+\|\mathbf{v}^{k+1}-\mathbf{v}^{k}\|^2 ). \label{ALk+1 - fxk+1}
+\end{align}
+ 
+Define $\widehat{\operatorname{AL}}^{k+1}:=\operatorname{AL}^{k+1}-f^*$, $\hat{f}(\mathbf{x}):=\tilde{f}(\mathbf{x})-f^*\geq 0$, $\hat{P}^{k+1}:= \tilde{P}^{k+1}-f^*$. Summing over $k=-1,\dots,T$, we obtain $\sum_{k=-1}^T \widehat{\operatorname{AL}}^{k+1} = \frac{1}{2\rho}(\|\mathbf{v}^{T+1}\|^2-\|\mathbf{v}^{-1}\|^2)
+    + \sum_{k=-1}^T (\hat{f}(\mathbf{x}^{k+1})+\frac{\rho}{2}\|\mathbf{x}^{k+1}\|^2_\mathbf{L}+\frac{1}{2\rho}\|\mathbf{v}^{k+1}-\mathbf{v}^k\|^2).$
+% \begin{align}
+% 	&\sum_{k=-1}^T \widehat{\operatorname{AL}}^{k+1} = \frac{1}{2\rho}(\|\mathbf{v}^{T+1}\|^2-\|\mathbf{v}^{-1}\|^2) \notag\\
+%     &+ \sum_{k=-1}^T (\hat{f}(\mathbf{x}^{k+1})+\frac{\rho}{2}\|\mathbf{x}^{k+1}\|^2_\mathbf{L}+\frac{1}{2\rho}\|\mathbf{v}^{k+1}-\mathbf{v}^k\|^2).
+% \end{align}
+By the initialization $\mathbf{v}^{-1}=0$, the above sum is lower bounded by zero. Therefore, the sum of $\hat{P}^{k+1}$ is also lower bounded by zero, i.e., 
+	$\sum_{k=0}^T \hat{P}^{k+1}\geq 0, \quad \forall T>0$. 
+Note that Lemma~\ref{lemma tildePk+1 nonincreasing} shows that $\hat{P}^{k+1}$ is nonincreasing under the parameter selections \eqref{define tilde c}--\eqref{Bk+rhoL-c/2Bk-1}. Hence, we can conclude that
+\begin{equation}
+	\hat{P}^{k+1}\geq 0, \quad \tilde{P}^{k+1}\geq f^*, \quad \forall k \geq 0. \label{hat Pk+1 geq 0 tildePk+1 geq f*}
+\end{equation}
+
+Next, since $\mathbf{x}^{-1}=0$ and $\mathbf{v}^{-1}=0$, we have
+\begin{align}
+	\tilde{P}^0 =& \operatorname{AL}^0+3\tilde{\kappa}(c_{\mathbf{B}}+\bar{M}^2)\|\mathbf{x}^0-\mathbf{x}^{-1}\|^2_{(\mathbf{B}^{0})^{-1}}+\frac{\tilde{c}}{2}(\rho \|\mathbf{x}^0\|^2_\mathbf{L}\notag\\
+    &+\|\mathbf{x}^0-\mathbf{x}^{-1}\|^2_{\mathbf{B}^{0}+3\bar{M}\mathbf{I}_{Nd}+3\tilde{\kappa}(c_{\mathbf{B}}+\bar{M}^2)(\mathbf{B}^{0})^{-1}+\rho \mathbf{L}})\notag\\
+	=& \operatorname{AL}^0+\|\mathbf{x}^0\|^2_{\frac{3(2+\tilde{c})\tilde{\kappa}}{2}(c_{\mathbf{B}}+\bar{M}^2)(\mathbf{B}^{0})^{-1}+\frac{\tilde{c}}{2}(2\rho \mathbf{L} +\mathbf{B}^0+3\bar{M}\mathbf{I}_{Nd})}, \label{tildeP0} \\
+	\operatorname{AL}^0=&\tilde{f}(\mathbf{x}^0)+\langle \mathbf{L}^{\frac{1}{2}}\mathbf{v}^0,\mathbf{x}^0\rangle+\frac{\rho}{2}\|\mathbf{x}^0\|^2_\mathbf{L} \notag\\
+	\overset{\eqref{vk+1 opt}}{=}& \tilde{f}(\mathbf{x}^0)+\langle \mathbf{L}^{\frac{1}{2}}\mathbf{v}^{-1}+\rho \mathbf{L} \mathbf{x}^0,\mathbf{x}^0\rangle +\frac{\rho}{2}\|\mathbf{x}^0\|^2_\mathbf{L}\notag\\
+	=& \tilde{f}(\mathbf{x}^0)+\frac{3\rho}{2}\|\mathbf{x}^0\|^2_\mathbf{L}, \label{AL0 initialization}\\
+	\mathbf{x}^0 =& -\mathbf{G}^0\nabla \tilde{f}(0) . \label{x0 initialization}
+\end{align}
+By incorporating \eqref{AL0 initialization} into \eqref{tildeP0} and using \eqref{define tilde c}, we have
+\begin{equation}
+	\tilde{P}^0\leq \tilde{f}(\mathbf{x}^0)+\|\mathbf{x}^0\|^2_{\frac{\tilde{c}(2+\tilde{c})(c_{\mathbf{B}}+\bar{M}^2)}{6}(\mathbf{B}^0)^{-1}+\frac{\tilde{c}}{2}\mathbf{B}^0+\frac{3\tilde{c}}{2}\bar{M}\mathbf{I}_{Nd}+(\tilde{c}+\frac{3}{2})\rho \mathbf{L}}. \label{tildeP0 first}
+\end{equation}
+From \eqref{Bk+rhoL-c/2Bk-1} and the initialization $\mathbf{G}^{-1}=\mathbf{G}^0$, 
+\begin{equation}
+	\frac{1+2\tilde{c}}{4}(\mathbf{G}^0)^{-1} \succeq \frac{\tilde{c}}{2}\mathbf{B}^0+(\frac{1}{2}+2\tilde{c})\bar{M}\mathbf{I}+\frac{\tilde{c}(2+\tilde{c})(c_{\mathbf{B}}+\bar{M}^2)}{6}(\mathbf{B}^0)^{-1}, \label{1/4+tildec/2 succeq}
+\end{equation}
+which, with $\mathbf{B}^0\succ \mathbf{O}$, further implies that $(\frac{1}{4}+\frac{\tilde{c}}{2})(\mathbf{G}^0)^{-1}\succ (\frac{1}{2}+2\tilde{c})\bar{M}\mathbf{I}_{Nd}$. Thus, combing \eqref{x0 initialization}--\eqref{1/4+tildec/2 succeq} gives
+\begin{align}
+	\tilde{P}^0\leq& \tilde{f}(\mathbf{x}^0)+ (\frac{3}{2}\tilde{c}+\frac{7}{4})\|\nabla \tilde{f}(0)\|^2_{\mathbf{G}^0}\notag\\
+	\overset{\eqref{Bk+rhoL-c/2Bk-1}}{\leq} &\tilde{f}(\mathbf{x}^0) +\frac{(\frac{3}{2}\tilde{c}+\frac{7}{4})(\frac{1}{4}+\frac{\tilde{c}}{2})}{(\frac{1}{2}+2\tilde{c})\bar{M}}\|\nabla \tilde{f}(0)\|^2 \notag\\
+	< & \tilde{f}(\mathbf{x}^0) +\frac{6\tilde{c}+7}{8\bar{M}}\|\nabla \tilde{f}(0)\|^2. \label{tildeP0 leq fx0+nabla f0}
+\end{align}
+Hence, from \eqref{hat Pk+1 geq 0 tildePk+1 geq f*} and \eqref{tildeP0 leq fx0+nabla f0}, we obtain Lemma~\ref{lemma tildePk+1 geq f*}.
+
+
+\section*{Selected author statement}
+
+\begin{theorem}\label{theorem UPP-SC sublinear time-varying Bk}
+	Suppose all the conditions in Lemma~\ref{lemma tildePk+1 geq f*} hold. Let $\{\mathbf{x}^k\}$ be the sequence generated by UPP-SC with the parameters selected as follows: $\xi_5=\frac{4\kappa_{\mathbf{B}}^2}{3}+\frac{2\kappa_{\mathbf{B}}-1}{2}$, $\xi_6= \frac{2\kappa_{\mathbf{B}}^2}{3}$, $0<\tilde{c}<\frac{-\xi_5+\sqrt{\xi_5^2+\xi_6}}{2\xi_6}$, $d_1= \frac{1}{4}- \xi_5 \tilde{c}-\xi_6 \tilde{c}^2$, $d_2 = (\frac{1}{2}+2\tilde{c})\bar{M}$, $d_3=\frac{(2+\tilde{c})\tilde{c}}{6}\bar{M}^2$, $\lambda_1^{\mathbf{B}}\geq\lambda_N^{\mathbf{B}}\geq \frac{d_2+\sqrt{d_2^2+4d_1d_3}}{2d_1}$ and $\rho \geq \frac{9\kappa_{\mathbf{B}}\lambda_N^{\mathbf{B}}}{\tilde{c}\lambda_{N-1}^{\mathbf{L}}}$.
+	% \begin{align}
+	% 	&0<\tilde{c}<\frac{-\xi_5+\sqrt{\xi_5^2+\xi_6}}{2\xi_6}, \text{ with} \notag \\
+	% 	&\quad\xi_5=\frac{4\kappa_{\mathbf{B}}^2}{3}+\frac{2\kappa_{\mathbf{B}}-1}{2}, \quad \xi_6= \frac{2\kappa_{\mathbf{B}}^2}{3},\label{tildec}\\
+	% 	&\lambda_N^{\mathbf{B}}\geq \frac{d_2+\sqrt{d_2^2+4d_1d_3}}{2d_1} , \text{ with } d_1= \frac{1}{4}- \xi_5 \tilde{c}-\xi_6 \tilde{c}^2,\notag\\
+	% 	& \quad d_2 = (\frac{1}{2}+2\tilde{c})\bar{M},\quad d_3=\frac{(2+\tilde{c})\tilde{c}}{6}\bar{M}^2, \label{lambdaNB range} \\
+	% 	\label{rho range} &\rho \geq \frac{9\kappa_{\mathbf{B}}\lambda_N^{\mathbf{B}}}{\tilde{c}\lambda_{N-1}^{\mathbf{L}}}.
+	% \end{align}
+	Let $T_k$ denote the iteration index in which UPP-SC satisfies
+	\begin{equation}
+		e(T_k):= \min_{k\in[T_k]}\frac{1}{N}\|\sum_{i=1}^N \nabla {f}_i(x_i^k)\|^2+\rho\|\mathbf{x}^{k}\|^2_\mathbf{L}\leq \epsilon, \label{eT time-varying Bk}
+	\end{equation}
+	where the error $\epsilon>0$. Then, the error above has the following bound:
+	\begin{equation}
+		e(T_k) \leq \tilde{C}_1\times {\tilde{C}_2}/{T_k}, \label{epsilon leq tildeC1C2/T}
+	\end{equation}
+	where $\tilde{C}_1:= \tilde{f}(\mathbf{x}^0)-f^*+\frac{6\tilde{c}+7}{8\bar{M}}\|\nabla \tilde{f}(0)\|^2$ and $\tilde{C}_2:= 4{\lambda}_1^{\mathbf{B}}+\frac{4}{3(1-\tilde{c})}(1+\frac{18d_1}{\tilde{c}(\tilde{c}+2)})+8(\frac{6d_1}{\tilde{c}(\tilde{c}+2)}+1).$
+	% \begin{align*}
+	% 	\tilde{C}_1:= & \tilde{f}(\mathbf{x}^0)-f^*+\frac{6\tilde{c}+7}{8\bar{M}}\|\nabla \tilde{f}(0)\|^2,\\
+	% 	\tilde{C}_2:= & 4{\lambda}_1^{\mathbf{B}}+\frac{4}{3(1-\tilde{c})}(1+\frac{18d_1}{\tilde{c}(\tilde{c}+2)})+8(\frac{6d_1}{\tilde{c}(\tilde{c}+2)}+1).
+	% \end{align*}
+\end{theorem}
+
+
+\begin{proof}
+    See Appendix~\ref{proof theorem UPP-SC sublinear time-varying Bk}.
+\end{proof}
+
+
+\section*{Author appendix argument}
+
+\subsubsection{Proof of Theorem~\ref{theorem UPP-SC sublinear time-varying Bk}}\label{proof theorem UPP-SC sublinear time-varying Bk}
+
+\textbf{(i)} First we illustrate the feasibility of the parameters in \eqref{define tilde c} and \eqref{Bk+rhoL-c/2Bk-1}. 
+
+% To show \eqref{Bk+rhoL-c/2Bk-1}, we consider its feasibility in the range space of $\mathcal{S}$ and its complement space $\mathcal{S}^{\bot}$, respectively.
+
+% For the former, we multiply $\mathbf{J}\in \mathcal{S}$ to the both sides of \eqref{Bk+rhoL-c/2Bk-1} and have
+% \begin{equation}
+% 	\label{condition lambdassumption: optimality} \frac{1}{4}\underline{\lambda}_1-\tilde{c}\bar{\lambda}_1-(\frac{1}{2}+2\tilde{c})\bar{M}-\frac{\tilde{c}(2+\tilde{c})}{6\underline{\lambda}_1}\bar{M}^2>0.
+% \end{equation}
+% From \eqref{tildec} and \eqref{lambdaNB range}, we know that the inequality~\eqref{condition lambdassumption: optimality} holds. 
+
+% Then, we show the feasibility of \eqref{Bk+rhoL-c/2Bk-1} in the complement space $\mathcal{S}^{\bot}$. From \eqref{define tilde c}, it is sufficient to show that
+% \begin{equation}
+% 	\frac{1}{4}(\rho \underline{\lambda}_\mathbf{L}+\underline{\lambda}_2)-\tilde{c}d_2\underline{\lambda}_2-(\frac{1}{2}+2\tilde{c})\bar{M}-\frac{\tilde{c}(2+\tilde{c})\bar{M}^2}{6\underline{\lambda}_2}>0. \label{condition rho lambdaL}
+% \end{equation}
+To see \eqref{Bk+rhoL-c/2Bk-1}, it is sufficient to show that $\frac{1}{4}\lambda_N^{\mathbf{B}}-\frac{\tilde{c}}{2}(\lambda_1^{\mathbf{B}}-\lambda_N^{\mathbf{B}}+\lambda_1^{\mathbf{B}})-(\frac{1}{2}+2\tilde{c})\bar{M}
+-\frac{\tilde{c}(2+\tilde{c})}{6}(c_\mathbf{B}+\bar{M}^2)/\lambda_N^{\mathbf{B}}> 0,$
+% \begin{align*}
+% 	&\frac{1}{4}\lambda_N^{\mathbf{B}}-\frac{\tilde{c}}{2}(\lambda_1^{\mathbf{B}}-\lambda_N^{\mathbf{B}}+\lambda_1^{\mathbf{B}})-(\frac{1}{2}+2\tilde{c})\bar{M}\notag\\
+% 	& -\frac{\tilde{c}(2+\tilde{c})}{6}(c_\mathbf{B}+\bar{M}^2)/\lambda_N^{\mathbf{B}}> 0,
+% \end{align*}
+which can be transformed into the following inequality:
+\begin{equation}\label{d1lambdaNb-d2-d3/lambdaNB}
+	d_1\lambda_N^{\mathbf{B}}-d_2-d_3/\lambda_N^{\mathbf{B}} >0,
+\end{equation}
+where $d_1= \frac{1}{4}- \xi_5 \tilde{c}-\xi_6 \tilde{c}^2$, $d_2 = (\frac{1}{2}+2\tilde{c})\bar{M}$, and $d_3={(2+\tilde{c})\tilde{c}}\bar{M}^2/6$.
+Since $0<\tilde{c}<({-\xi_5+\sqrt{\xi_5^2+\xi_6}})/({2\xi_6})$ implies $d_1>0$, together with \eqref{d1lambdaNb-d2-d3/lambdaNB}, we obtain $\lambda_N^{\mathbf{B}}\geq ({d_2+\sqrt{d_2^2+4d_1d_3}})/({2d_1})$. Hence, \eqref{Bk+rhoL-c/2Bk-1} is satisfied. Besides, from $\rho \geq ({9\kappa_{\mathbf{B}}\lambda_N^{\mathbf{B}}})/({\tilde{c}\lambda_{N-1}^{\mathbf{L}}})$, we have \eqref{define tilde c}.
+
+\textbf{(ii)}
+Next, we analyze the convergence result of UPP-SC. 
+
+By multiplying both sides of \eqref{first-order opt modified} by matrix $\mathbf{J}$, since $\mathbf{J}\mathbf{L}=0$ we obtain $\mathbf{J}\nabla \tilde{f}(\mathbf{x}^{k}) + \mathbf{J}\mathbf{B}^k(\mathbf{x}^{k+1}-\mathbf{x}^{k})=0$, for $k \geq -1.$
+% \begin{equation*}
+% 	\mathbf{J}\nabla \tilde{f}(\mathbf{x}^{k}) + \mathbf{J}\mathbf{B}^k(\mathbf{x}^{k+1}-\mathbf{x}^{k})=0,\quad \forall k \geq -1.
+% \end{equation*}
+From $\mathbf{J}\nabla \tilde{f}(\mathbf{x})=\mathbf{1}_N \otimes\big(\frac{1}{N} \sum_{i=1}^{N}\nabla\tilde{f}_i(x_i)\big)$, $\mathbf{J}\mathbf{J}=\mathbf{J}$, $\|\mathbf{J}\|=1$,
+\begin{align}
+	&\frac{1}{N}\|\sum_{i=1}^N \nabla \tilde{f}_i(x_i^k)\|^2 \leq (\mathbf{x}^{k+1}-\mathbf{x}^{k})^{\mathsf{T}}\mathbf{B}^k\mathbf{J}\mathbf{J}\mathbf{B}^k(\mathbf{x}^{k+1}-\mathbf{x}^{k}) \notag\\
+	\leq & \|\mathbf{x}^{k+1}-\mathbf{x}^{k}\|^2_{\mathbf{B}^k}\|\mathbf{B}^k\| 
+	\overset{\eqref{tildePk+1 - tildePk lemma}}{\leq} 4\|\mathbf{B}^k\|(\tilde{P}^k-\tilde{P}^{k+1}). \label{bounded gradient norm Bk}
+\end{align}
+Since \eqref{d1lambdaNb-d2-d3/lambdaNB} implies that $\lambda_N^{\mathbf{B}}> \frac{d_3}{d_1\lambda_N^{\mathbf{B}}}>\frac{(c_{\mathbf{B}}+\bar{M}^2)\tilde{c}(\tilde{c}+2)}{6d_1\lambda_N^{\mathbf{B}}}$, 
+\begin{align}
+	\mathbf{B}^k \succeq \lambda_N^{\mathbf{B}}\mathbf{I}_{Nd}&\succeq \frac{(c_{\mathbf{B}}+\bar{M}^2)\tilde{c}(\tilde{c}+2)}{6d_1}(\mathbf{B}^k)^{-1}. \label{Bk geq d3/d1}
+\end{align}
+It then follows from \eqref{vk+1 - vk} that
+\begin{align}
+	&\rho\|\mathbf{x}^{k+1}\|^2_\mathbf{L} \notag\\
+	\leq& 3\tilde{\kappa}\big((c_{\mathbf{B}}+\bar{M}^2)\|\mathbf{x}^k-\mathbf{x}^{k-1}\|^2_{(\mathbf{B}^k)^{-1}}+\|\mathbf{w}^{k+1}\|^2_{\mathbf{B}^k}\big) \notag\\
+	\leq& 3\tilde{\kappa}\big(2(c_{\mathbf{B}}+\bar{M}^2)\|\mathbf{x}^{k+1}-\mathbf{x}^k\|^2_{(\mathbf{B}^k)^{-1}}+\|\mathbf{w}^{k+1}\|^2_{\mathbf{B}^k}\notag\\
+	&+ 3(c_{\mathbf{B}}+\bar{M}^2)\|\mathbf{w}^{k+1}\|^2_{(\mathbf{B}^k)^{-1}}\big)\notag\\
+	\overset{\eqref{Bk geq d3/d1}}{\leq} & 3\tilde{\kappa}\big(\|\mathbf{x}^{k+1}-\mathbf{x}^k\|^2_{2(c_{\mathbf{B}}+\bar{M}^2)(\mathbf{B}^k)^{-1}}+ \|\mathbf{w}^{k+1}\|^2_{(1+\frac{18d_1}{\tilde{c}(\tilde{c}+2)})\mathbf{B}^k}\big). \notag
+	% \label{rho xk+1 L Bk}
+\end{align}
+This, together with \eqref{Bk geq d3/d1} and \eqref{tildePk+1 - tildePk lemma}, gives
+\begin{align}
+	&\rho\|\mathbf{x}^{k}\|^2_\mathbf{L}\leq 2\rho\|\mathbf{x}^{k+1}\|^2_\mathbf{L}+2\rho\|\mathbf{x}^{k+1}-\mathbf{x}^k\|^2_\mathbf{L}\notag\\
+	\leq & 6\tilde{\kappa}\big((1+\frac{18d_1}{\tilde{c}(\tilde{c}+2)})\|\mathbf{w}^{k+1}\|^2_{\mathbf{B}^k}\notag\\
+    &+2(c_{\mathbf{B}}+\bar{M}^2)\|\mathbf{x}^{k+1}-\mathbf{x}^k\|^2_{(\mathbf{B}^k)^{-1}}\big)+2\rho\|\mathbf{x}^{k+1}-\mathbf{x}^k\|^2_\mathbf{L}\notag\\
+	\overset{\eqref{Bk geq d3/d1}}{\leq} & \frac{2\tilde{c}}{3}(1+\frac{18d_1}{\tilde{c}(\tilde{c}+2)})\|\mathbf{w}^{k+1}\|^2_{\mathbf{B}^k}+\|\mathbf{x}^{k+1}-\mathbf{x}^k\|^2_{\frac{12d_1}{\tilde{c}(\tilde{c}+2)}\mathbf{B}^k+2\rho \mathbf{L}}\notag\\
+	\overset{\eqref{tildePk+1 - tildePk lemma}}{\leq}& \Big(\frac{4}{3(1-\tilde{c})}(1+\frac{18d_1}{\tilde{c}(\tilde{c}+2)})+8(\frac{6d_1}{\tilde{c}(\tilde{c}+2)}+1)\Big)(\tilde{P}^k-\tilde{P}^{k+1}).\notag
+\end{align}
+Substituting this and \eqref{bounded gradient norm Bk} into the definition of $e(T)$ in \eqref{eT time-varying Bk}, and using \eqref{tildePk+1 - tildePk lemma}, \eqref{hat Pk+1 geq 0 tildePk+1 geq f*} and \eqref{tildeP0 leq fx0+nabla f0} yields
+\begin{align}
+	&T\times e(T)\overset{\eqref{eT time-varying Bk}}{\leq} \sum_{k=0}^{T-1}(\frac{1}{N}\|\sum_{i=1}^N \nabla \tilde{f}_i(x_i^k)\|^2 + \rho\|\mathbf{x}^{k}\|^2_\mathbf{L}) \notag\\
+	&{\leq}  \sum_{k=0}^{T-1}\Big(\frac{4}{3(1-\tilde{c})}(1+\frac{18d_1}{\tilde{c}(\tilde{c}+2)})+8(\frac{6d_1}{\tilde{c}(\tilde{c}+2)}+1)\Big)(\tilde{P}^k-\tilde{P}^{k+1})\notag\\
+	&\overset{\eqref{tildePk+1 - tildePk lemma}}{\leq} \tilde{C}_2(\tilde{P}^0-\tilde{P}^{T})\notag\\
+    &\overset{\eqref{hat Pk+1 geq 0 tildePk+1 geq f*}}{\leq} \tilde{C}_2(\tilde{P}^0-f^*)\notag\\
+	&\overset{\eqref{tildeP0 leq fx0+nabla f0}}{\leq} \tilde{C}_2(\tilde{f}(\mathbf{x}^0)-f^*+\frac{6\tilde{c}+7}{8\bar{M}}\|\nabla \tilde{f}(0)\|^2).  \label{T times eT Bk} 
+\end{align}
+Therefore, we obtain \eqref{epsilon leq tildeC1C2/T}.
+
+
+\end{document}

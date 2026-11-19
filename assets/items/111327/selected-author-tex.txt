@@ -1,0 +1,151 @@
+原编号：111327
+作者作品：Graphical functions in even dimensions
+固定版本：arXiv:2105.05015v3 (CC BY 4.0)
+以下为作者TeX原文按准确行区间摘录，未补写数学内容；完整原件见 assets/works/w00018/source0.tex。
+图示请打开条目“必要上下文”中的作者原图；本文件没有声称新编译PDF。
+
+
+===== 题目：source0.tex 第1600—1602行 =====
+\begin{thm}\label{thm2a}
+The kernel of $\Delta_n$ on $\CC\backslash\RR$ is $d_nh(z)+\ddd_n\hh(\zz)$ for arbitrary (anti-)holomorphic functions $h(z)$ and $\hh(\zz)$.
+\end{thm}
+
+
+===== 必要上下文：source0.tex 第1541—1547行 =====
+\begin{lem}[Proposition 3.22 in \cite{gf}]\label{lemdiff}
+In the situation of \eqref{eqappend} where the edge $e$ that is attached to $z$ in $G_1$ has weight $\nu_e=1$ we have
+\begin{equation}\label{eqdiff1}
+\Delta_{\lambda-1}(z-\zz)^\lambda f_{G_1}(z)=-\frac{1}{(\lambda-1)!}(z-\zz)^\lambda f_G(z)
+\end{equation}
+with the effective Laplacian $\Delta_{\lambda-1}=\partial_z\partial_\zz+\lambda(\lambda-1)/(z-\zz)^2$.
+\end{lem}
+
+
+===== 必要上下文：source0.tex 第1584—1603行 =====
+For $\lambda-1=n=0,1,2,\ldots$ we define the following integral operators
+\begin{align}\label{Ipm}
+&I^+_n:(z-\zz)^n\sS\sV_{\{0,1,\infty\}}\rightarrow\sS\sV_{\{0,1,\infty\}},\quad I^-_n:\sS\sV_{\{0,1,\infty\}}\rightarrow(z-\zz)^{-n}\sS\sV_{\{0,1,\infty\}},\nonumber\\
+&f(z)\mapsto I^{\pm}_nf(z)=\sum_{k=0}^n(-1)^{n-k}\frac{(n+k)!}{(n-k)!k!^2}(z-\zz)^{\pm k}\intsv(z-\zz)^{\mp k}f(z)\dd z.
+\end{align}
+Moreover, we define the differential operators $D_0=0$,
+\begin{align}\label{Dn}
+D_n&=\sum_{k=1}^n(-1)^{k-1}\frac{(n-k)!}{(n+k)!}(z-\zz)^k(\partial_z\partial_\zz)^{k-1}(z-\zz)^k,\quad n\geq1,\nonumber\\
+d_n&=\sum_{k=0}^n(-1)^k\frac{(n+k)!}{(n-k)!k!}\frac{1}{(z-\zz)^k}\partial_z^{n-k}.
+\end{align}
+The complex conjugate of $d_n$ is $\ddd_n$. Because (anti-)differentiation lowers the degree in $z-\zz$ by one, we have for any $\ell\in\ZZ$
+\begin{equation}\label{Dndef}
+D_n:(z-\zz)^\ell\sS\sV_{\{0,1,\infty\}}\rightarrow(z-\zz)^{\ell+2}\sS\sV_{\{0,1,\infty\}},\quad d_n\,(\ddd_n):(z-\zz)^\ell\sS\sV_{\{0,1,\infty\}}\rightarrow(z-\zz)^{\ell-n}\sS\sV_{\{0,1,\infty\}}.
+\end{equation}
+With these definitions we obtain the following theorems.
+
+\begin{thm}\label{thm2a}
+The kernel of $\Delta_n$ on $\CC\backslash\RR$ is $d_nh(z)+\ddd_n\hh(\zz)$ for arbitrary (anti-)holomorphic functions $h(z)$ and $\hh(\zz)$.
+\end{thm}
+In the above theorem $\hh$ is not (necessarily) the complex conjugate of $h$. The proof of Theorem \ref{thm2a} is in Section \ref{sectpf2a}.
+
+
+===== 必要上下文：source0.tex 第4690—4740行 =====
+\section{Proof of Theorem \ref{thm2a}}\label{sectpf2a}
+Let $\lambda-1=n=0,1,2,\ldots$. In this section we determine the kernel of $\Delta_n=\partial_z\partial_\zz+n(n+1)/(z-\zz)^2$ in (\ref{eqdiffn}).
+
+\begin{lem}
+With
+\begin{equation}\label{sDdef}
+\sD_n=\sum_{k=0}^n\sum_{\ell=0}^k\frac{(-1)^kn!(k+\ell)!}{(n-k)!(k-\ell)!\ell!}(\partial_z\partial_\zz)^{n-k}(\partial_z-\partial_\zz)^{k-\ell}(z-\zz)^{n-k-\ell}
+\end{equation}
+and
+$$
+d_n=\sum_{k=0}^n(-1)^k\frac{(n+k)!}{(n-k)!k!}\frac{1}{(z-\zz)^k}\partial_z^{n-k}
+$$
+(see (\ref{Dn})) we get
+\begin{align}\label{eqprop4}
+\sD_n\Delta_n&=(\partial_z\partial_\zz)^{n+1}(z-\zz)^n,\nonumber\\
+\Delta_nd_n&=\partial_zd_n\partial_\zz.
+\end{align}
+\end{lem}
+
+\begin{proof}
+For the first identity in (\ref{eqprop4}) we use
+\begin{equation}\label{pfpropeq1}
+(z-\zz)^k\partial_z\partial_\zz=\partial_z\partial_\zz(z-\zz)^k+k(\partial_z-\partial_\zz)(z-\zz)^{k-1}-k(k-1)(z-\zz)^{k-2},
+\end{equation}
+which follows by applying the Leibniz rule to the right hand side.
+
+Substituting the above equation into $\sD_n\Delta_n$ gives three terms:
+\begin{align}\label{pfpropeq2}
+&\sum_{k=-1}^{n-1}\sum_{\ell=-1}^k\frac{(-1)^{k+1}n!(k+\ell+2)!}{(n-k-1)!(k-\ell)!(\ell+1)!}(\partial_z\partial_\zz)^{n-k}(\partial_z-\partial_\zz)^{k-\ell}(z-\zz)^{n-k-\ell-2}\nonumber\\
+&+\;\sum_{k=0}^n\sum_{\ell=-1}^{k-1}\frac{(-1)^kn!(k+\ell+1)!(n-k-\ell-1)}{(n-k)!(k-\ell-1)!(\ell+1)!}(\partial_z\partial_\zz)^{n-k}(\partial_z-\partial_\zz)^{k-\ell}(z-\zz)^{n-k-\ell-2}\nonumber\\
+&+\;\sum_{k=0}^n\sum_{\ell=0}^k\frac{(-1)^kn!(k+\ell)!(2n-k-\ell)(k+\ell+1)}{(n-k)!(k-\ell)!\ell!}(\partial_z\partial_\zz)^{n-k}(\partial_z-\partial_\zz)^{k-\ell}(z-\zz)^{n-k-\ell-2},
+\end{align}
+where in the first term we shifted $k\mapsto k+1$, $\ell\mapsto \ell+1$, in the second term we shifted $\ell\mapsto \ell+1$, and in the last term we combined the third term on the right hand
+side of (\ref{pfpropeq1}) with the second term of $\Delta_n$.
+
+The three summands in (\ref{pfpropeq2}) add up to zero. We are left with boundary terms $k,\ell=-1$ and $k=n$, $\ell=k$. The boundary terms are
+\begin{align*}\label{pfpropeq3}
+&(\partial_z\partial_\zz)^{n+1}(z-\zz)^n+\sum_{k=0}^n\frac{(-1)^{k+1}n!}{(n-k-1)!}(\partial_z\partial_\zz)^{n-k}(\partial_z-\partial_\zz)^{k+1}(z-\zz)^{n-k-1}\\
+&+\;\sum_{k=0}^n\frac{(-1)^kn!}{(n-k-1)!}(\partial_z\partial_\zz)^{n-k}(\partial_z-\partial_\zz)^{k+1}(z-\zz)^{n-k-1}\quad=\quad(\partial_z\partial_\zz)^{n+1}(z-\zz)^n
+\end{align*}
+which proves the first identity in (\ref{eqprop4}). For the second identity in (\ref{eqprop4}) we calculate
+$$
+\partial_\zz d_n=\sum_{k=1}^n(-1)^k\frac{(n+k)!}{(n-k)!(k-1)!}\frac{1}{(z-\zz)^{k+1}}\partial_z^{n-k}+d_n\partial_\zz.
+$$
+Applying $\partial_z$ to the first term on the right hand side gives two terms, one when $\partial_z$ hits $z-\zz$ and the second one when $\partial_z$ commutes to the right.
+In the second term we shift $k$ to $k+1$ and obtain for the sum of both terms
+$$
+\sum_{k=0}^n(-1)^{k+1}\frac{(n+k)![k(k+1)+(n+k+1)(n-k)]}{(n-k)!k!}\frac{1}{(z-\zz)^{k+2}}\partial_z^{n-k}=-\frac{n(n+1)}{(z-\zz)^2}d_n.
+$$
+This term cancels the contribution from the second term in $\Delta_n$. We obtain the second identity in (\ref{eqprop4}).
+\end{proof}
+
+
+===== 作者活动证明：source0.tex 第4742—4791行 =====
+\begin{proof}[Proof of Theorem \ref{thm2a}]
+From the second identity in (\ref{eqprop4}) we get $\Delta_nd_nh(z)=\partial_zd_n\partial_\zz h(z)=0$. So, $d_nh(z)$ is in the kernel of $\Delta_n$ for any holomorphic function $h(z)$.
+By complex conjugation we get $\Delta_n\ddd_n\hh(\zz)=0$.
+
+We need to show that $d_nh(z)+\ddd_n\hh(\zz)$ exhausts the kernel of $\Delta_n$.
+To do this we use the first identity in (\ref{eqprop4}) to see that any function $F$ in the kernel of $\Delta_n$ fulfills the identity
+$$
+(\partial_z\partial_\zz)^{n+1}(z-\zz)^nF=0.
+$$
+By repeated integration the kernel of $(\partial_z\partial_\zz)^{n+1}$ are polynomials in $z$ of degree $\leq n$ with anti-holomorphic coefficients plus polynomials in $\zz$ of degree $\leq n$
+with holomorphic coefficients. Therefore, there are (independent) (anti-)holomorphic functions $h_k(z)$ ($\hh_k(\zz)$) such that $(z-\zz)^nF(z,\zz)=\sum_{k=0}^nh_k(z)\zz^k+\hh_k(\zz)z^k$.
+By a linear transformation we equivalently have (anti-)holomorphic functions $f_k(z)$ ($\ff_k(\zz)$) with
+$(z-\zz)^nF(z,\zz)=\sum_{k=0}^n(f_{n-k}(z)+\ff_{n-k}(\zz))(z-\zz)^k$. We get
+$$
+F=\sum_{k=0}^n\frac{f_k(z)+\ff_k(\zz)}{(z-\zz)^k}.
+$$
+With
+$$
+h(z)=\frac{(-1)^nn!}{(2n)!}f_n(z)\quad\text{and}\quad\hh(\zz)=\frac{n!}{(2n)!}\ff_n(\zz)
+$$
+we obtain
+$$
+F=d_nh(z)+\ddd_n\hh(\zz)+\sum_{k=0}^n\frac{f_k(z)+\ff_k(\zz)-\frac{(n+k)!n!}{(n-k)!k!(2n)!}[(-1)^{n-k}\partial_z^{n-k}f_n(z)+\partial_\zz^{n-k}\ff_n(\zz)]}{(z-\zz)^k}.
+$$
+The term $k=n$ is zero. For $n=0$ this proves the theorem, so we assume $n\geq1$ in the following.
+Introducing new (anti-)homomorphic functions $g_k(z)$ ($\gggg_k(\zz)$) we get that
+$$
+F=d_nh(z)+\ddd_n\hh(\zz)+G_{n-1}
+$$
+where
+\begin{equation}\label{pf2a1}
+G_m=\sum_{k=0}^m\frac{g_k(z)+\gggg_k(\zz)}{(z-\zz)^k}.
+\end{equation}
+We have $\Delta_nF=\Delta_nG_{n-1}=0$. We show by induction that $\Delta_nG_m=0$ implies $G_m=0$ for all $m=0,\ldots,n-1$.
+
+From $\Delta_nG_m=0$ we get
+$$
+\sum_{k=0}^m\left(k\frac{g_k'(z)-\gggg_k'(\zz)}{(z-\zz)^{k+1}}+[n(n+1)-k(k+1)]\frac{g_k(z)+\gggg_k(\zz)}{(z-\zz)^{k+2}}\right)=0,
+$$
+with $n(n+1)-k(k+1)=(n-k)(n+k+1)$. For $m=0$ the above equation implies $G_0=0$. We assume $m>0$ and multiply the above equation with $(z-\zz)^2/(n-m)(n+m+1)$.
+In the first term we also shift the summation index $k$ to $k+1$ and obtain
+$$
+\frac{g_m(z)+\gggg_m(\zz)}{(z-\zz)^m}=-\sum_{k=0}^{m-1}\frac{(k+1)(g_{k+1}'(z)-\gggg_{k+1}'(\zz))+(n-k)(n+k+1)(g_k(z)+\gggg_k(\zz))}{(n-m)(n+m+1)(z-\zz)^k}.
+$$
+Substitution into (\ref{pf2a1}) gives
+$$
+G_m=\sum_{k=0}^{m-1}\frac{-(k+1)(g_{k+1}'(z)-\gggg_{k+1}'(\zz))-(m-k)(m+k+1)(g_k(z)+\gggg_k(\zz))}{(n-m)(n+m+1)(z-\zz)^k}.
+$$
+The right hand side is $G_{m-1}$ for some new functions $\widetilde{g}_k(z)$, $\widetilde{\gggg}_k(\zz)$ and vanishes by induction.
+\end{proof}

@@ -1,0 +1,280 @@
+\documentclass[10pt,a4paper]{amsart}
+\usepackage[margin=19mm]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage[scr=rsfs,cal=euler]{mathalfa}
+\usepackage{xfrac}
+\usepackage[unicode,hidelinks,bookmarks=false]{hyperref}
+\newcommand{\ie}{i.e.\ }
+\newcommand{\cf}{cf.\ }
+\newcommand{\resp}{respectively\ }
+\newcommand{\Subsection}{\subsection}
+\providecommand{\nobreakdash}{\nobreak\hbox{-}}
+\setlength{\emergencystretch}{2em}
+\multlinegap0pt
+\usepackage{bm}
+\usepackage{bbm}
+\usepackage{dsfont}
+\usepackage{xspace}
+\usepackage{cancel}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\makeatletter
+\@ifundefined{theorem}{\newtheorem{theorem}{Theorem}}{}
+\@ifundefined{lemma}{\newtheorem{lemma}[theorem]{Lemma}}{}
+\@ifundefined{proposition}{\newtheorem{proposition}[theorem]{Proposition}}{}
+\makeatother
+\makeatletter
+\newcommand{\cG}{\mathcal{G}}
+\expandafter\ifx\csname poc\endcsname\relax
+\fi
+\makeatother
+\title[Geometric constructions for Ramsey-Tur\'an theory]{Geometric constructions for Ramsey-Tur\'an theory}
+\author{Hong Liu, Christian Reiher, Maryam Sharifzadeh, Katherine Staden}
+\date{Source: arXiv:2103.10423v2 (CC BY 4.0)}
+\newtheorem{claim}{Claim}
+\newtheorem{definition}{Definition}
+\newenvironment{poc}{\begin{proof}[Proof of claim]\renewcommand*{\qedsymbol}{$\blacksquare$}}{\end{proof}}
+\allowdisplaybreaks
+\begin{document}
+
+\maketitle
+\noindent\textbf{Reviewed difficulty: H2. Legacy noncounting; count 0.} The H2 burden includes the full heroic/herculean hereditary and double-extremal exchange chain at 1756--1811, followed by the second maximization of $2r+s$, the eta-weighted potential and the detailed $p=4$ replacement/classification argument at 1831--1952. These specialized steps remain joint work in this unit. The source graph and dominating-extension definitions are displayed.\par\medskip
+
+\noindent\emph{Source and licence.} Geometric constructions for Ramsey-Tur\'an theory. Version arXiv:2103.10423v2 (CC BY 4.0), distributed under the Creative Commons Attribution 4.0 International licence, as recorded in the arXiv licence metadata for this exact version and shown on the abstract page \url{https://arxiv.org/abs/2103.10423v2}. Full rights notice: \path{licenses/arxiv-2103.10423-CC-BY-4.0.txt}.\par\smallskip
+
+
+\noindent\textit{Editorial scope.} Selected author statement at source0.tex 1824--1829 and complete author proof at 1831--1952. Necessary author inputs and any dedicated auxiliary chain are displayed below. Original mathematical text, hypotheses, formulas and source version are retained.\par\smallskip
+\section*{Author context (source 1419--1425)}
+Given $p\in\mathbb{N}$, a \emph{$p$-weighted graph} is a pair $G=(V,w)$ consisting of a vertex set $V$
+and a symmetric function $w : V^2 \rightarrow \lbrace 0,1,\ldots, p\rbrace$ such that
+$w(x,x)=0$ for all $x \in V$.
+%A weighted graph is \emph{positive} if $w(x,y)>0$ for all distinct $x,y \in V$.
+Given $x \in V$, let $d_G(x) := \sum_{y \in V-x}w(x,y)$ and $\delta(G) := \min_{x \in V}d_G(x)$. A $p$-weighted graph is \emph{positive} if all its pairs $x \neq y$ receive strictly positive weights.
+Given a family $\mathcal{G}$ of $p$-weighted graphs and a $p$-weighted graph $G=(V,w)$, we say that $G$ is \emph{$\mathcal{G}$-free} if there is no $U \subseteq V$ such that $G[U] \in \mathcal{G}$, where
+$G[U] := (U,w|_{U^2})$.
+
+\section*{Author context (source 1550--1558)}
+\begin{definition}
+	Let $G=(V,w)$ be a positive $p$-weighted graph and $\lbrace v_1,\ldots,v_m\rbrace$ be an enumeration of $V$. An extension of $w$ to $V^2 \cup V$ is \emph{dominating} if  for all $j \in \{2,\ldots,m\}$, writing $a:=w(v_j)$, the multiset of backwards edge weights $\lbrace w(v_i,v_j) : i \in [j-1]\rbrace$ dominates
+	$$
+	\Big\lbrace \underbrace{\textstyle{\frac{p(a-1)}{a}+1,\ldots,\frac{p(a-1)}{a}+1}}_{j-2}, a\Big\rbrace
+	$$
+	as ordered multisets.
+	The \emph{size} of an extension of $w$ to $V^2 \cup V$ is $\sum_{v \in V}w(v)$. 
+	Let $\mathcal{G}_p(q)$ be the set of positive $p$-weighted graphs $G=(V,w)$ with dominating extension of size at least $q$.
+\end{definition}
+
+\section*{Author context (source 1740--1821)}
+Given a $p$-weighted graph $G=(V,w)$ and a $J \subseteq V$ with $J = \{v_1,\ldots,v_m\}$,
+the ``maximal'' dominating extension $w$ of $G[J]$ is, by definition, such that,
+for each $j\in [m]$, we have
+\begin{itemize}
+	\item $w(v_j) = p$ if and only if $w(v_i,v_j) = p$ for all $i \in [j-1]$;
+	\item $w(v_j) \geq a$, for every $2\le a\le p-1$, if and only if $w(v_i,v_j)\geq a$ for all $i \in [j-1]$ with equality \emph{at most once};
+	%\item $w(v_j) \geq 2$ if and only if $w(v_i,v_j)\geq 2$ for all $i \in [j-1]$ with equality \emph{at most once};
+	\item $w(v_j)\geq 1$ if and only if $w(v_i,v_j) \geq 1$ for all $i \in [j-1]$.
+\end{itemize}
+%Note also that if $K \subseteq V$ has dominating extension and $L \subseteq V\setminus K$
+
+We will find it convenient to write $\tilde{w}(x,y) := p - w(x,y)$; and given $K \subseteq V$, to let
+$$
+\tilde{w}(K) := \sum_{xy \in \binom{K}{2}}\tilde{w}(x,y)\quad\text{and}\quad \gamma_K(x) := \sum_{y \in K\setminus\{x\}}\tilde{w}(x,y)\quad\text{for all }x \in V.
+$$
+
+\begin{proposition}\label{prop-hero}
+	For every $p$-weighted graph $G=(V,w)$, there exists a set $K \subseteq V$ such that
+	\begin{itemize}
+	\item[(i)] $G[K] \in \cG_p(p|K|-\tilde{w}(K))$;
+	\item[(ii)] we have $\gamma_K(y) \leq p-1$ for all $y \in K$ and $\gamma_K(x) \geq p$ for all $x \in V\setminus K$;
+	\item[(iii)] if $x \in V\setminus K$ and $y \in K$, we have $\gamma_{K\setminus\{y\}}(x) \geq \gamma_K(y)$.
+	\end{itemize}
+\end{proposition}
+
+\begin{proof}
+We say a non-empty set $K$ is \emph{heroic} if, for all $\varnothing \neq L \subseteq K$ we have $G[L] \in \mathcal{G}_p(p|L|-\tilde{w}(L))$. Observe that every singleton in $V$ is heroic, as it can be given weight $p$, and subsets of heroic sets are heroic.
+
+\begin{claim}\label{cl-hero}
+If $K$ is heroic and $x \in V\setminus K$ with $\gamma_K(x) \leq p-1$, then $K \cup \{x\}$ is heroic.
+\end{claim}
+\begin{poc}
+	As any singleton is heroic, it suffices to check that for any $\varnothing\neq L\subseteq K$, $G[L\cup \{x\}]\in\cG_p(p|L \cup \lbrace x\rbrace| - \tilde{w}(L \cup \lbrace x\rbrace))$. To see this, add $x$ to the end of the enumeration of $L$ with dominating extension of maximal size. We claim that setting $w(x):=p-\gamma_L(x)$ extends it to a dominating extension of $L\cup \{x\}$. Indeed, for each $v\in L$, \begin{equation*}%\label{eq-heroic-mindeg}
+		w(v,x)=p- \tilde{w}(v,x)= p-\gamma_L(x)+\sum_{u\in L\setminus \{v\}}\tilde{w}(u,x)\geq p-\gamma_L(x),
+	\end{equation*}
+	where equality holds only when $w(u,x)=p$ for each $u\in L\setminus \{v\}$.
+	We need to check the dominating properties.
+	Note first that every $w(v,x) \geq 1$ (as $\gamma_L(x) \leq p-1$), and so we may assume $w(x)\ge 2$, i.e.~$\gamma_L(x)\le p-2$. 
+	If $1 \leq \gamma_L(x) \leq p-2$, $2 \leq w(x) \leq p-1$ and $w(v,x) \geq w(x)$ with equality at most once, since if $w(v,x)=w(x)$ then $w(u,x)=p>w(x)$ for all $u \in L\setminus\{v\}$.
+	If $\gamma_L(x)=0$, then $w(x)=p$ and $w(v,x)=p$ for all $v \in L$.
+	So the extension to $L \cup \{x\}$ is dominating.
+	As $L$ is heroic, we have
+	$$
+	\sum_{v \in L\cup\lbrace x\rbrace}w(v) \geq p|L|-\tilde{w}(L)+p-\gamma_L(x) = p|L \cup \lbrace v\rbrace| - \tilde{w}(L \cup \lbrace v\rbrace),
+	$$
+	as required.
+\end{poc}
+
+A heroic set $K$ is \emph{herculean} if
+\begin{itemize}
+	%\item for all $\varnothing \neq L \subseteq K$ we have $G[L] \in \mathcal{G}_p(p|L|-\tilde{w}(L))$;
+	\item $p|K|-\tilde{w}(K)$ is maximal; 
+	\item subject to the above, $|K|$ is minimal.
+\end{itemize}
+We claim that we can take any herculean $K$ for the required set.
+Indeed,~$K$ satisfies (i).
+	
+	Now we prove (ii). Let $K' := K\setminus\lbrace y \rbrace$ and suppose $\gamma_K(y) \geq p$. Note that $K'\neq\varnothing$, since otherwise $\gamma_K(y)=0$. Then, using that $K$ is herculean, $p|K'|-\tilde{w}(K')<p|K|-\tilde{w}(K)$, entailing
+	$\gamma_K(y)=\tilde{w}(K)-\tilde{w}(K')<p$, a contradiction.
+	
+	Suppose instead there is $x \in V\setminus K$ with $\gamma_K(x) \leq p-1$.
+	Then Claim~\ref{cl-hero} implies that $K \cup\lbrace x\rbrace$ is heroic with 
+	$$p|K \cup \lbrace x\rbrace| - \tilde{w}(K \cup \lbrace x\rbrace)=p|K|-\tilde{w}(K)+p-\gamma_K(x)>p|K|-\tilde{w}(K),$$ 
+	contradicting the fact that $K$ is herculean.
+	
+	For~(iii), let $x \in V\setminus K$ and $y \in K$.
+	Suppose that $\gamma_{K\setminus\{y\}}(x) < \gamma_K(y)$.
+	Then~(ii) implies that $\gamma_{K\setminus\{y\}}(x) \leq p-1$.
+	As $K\setminus\lbrace y \rbrace$ is heroic (as a subset of a heroic set), Claim~\ref{cl-hero} implies that $K' := (K\setminus\lbrace y \rbrace)\cup\lbrace x\rbrace$ is heroic. But $|K'|=|K|$ and 
+	$$p|K'|-\tilde{w}(K') = p|K'|-\tilde{w}(K)+\gamma_K(y)-\gamma_{K\setminus\{y\}}(x) > p|K|-\tilde{w}(K),$$ 
+	a contradiction to $K$ being herculean. 
+\end{proof}
+
+We are now ready to prove the final upper bound.
+Recall that
+$$
+\varrho^*_p(pt+2) = \frac{(t-1)(2p-1)+1}{t(2p-1)+1} =
+\begin{cases}
+	\frac{5t-4}{5t+1} &\text{if }p=3,\\
+	\frac{7t-6}{7t+1} &\text{if }p=4.\\
+\end{cases}
+$$
+\section*{Selected author statement}
+\begin{lemma}\label{smallp}
+	Let $p \in\lbrace 3,4\rbrace$ and let $t\in\mathbb{N}$.
+	Let $G=(V,w)$ be a $p$-weighted $n$-vertex graph with
+	$$\delta(G)>p \cdot \varrho_p^*(pt+2) \cdot n.$$
+	Then there is $J \subseteq V$ such that $G[J] \in \cG_p(pt+2)$.
+\end{lemma}
+\section*{Complete author proof}
+\begin{proof}
+	Let $G=(V,w)$ be an $n$-vertex $p$-weighted graph with $\delta(G)>p\cdot\frac{(t-1)(2p-1)+1}{t(2p-1)+1}\cdot n$.	%We shall find a subgraph of $G$ which is in $\cG_p(pt+2)$.
+	Let $K \subseteq V$ be the set obtained from Proposition~\ref{prop-hero}. We claim that
+	\begin{equation}\label{eq-K}
+		|K|\ge t+1.
+	\end{equation}
+	To see this, observe first that for each $y\in V$, by Proposition~\ref{prop-hero}(ii), 
+	$$\sum_{x \in K}\tilde{w}(x,y)=\gamma_K(y)+p\cdot\mathbbm{1}_{\{y\in K\}}\ge p.$$
+	Consequently,
+	\begin{align}
+		pn &\leq \sum_{x \in K,y \in V}\tilde{w}(x,y) =\sum_{x \in K}\Big(pn-\sum_{y\in V}w(x,y)\Big)\nonumber\\
+		&=\sum_{x \in K}(pn-d_G(x)) \leq |K|(pn-\delta(G)) < \frac{(2p-1)pn|K|}{(2p-1)t+1} < \frac{pn|K|}{t},\label{eq:ricecake}
+	\end{align}
+	so $|K| \geq t+1$ as claimed.
+	
+	Now let $J \subseteq V$ be a set of vertices with enumeration 
+	$$J = \lbrace x_1,\ldots,x_k,y_1,\ldots,y_r,z_1,\ldots,z_s\rbrace,$$
+	equipped with a dominating extension $w$, such that $\lbrace x_1,\ldots,x_k\rbrace = K$, $w|_K$ has size $pk-\tilde{w}(K)$ and 
+	\begin{itemize}
+		\item  $w(y_i) \geq 2$ for all $i \in [r]$;
+		\item  $w(z_i) \geq 1$ for all $i \in [s]$;
+		\item $2r+s$ is maximal.
+	\end{itemize}
+	Such a pair $(J,w)$ does exist. Indeed, taking $r=s=0$, we see that $J=K$ has a dominating extension of size $pk-\tilde{w}(K)$ by Proposition~\ref{prop-hero}(i).
+	
+	By choice, $G[J] \in \mathcal{G}_p(pk-\tilde{w}(K)+2r+s)$.
+	We shall argue that $G[J]$ is the desired subgraph in $\mathcal{G}_p(pt+2)$. Suppose otherwise, then
+	$pk-\tilde{w}(K)+2r+s \leq pt+1$.
+	Together with~\eqref{eq-K}, this implies
+	\begin{equation}\label{double}
+		(2p-1)k - 2\tilde{w}(K) + 4r+2s \leq (2p-1)t+1.
+	\end{equation}
+	In what follows, we write $\gamma := \gamma_K$. Define $\eta: J\rightarrow \mathbb{N}$ as follows:
+	\begin{itemize}
+		\item $\eta(x_i) := 2p-1-\gamma(x_i)$, for all $i \in [k]$;
+		\item $\eta(y_i) := 4$, for all $i \in [r]$;
+		\item $\eta(z_i) := 2$, for all $i \in [s]$.
+	\end{itemize}
+	Note that by Proposition~\ref{prop-hero}(ii) we have
+	\begin{equation}\label{eq-etap}
+	\eta(x) \geq p, \quad\text{for all }x \in K.
+	\end{equation}
+	Further define
+	$$
+	H(u) := \sum_{v \in J}\eta(v)\tilde{w}(u,v),\quad\text{for all }u \in V.
+	$$
+	Since $\sum_{i\in [k]}\gamma(x_i)=2\tilde{w}(K)$, we have as in~\eqref{eq:ricecake} that
+	\begin{align*}
+		\sum_{u \in V}H(u) &= \sum_{v \in J}\eta(v)\sum_{u \in V}\tilde{w}(u,v) \leq \Big(\sum_{v \in J}\eta(v)\Big)(pn-\delta(G))\\
+		&< ((2p-1)k - 2\tilde{w}(K) + 4r+2s) \cdot \frac{p(2p-1)n}{(2p-1)t+1} \stackrel{(\ref{double})}{\leq} p(2p-1)n,
+	\end{align*}
+	implying that there exists a vertex $u_* \in V$ with $H(u_*) < p(2p-1)$.
+	
+	Suppose there is some $v \in K$ with $\tilde{w}(v,u_*) = p$.
+	Then
+	$$
+	p(2p-1)>H(u_*)\ge \sum_{x' \in K\setminus\{v\}}\eta(x')\tilde{w}(x',u_*) + p\eta(v) \stackrel{(\ref{eq-etap})}{\ge} p\cdot\gamma_{K\setminus \{v\}}(u_*) + p(2p-1-\gamma(v)),
+	$$
+	implying that we in fact have $\gamma_{K\setminus\{v\}}(u_*) <  \gamma(v)$. Then Proposition~\ref{prop-hero}(iii) implies that $u_* \in K$.
+	If $u_* \neq v$, then $\gamma(u_*) \geq \tilde{w}(v,u_*) = p$, contradicting Proposition~\ref{prop-hero}(ii).
+	So $u_*=v$, and thus $\gamma_{K\setminus\{v\}}(u_*) = \gamma(v)$, and we have obtained a contradiction.
+	Therefore,
+	\begin{equation}\label{eq-K-linked}
+		w(v,u_*) \geq 1,\quad\text{for all }v \in K.
+	\end{equation}
+	So $u_* \notin K$, since $w(u_*,u_*)=0$. Proposition~\ref{prop-hero}(ii) then implies that \begin{equation}\label{gammau*}
+		\gamma(u_*) \geq p.
+	\end{equation}
+	Consequently, recalling that $\eta(x') \geq p$ for all $x' \in K$,
+	\begin{equation}\label{eq-K-Hweight}
+		\sum_{x' \in K}\eta(x')\tilde{w}(x',u_*) \geq p\gamma(u_*)\ge p^2.
+	\end{equation}
+	For every $y \in R := \lbrace y_1,\ldots,y_r\rbrace$, we have
+	$$
+	p(2p-1)>H(u_*)\ge 4\tilde{w}(y,u_*)+\sum_{x' \in K}\eta(x')\tilde{w}(x',u_*)\stackrel{\eqref{eq-K-Hweight}}{\ge} 4\tilde{w}(y,u_*)+p^2,
+	$$
+	whence $\tilde{w}(y,u_*)<\frac{p(p-1)}{4}<p$. So \begin{equation}\label{eq-R-linked}
+		w(y,u_*) \geq 1,\quad\text{for all }y \in R.
+	\end{equation}
+	
+	Suppose that $w(z,u_*) \geq 1$ for all $z \in S := \lbrace z_1,\ldots,z_s\rbrace$. Then $u_* \notin S$, by~\eqref{eq-K-linked} $u^* \notin K$ and by~\eqref{eq-R-linked}, $u_* \notin R$.
+	So $u_* \notin J$ and moreover, setting $w(u_*)=1$ gives a dominating extension to include $J \cup \{u_*\}$.
+	Thus we can add $u_*$ to $S$, contradicting the maximality of $2r+s$.
+	So $S' := \{z \in S: \tilde{w}(z,u_*)=p\} \neq \varnothing$.
+	Then  we have
+	$$p(2p-1)>H(u_*)\ge \sum_{z \in S'}\eta(z)\tilde{w}(z,u_*)+\sum_{x' \in K}\eta(x')\tilde{w}(x',u_*)\stackrel{\eqref{eq-K-Hweight}}{\ge} 2|S'|p+p\gamma(u_*), $$
+	implying together with~(\ref{gammau*}) that
+	\begin{equation}\label{eq:S'}
+		|S'|<\frac{2p-1-\gamma(u_*)}{2} \le \frac{p-1}{2}.
+	\end{equation}
+	If $p=3$, then $S'$ is empty, a contradiction.
+	So from now on assume $p=4$.
+	Then $|S'|=1$, i.e.~there is a unique $z_* \in S$ with $\tilde{w}(z_*,u_*)=4$, and 
+	\begin{equation}\label{Sweight}
+		w(z,u_*)\geq 1,\quad\text{for all }z \in S\setminus\lbrace z_*\rbrace.
+	\end{equation}
+	The first inequality in~(\ref{eq:S'}) implies that $\gamma(u_*) \leq 4$.
+	Now~(\ref{gammau*}) implies that in fact $$\gamma(u_*)=4.$$
+	Also, from
+	$$
+	28 > H(u_*) \geq 2\tilde{w}(z_*,u_*)+ 4\sum_{y \in R}\tilde{w}(y,u_*) +\sum_{x' \in K}\eta(x')\tilde{w}(x',u_*)\stackrel{\eqref{eq-K-Hweight}}{\ge} 8+4\sum_{y \in R}\tilde{w}(y,u_*)+16,
+	$$
+	we deduce that $\sum_{y \in R}\tilde{w}(y,u_*)=0$. In other words,
+	\begin{equation}\label{Rweight}
+		w(y,u_*) =4, \quad\text{for all }y \in R.
+	\end{equation}
+	
+	Let $T := \lbrace x \in K: \tilde{w}(x,u_*) > 0\rbrace$. By definition, $ \sum_{x \in T}\tilde{w}(x,u_*)=\gamma(u_*) =4$, implying, together with~\eqref{eq-K-linked}, that $2 \leq |T| \leq 4$.
+	If $|T| \geq 3$, then the multiset $\lbrace w(x,u_*) : x \in T\rbrace$ recording the weights from $u_*$ to $T$ is either $ \lbrace 3,3,3,3\rbrace$, or  $\lbrace 2,3,3\rbrace$. In particular, by~(\ref{Rweight}), $w(y,u_*) \geq 2$ for all $y \in K \cup R$ with equality at most once.
+	Together with~(\ref{Sweight}), this implies that
+	we can delete $z_*$ from $S$ and add $u_*$ to $R$ to obtain a set, $J\cup\{u_*\}\setminus\{z_*\}$, having a dominating extension with larger $2r+s$, a contradiction.
+	
+	Thus we may assume that $|T| = 2$.
+	Let $T =: \lbrace a,b\rbrace$ and $\alpha := \tilde{w}(a,u_*)$ and $\beta := \tilde{w}(b,u_*)$.
+	Then $\alpha+\beta=\gamma(u_*)=4$; and Proposition~\ref{prop-hero}(iii) implies that 
+	$\beta = \gamma_{T\setminus\{a\}}(u_*) = \gamma_{K\setminus\{a\}}(u_*) \geq \gamma(a)$
+	and similarly $\alpha \geq \gamma(b)$. We then arrive at the final contradiction:
+	\begin{align*}
+		28>H(u_*) &\geq \sum_{x' \in \{a,b,z_*\}}\eta(x')\tilde{w}(x',u_*) \ge \alpha(7-\gamma(a)) + \beta(7-\gamma(b)) + 2\cdot 4\\ &\ge \alpha(7-\beta) + \beta(7-\alpha) + 8\ge  8 + 7(\alpha+\beta)-\frac{1}{2}(\alpha+\beta)^2=28,
+	\end{align*}
+	completing the proof.
+\end{proof}
+\end{document}

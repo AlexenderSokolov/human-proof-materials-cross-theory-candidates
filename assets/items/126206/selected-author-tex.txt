@@ -1,0 +1,450 @@
+原编号：126206
+作者作品：Coxeter theory for curves on blowups of $\bbP^r$
+固定版本：arXiv:2205.13605v1 (CC BY 4.0)
+以下为作者TeX原文按准确行区间摘录，未补写数学内容；完整原件见 assets/works/w00022/source0.tex。
+图示请打开条目“必要上下文”中的作者原图；本文件没有声称新编译PDF。
+
+
+===== 题目：source0.tex 第1821—1831行 =====
+\begin{theorem}\label{thm:0weyllines}
+Fix $r\geq 3$.
+Then the only Cremona-reduced classes $c = (d;\underline{m})$
+(with all $d$, $m_i$ non-negative)
+which are Cremona-equivalent to $h-e_1$
+are the classes $h-e_i$ for $1 \leq i \leq s$.
+Any $(0)$-Weyl line with positive degree and non-negative multiplicities
+may be brought to $h-e_1$ via a series of Cremona transformations,
+each of which monotonically decreases the degree,
+followed by a single permutation.
+\end{theorem}
+
+
+===== 必要上下文：source0.tex 第628—700行 =====
+\subsection{Cremona Invariants and $(i)$-Weyl lines}\label{bilinear form section}
+Note that the symmetric group on the indices of the $s$ points
+acts on all these spaces,
+and if $\sigma$ is the permutation taking the subset $I$ to the subset $J$,
+then $\sigma \phi_I \sigma^{-1} = \phi_J$.
+The canonical class $K_Y = -(r+1)H + (r-1)\sum_i E_i$ is the only symmetric $\phi$-invariant class
+(up to scalars) in $A^1$ (and it is invariant under all $\phi_I$ therefore).
+Dually, the anticanonical curve class $F =(r+1)h - \sum_{i=1}^s e_i $
+is the only symmetric $\phi$-invariant class (up to scalars) in $A^{r-1}(Y)$,
+and again it is invariant under all $\phi_I$.
+
+The invariance of these classes gives us linear functionals
+\[
+(-,F)\in (A^1)^* \;\;\text{and}\;\; (-,K) \in (A^{r-1})^*
+\]
+that are both symmetric and Cremona-invariant.
+
+In addition to these familiar linear functionals, both spaces enjoy a symmetric $\phi$-invariant quadratic form,
+which are unique up to scalars also.
+These we denote by $q_1$ on $A^1$ and $q_{r-1}$ on $A^{r-1}$, and may be defined using the numerical characters
+$(d;\underline{m})$ by
+\begin{align}
+q_1(d;\underline{m}) &= q_1(dH - \sum_i m_i  E_i) = (r-1)d^2 - \sum_{i=1}^s m_i^2 \label{q1}\\
+q_{r-1}(d;\underline{m}) &= q_{r-1}(dh - \sum_i m_i e_i) =d^2 - (r-1)\sum_{i=1}^s m_i^2 \label{qr-1}
+\end{align}
+Each of these quadratic forms give rise to associated bilinear forms,
+which in the case of divisors is (up to scalar multiple) the Dolgachev-Mukai pairing.
+
+We will denote the  bilinear form on $A^{r-1}$ 
+derived from the quadratic form 
+$q_{r-1}(dh-\sum_i m_i e_i) = d^2-(r-1)\sum_i m_i^2$
+by $\langle -,-\rangle$:
+$
+\langle x, y \rangle = \frac{1}{2}(q_{r-1}(x+y)-q_{r-1}(x)-q_{r-1}(y))
+$
+which has the following values on the basis elements:
+\[
+\langle h,h\rangle = 1; \;\;
+\langle h,e_i\rangle = 0 
+\;\text{and}\;\langle e_i,e_i \rangle = 1-r \;\text{for all}\;i;
+\;\; \langle e_i,e_j\rangle =0 \;\text{for}\; i \neq j
+\]
+It is easy to see that for any $c \in A^{r-1}$, we have
+the \emph{anticanonical degree} of $c$ which is equal to
+$(-K\cdot c) = \langle F , c\rangle$.
+We therefore have that a class $c$ is a numerical $(-1)$-class
+if and only if $\langle F, c\rangle = 3-r$
+(and in general is a numerical $(i)$-class if and only if
+$\langle F, c\rangle = 2+i(r-1)$)
+
+For $i \in \{-1,0,1\}$,
+we define an \emph{$(i)$-Weyl line}
+to be the image
+(under a sequence of standard Cremona transformations)
+of a (degree one) line through $1-i$ points.
+The class of a $(-1)$-Weyl line is therefore an element of the orbit
+(under the group of Cremona transformations)
+of the class $h-e_1-e_2$;
+similarly the class of a $(0)$-Weyl line is an element of the orbit of $h-e_1$,
+and the class of  $(1$)-Weyl line is an element of the orbit of the line class $h$.
+
+Since the linear functional $\langle F, - \rangle$
+and the quadratic form $\langle -,-\rangle$
+are Cremona-invariant,
+any $(i)$-Weyl line must have the same values for these invariants
+as the lines through $1-i$ points.
+Therefore:
+\begin{corollary}\label{iWeyllineinvariants}
+If $c$ is the class of an $(i)$-Weyl line in $\bbP^r$, we have
+\[
+\langle F, c \rangle = 2+i(r-1) \text{ and } \langle c, c \rangle = 1 + (i-1)(r-1).
+\]
+\end{corollary}
+
+
+===== 必要上下文：source0.tex 第989—1042行 =====
+\begin{proposition}\label{TitsAlgorithm}
+Suppose that $g$ is a functional in the Tits cone,
+so that some translate $w \in W$ sends $g$ into the non-negative cone $\bar{\mathcal{C}}$.
+One can construct the Weyl group element $w$ that sends $g$ into $\bar{\mathcal{C}}$
+with the following algorithm.
+We may assume $g \notin \bar{\mathcal{C}}$, else take $w=1$.
+Set $g_1 = g$, and set $k=1$.
+\begin{itemize}
+\item[(a)] If $g_k \in \bar{\mathcal{C}}$, stop.
+\item[(b)] If $g_k \notin \bar{\mathcal{C}}$,
+then choose any generator $x_{i_k}$ for $W$ such that $g_k(x_{i_k}) < 0$.
+Set $g_{k+1} = x_{i_k}(g_k)$.
+\item[(c)] Increment $k$ and go to step (a).
+\end{itemize}
+This process stops in a finite number $K$ of steps,
+and $w = x_{i_{K}}x_{i_{K-1}}\cdots x_{i_2}x_{i_1}$ sends $g$ into $\bar{\mathcal{C}}$.
+\end{proposition}
+
+\medskip\noindent{\bf Proof:}
+The only thing to show here is that the algorithm stops,
+and we do this by induction on the length of the Weyl group element $w$ that takes $g$ into $\bar{\mathcal{C}}$.
+If that length is $0$, then $g=g_1$ is already in the non-negative cone.
+If not, then the algorithm allows us to choose a generator $x_{i_1}$ such that $g_1(x_{i_1}) < 0$,
+and we consider $g_2 = x_{i_1}g_1$;
+for convenience set $u = x_{i_1}$, so that $g_2 = u g_1$.
+The Weyl group element $w u$ sends $g_2$ into the non-negative cone:
+$(w u)(g_2) = (w u)(ug_1) = w g \in \bar{\mathcal{C}}$.
+
+We claim that the length $\ell(w u)$ is less than the length $\ell(w)$.
+This is equivalent to $\ell(u w^{-1}) < \ell(w^{-1})$,
+which by \cite{Humphreys}, Lemma, page 120,
+is equivalent to $w^{-1}(\mathcal{C}) \subset A_u'$,
+where $A_u' = \{f \in E^* \;|\; f(u) < 0\}$.
+
+Consider the original functional $g$; by assumption it lies in $A_u'$,
+and since $w(g) \in \bar{\mathcal{C}}$,
+we have $g \in w^{-1}(\bar{\mathcal{C}})$.
+Hence $g$ is in the intersection $w^{-1}(\bar{\mathcal{C}}) \cap A_u'$,
+so that intersection is not empty.
+
+However any translate of $\mathcal{C}$ is fully contained in either $A_u'$
+or $A_u = \{f \in E^* \;|\; f(u) > 0\}$.
+If $w^{-1}(\mathcal{C}) \subset A_u$, 
+then we must have $w^{-1}(\bar{\mathcal{C}}) \subset \bar{A_u}$.
+However $\bar{A_u} \cap A_u' = \emptyset$;
+this would then force
+$w^{-1}(\bar{\mathcal{C}}) \cap A_u' = \emptyset$.
+This is a contradiction, since $g$ is an element there.
+Hence we conclude that $w^{-1}(\mathcal{C}) \subset A_u'$,
+which then allows us to conclude that the length $\ell(wu) < \ell(w)$.
+
+We finish then by induction on the length.
+
+\rightline{QED}
+
+
+===== 必要上下文：source0.tex 第1065—1247行 =====
+\subsection{The Weyl Group Action on $A^1(Y)$}
+The $\phi$-invariant symmetric curve class $F = (r+1)h - \sum_i e_i  \in A^{r-1}(Y)$
+gives a functional on the divisor classes $A^1(Y)$
+via the intersection pairing;
+the kernel of this functional is a codimension one subspace $V^1 \subset A^1$
+on which $\phi$ and the symmetric group acts irreducibly.
+A divisor class $dH-\sum_i m_i E_i$ is in $V^1$ if and only if $(r+1)d = \sum_i m_i$.
+(Using the notation of Proposition \ref{CremonaAY}(a),
+we see that this is indeed preserved by $\phi_I$ for any index set $I$,
+since the quantity $t_1$ is added to the degree and to $r+1$ of the multiplicities.)
+
+We have $\dim(V^1) = s$ and a basis for $V^1$ is given by the divisor classes
+$v_i = \frac{1}{r+1}H-E_i$ for $i = 1,\ldots,s$.
+The symmetric group acts on these basis elements by permuting the indices.
+The action of $\phi$ is given by
+\[
+\phi(v_i) = \begin{cases}
+v_i - \frac{2}{r+1}\sum_{j=1}^{r+1}v_j \;\;\text{if}\;\; 1 \leq i \leq r+1 \\
+v_i + \frac{r-1}{r+1}\sum_{j=1}^{r+1}v_j \;\;\text{if}\;\; r+2 \leq i \leq s
+\end{cases}
+\]
+An alternative basis which is more tuned to the Coxeter theory is
+$\{X_i\}_{0\leq i \leq s-1}$
+where $X_0 = \sum_{i=1}^{r+1} v_i = H - \sum_{i=1}^{r+1} E_i$
+and $X_i = v_{i+1}-v_i = E_i - E_{i+1}$ for $1 \leq i \leq s-1$.
+
+The quadratic invariant $q_1$ on $A^1$
+introduced in (\ref{q1})
+gives rise to a (symmetric, $\phi$-invariant) bilinear form $B_1$ on $A^1$
+defined by setting
+\[
+B_1(x,y) = \frac{-1}{4}(q_1(x+y)-q_1(x)-q_1(y))
+\]
+which takes on the following values:
+\[
+B_1(H,H) = \frac{1-r}{2}; \;\;\;
+B_1(E_i,E_i) = 1/2; \;\;\;
+B_1(H,E_i) = 0; \;\;\;
+B_1(E_i,E_j) = 0\;\;\text{for}\;\; i\neq j
+\]
+and hence has signature $(s,1)$ on $A^1$.
+We note that
+since the canonical class $K = (r+1)H-(r-1)\sum_i E_i$,
+and we have
+$B_1(K,dH-\sum_i m_iE_i) = \frac{1-r}{2}( (r+1)d-\sum_i m_i )$,
+we see that
+\[
+B_1(x,K) = \frac{1-r}{2}(x\cdot F)
+\]
+and hence $V^1$ is exactly the orthogonal space to the canonical class $K$,
+with respect to the $B_1$ pairing.
+We have that
+\[
+B_1(K,K) = \frac{1-r}{2}( (r+1)^2 - s(r-1) )
+\]
+and hence if $(r+1)^2 > s(r-1)$ we have $B_1(K,K) < 0$,
+which implies that the restriction of $B_1$ to the subspace $V^1$
+has signature $(s,0)$, i.e., $B_1$ is positive definite on $V^1$.
+
+It has the following values on the $X_i$ basis vectors for $V^1$:
+\begin{align*}
+B_1(X_i,X_i) &= 1 \;\;\text{for all}\;\; i \\
+B_1(X_0,X_i) &= \begin{cases}
+0 \;\;\text{if}\;\; i \geq 1, i \neq r+1 \\
+-1/2 \;\;\text{if}\;\; i = r+1\\
+\end{cases} \\
+B_1(X_i,X_j) &= 0 \;\;\text{if}\;\; 1 \leq i, j \leq s-1, |i-j| > 1 \\
+B_1(X_i,X_{i+1}) &= -1/2 \;\;\text{if}\;\; i \geq 1
+\end{align*}
+
+
+Let $W^1$ be the group of transformations of $V^1$
+generated by the symmetric group on the $s$ indices
+and the Cremona action $\phi$.
+Denote by $\tau_i$ the transposition $(i,i+1)$ in the symmetric group;
+since the $\tau_i$'s generate the symmetric group,
+the $\tau_i$'s and $\phi$ form a set of generators for the group $W^1$.
+Each of these generators have order two,
+and it is standard that
+$\tau_i$ and $\tau_j$ commute if $|i-j| > 1$, else $\tau_i\tau_j$ has order $3$.
+In addition, an easy computation shows that
+$\tau_i$ and $\phi$ commute unless $i = r+1$, and in that case $\tau_{r+1}\phi$ has order $3$.
+Hence $W^1$ is a homomorphic image of the Coxeter group
+whose Coxeter graph is the $T_{2, r+1, s-r+1}$ graph introduced above:
+there is a surjective group homomorphism $\alpha:W \to W^1$.
+This homomorphism sends $\sigma_0$ to $\phi$ and $\sigma_i$ to $\tau_i$ for $i \geq 1$.
+
+Let $V^1_{\bbR} = V^1 \otimes \bbR$ be the real vector space with basis $X_i$.
+Define a linear map $\beta: E \to V^1_\bbR$ by sending $x_i$ to $X_i$ for each $i = 0,1,\ldots,s-1$
+and extending linearly.
+
+What we have developed here is that the action of the Weyl group $W^1$ on $V^1_\bbR$
+is isomorphic to the action of the Coxeter group $W$ on the vector space $E$:
+
+\begin{proposition}\label{actionW1V1}
+The group homomorphism $\alpha$ is an isomorphism.
+The linear map $\beta$ is an isomorphism that preserves the bilinear forms:
+\[
+B_1(\beta(x),\beta(y)) = B(x,y) \;\;\text{for all}\;\; x, y \in E.
+\]
+The diagram
+\[
+\begin{matrix}%[ccc]
+W \times E & \longrightarrow & E \\
+(\alpha,\beta) \downarrow & & \beta \downarrow \\
+W^1 \times V^1_\bbR & \longrightarrow & V^1_\bbR \\
+\end{matrix}
+\]
+is commutative, where the rows are the actions given above.
+\end{proposition}
+
+\medskip\noindent{\bf Proof:}
+One first checks that the diagram commutes,
+and for this is suffices to show that it commutes on ordered pairs
+$(\sigma_i,x_j) \in W \times E$.
+This ordered pair is sent to $\sigma_i(x_j) = x_j - 2B(x_j,x_i)x_i$ in $E$,
+and is then sent to $X_j - 2B(x_j,x_i)X_i$ in $V^1_\bbR$.
+Going the other way, it is sent to
+$(\phi,X_j)$ (if $i=0$) or $(\tau_i,X_j)$ (if $i \geq 1)$ in $W^1\times V^1_\bbR$;
+then on to $\phi(X_j)$ or $\tau_i(X_j)$ depending on $i$.
+Hence we must show that
+\[
+X_j - 2B(x_j,x_i)X_i = 
+\begin{cases}
+\phi(X_j) \;\;\text{if}\;\; i = 0\\
+\tau_i(X_j) \;\;\text{if}\;\; i \geq 1.
+\end{cases}
+\]
+
+First assume that $i \geq 1$ and $j \geq 1$.
+
+If $|i-j|>1$, then $B(x_j,x_i) = 0$ and so the clockwise image is $X_j$.
+The counterclockwise image is $\tau_i(X_j) = \tau_i(E_j-E_{j+1}) = E_j-E_{j+1} = X_j$ also.
+
+If $|i-j|=1$, then $B(x_j,x_i) = -1/2$, so the clockwise image is
+$X_j + X_i$.  This is $E_j - E_{j+1} + E_i - E_{i+1}$
+which is  $E_{i-1}-E_{i+1}$ if $j=i-1$ or $E_i-E_{i+2}$ if $j = i+1$.
+The counterclockwise image is $\tau_i(E_j - E_{j+1})$
+which is $E_j-E_{i+1}=E_{i-1}-E_{i+1}$ if $j=i-1$ and is $E_i-E_{j+1} = E_i-E_{i+2}$ if $j=i+1$ as required.
+
+Finally if $i=j$ then $B(x_j,x_i)=1$ so the clockwise image is $X_j-2X_i = -X_i$.
+The counterclockwise image is $\tau_i(X_i) = \tau_i(E_i-E_{i+1}) = E_{i+1}-E_i = - X_i$ also.
+
+Next assume $i=0$ and $j \geq 1$.
+In this case we must show that $X_j - 2B(x_j,x_0)X_0 = \phi(X_j)$.
+If $j \neq r+1$, then $B(x_j,x_0)=0$, so we must show that $\phi$ fixes $X_j$, which is clear.
+
+For $j=r+1$, we have $B(x_j,x_0)=-1/2$, so we must show that
+$\phi(X_{r+1}) = X_{r+1} + X_0$.
+Using the notation and formulas of Proposition \ref{CremonaAY}(a),
+we have that $X_{r+1} = E_{r+1}-E_{r+2}$ so that
+$d=0$, $m_{r+1}=-1$, $m_{r+2}=1$, and all other $m_i=0$; hence $t_1 = 1$
+so that the image under the Cremona has degree $1$, $m_i = 1$ for $1 \leq i \leq r$, $m_{r+1}=0$,
+$m_{r+2}=1$, and $m_i=0$ for $i \geq r+3$.
+This is $X_0+X_{r+1}$ as required.
+
+Next assume $i \geq 1$ and $j=0$.
+In this case we must show that $X_0 - 2B(x_0,x_i)X_i = \tau_i(X_0)$.
+
+If $i \neq r+1$ then $B(x_0,x_i)=0$ so we must observe that $\tau_i$ fixes $X_0$, which is clear.
+
+If $i = r+1$ then $\tau_{r+1}(X_0) = X_0 + X_{r+1}$ as required.
+
+The final check is for $i=j=0$, and we must show that $\phi(X_0) = - X_0$.
+Again using the notation of Proposition \ref{CremonaAY}(a), 
+we have $t_1=-2$, and since the degree and multiplicities for $X_0$ are all $1$ up to index $r+1$,
+adding $-2$ changes them to $-1$, switching the sign.
+
+This finishes the computation that the diagram commutes.
+
+It is obvious that $\beta$ is an isomorphism, since it is defined by identifying the two bases.
+
+The preservation of the bilinear forms is immediate from the computation of $B$ and $B_1$ given above on the basis vectors.
+
+To finish we must show that $\alpha$ is a group isomorphism, and it suffices to show it is $1$-$1$.
+Suppose that $w \in W$ is in the kernel of $\alpha$.
+Fix any vector $e \in E$;
+since the diagram commutes, we have $\beta(w(e)) = (\alpha(w))(\beta(e)) = \beta(e)$ in $V^1_\bbR$
+since $\alpha(w) = 1$ in $W^1$.
+Since $\beta$ is an isomorphism, this implies that $w(e) = e$.
+Since $e$ was arbitrary, this implies $w=1$ in $W$.
+
+\rightline{QED}
+
+
+===== 必要上下文：source0.tex 第1269—1352行 =====
+\subsection{The dual space to $V^1_\bbR$ as a quotient of $A^{r-1}$}
+
+The intersection pairing in the Chow ring allows us to naturally identify the curve classes $A^{r-1}$
+as the dual space to the divisor classes $A^1$.
+The subspace $V^1\subset A^1$ defined as the orthogonal space to the curve class
+$F = (r+1)h - \sum_i e_i$
+therefore has, as its natural dual space,
+the quotient $V^{r-1} = A^{r-1}/\langle F \rangle$;
+we mod out the span of the vector $F$
+which acts via intersection as identically zero on $V^1$.
+
+Let us be explicit about the dual action on $V^{r-1}$;
+we will restrict ourselves to computing the action by the generators of the Weyl group $W$.
+For the $x_i$, $i \geq 1$, these act on $V^1$ by the transposition $(i,i+1)$ on the classes of the exceptional divisors $E_i$;  clearly these act then on $V^{r-1}$ by that same transposition on the $e_i$ classes ($\mod F$) in $V^{r-1}$.
+
+For the generator $x_0$, it acts on $V^{1}$ by the Cremona transformation on divisors;
+hence if we fix a class $c \in V^{r-1} (\mod F)$ we have that $(x_0(c))(D) = (c \cdot \phi^{-1}(D)) = (c \cdot \phi(D))$
+for any divisor class $D \in V^1$.
+Since the Cremona transformation preserves the intersection form on the Chow ring, we have
+$(c \cdot \phi(D)) = (\phi(c) \cdot D)$,
+so that $x_0(c)$ acts as intersection with $\phi(c)$,
+and hence is equal to $\phi(c)$ by the perfect pairing.
+
+Therefore the positive chamber $\mathcal{C} \subset V^{r-1}_\bbR$ is the set of curve classes $c (\mod F)$
+such that $c \cdot X_i > 0$ for each generator $X_i \in V^1$.
+Write $c = dh - \sum_i m_i e_i (\mod F)$.
+Then we have:
+\begin{align*}
+(c \cdot X_0) &= (c \cdot H-\sum_{i=1}^{r+1}E_i) = d-\sum_{i=1}^{r+1}m_i \\
+i \geq 1: (c \cdot X_i) &= (c \cdot E_i-E_{i+1}) = m_{i} - m_{i+1} \\
+\end{align*}
+(We note that these conditions are all invariant under the addition of multiples of the curve class $F$.)
+Hence the positive chamber is defined by
+\[
+\mathcal{C} = \{dh-\sum_i m_i e_i (\mod F) \;|\; d > \sum_{i=1}^{r+1} m_i \;\;\text{and}\;\; m_i > m_{i+1} \forall i = 1,\ldots,s-1\}.
+\]
+This is the condition that the multiplicities strictly decrease, and that the class is strictly Cremona reduced.
+The closure $\bar{\mathcal{C}}$ relaxes these conditions to $d \geq \sum_{i=1}^{r+1}m_i$ and $m_i\geq m_{i+1}$.
+Note that the $\mod F$ requirement then eliminates the condition that all multiplicities are positive:
+we do not have the condition that $m_s\geq 0$.
+
+For each subset $X \subset \{X_i\}$ we also have the chamber faces $\mathcal{C}_X$ as above,
+defined with the equalities instead of strict inequalities here.
+
+It is useful to be explicit about the algorithm presented in Proposition \ref{TitsAlgorithm}.
+We re-formulate it in our case below.
+
+\begin{proposition}\label{cremonareduction}
+Let $c \in A^{r-1}(\mod F)$, and suppose it is not in the non-negative chamber $\bar{\mathcal{C}}$.
+Then we may apply the following sequence of transformations to $c$:
+\begin{itemize}
+\item[(a)] Reorder the multiplicities in descending order.
+\item[(b)] If $c$ is now Cremona reduced, stop.
+\item[(c)] If $c$ is not Cremona reduced,
+apply the Cremona transformation $\phi$ (to the first, hence largest, $r+1$ multiplicities).
+\item[(d)] Go to step (a).
+\end{itemize}
+If this sequence stops, then $c$ is in the Tits cone
+and it stops with a Cremona-reduced class that is Weyl-equivalent to $c (\mod F)$.
+If this sequence does not stop, then $c$ is not in the Tits cone,
+and no Weyl group translate of $c$ can be Cremona reduced.
+\end{proposition}
+
+\begin{remark}\label{rem:monotonic}
+Since applying Cremona transformations when the class is not Cremona reduced strictly reduces the degree, Proposition \ref{cremonareduction} implies that if a class is in the Tits cone, then the sequence of Cremona transformations that brings the class into the non-negative chamber (i.e., makes it Cremona reduced) monotonically reduces the degree.
+\end{remark}
+
+One practical consequence of Proposition \ref{CXprop} for our purposes is the following.
+
+\begin{lemma}\label{twoCremonareducedclasses}
+Suppose that $c$ and $c'$ are two Cremona reduced classes
+with multiplicities in non-increasing order.
+Assume that they are Cremona-equivalent:
+there is an element $w$ in the Weyl group such that $w(c)=c'$.
+Then $c \equiv c' \mod F$.
+\end{lemma}
+
+\begin{proof}
+Suppose that $c \mod F \in \calC_X$ for a subset $X$ of generators of the Weyl group $W$.
+Proposition \ref{CXprop} implies that $c' \mod F \in \calC_X$ also,
+and $w \in W_X$.
+Since $W_X$ fixed (pointwise) $\calC_X$,
+we must have $c' \mod F = c \mod F$ as claimed.
+\end{proof}
+
+
+===== 作者活动证明：source0.tex 第1833—1854行 =====
+\begin{proof}
+Take $c$ and permute the multiplicities to be in non-increasing order.
+Then both $h-e_1 \mod F$ and $c\mod F$
+are in the closure $\bar\calC$ of the positive chamber, and so we may apply
+Lemma \ref{twoCremonareducedclasses}
+and conclude (since they are Cremona equivalent)
+that they are equal $\mod F$.
+Hence we may write $c = aF + (h-e_1)$ for some integers $a \geq 0$.
+
+Since $\langle c,F\rangle = \langle h-e_1,F\rangle = 2$,
+this forces $a\langle F,F\rangle = 0$.
+If $\langle F, F \rangle \neq 0$, we conclude that $a=0$.
+
+Suppose that $\langle F, F \rangle = 0$.
+Then $2-r = \langle c,c\rangle = \langle h-e_1,h-e_1\rangle + 2a\langle h-e_1,F\rangle
+= 2-r +4a$
+and we conclude $a=0$ in this case as well.
+
+Hence $c = h-e_1$ after permuting the multiplicities,
+and so $c = h-e_j$ for some $j$ as claimed.
+
+The final statement follows from applying the Cremona reduction algorithm.

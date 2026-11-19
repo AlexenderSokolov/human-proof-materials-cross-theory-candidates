@@ -1,0 +1,89 @@
+原编号：101266
+作者作品：Canonical Truth
+固定版本：arXiv:1712.02566v7 (CC BY 4.0)
+以下为作者TeX原文按准确行区间摘录，未补写数学内容；完整原件见 assets/works/w00016/source0.tex。
+图示请打开条目“必要上下文”中的作者原图；本文件没有声称新编译PDF。
+
+
+===== 题目：source0.tex 第692—698行 =====
+\begin{thm}{\label{sharp closure}}
+(i) Let $\phi^{\sharp}$ be the statement `For every $x\subseteq\omega$, $x^{\sharp}$ exists'.
+If $\phi^{\sharp}$ holds in $V$, then $\phi^{\sharp}$ is canonically possible.
+
+(ii) If $\phi^{\dagger}$ is the statement that $x^{\dagger}$ exists for  every $x\subseteq\omega$,
+and $\phi^{\dagger}$ holds in $V$, then $\phi^{\dagger}$ is canonically possible.
+\end{thm}
+
+
+===== 必要上下文：source0.tex 第340—386行 =====
+\begin{defini}
+Let $\phi$ be an $\in$-formula, $i,j\in\omega$.
+Let $\text{IM}_{i}^{\text{ZFC}}(\phi
+,y)$ (`inner model') abbreviate the statement `$M_{\psi_{i},y}:=\{x:\psi_{i}(x,y)\}$ is transitive, almost universal, closed under G\"odel operations,
+contains all ordinals and satisfies AC and $\phi$'. More generally, when $T$ is an $\in$-theory, we let $\text{IM}_{i}^{\text{T}}(\phi
+,y)$ denote the claim that $M_{\psi_{i},y}$ is a transitive class model of $T$.
+
+The uniqueness statement $U_{ij}^{\phi%,\alpha
+,T}$ is the following $\in$-formula: $$\forall{y,y^{\prime}}[(\text{IM}_{i}^{T}(\phi%,\alpha
+,y) \wedge \text{IM}_{j}^{T}(\phi%,\alpha
+,y^{\prime}))\rightarrow \forall{x}(\psi_{i}(x,y)\leftrightarrow\psi_{j}(x,y^{\prime}))].$$
+
+Now, $\phi$ %(\alpha)$
+ is a uniqueness statement over a theory $T$ if and only if all elements of $U_{\phi}^{T}:=\{U_{ij}^{\phi%,\alpha
+,T}:i,j\in\omega\}$ are provable in 
+T\footnote{Alternatively, we could also demand that all elements of $U_{\phi}^{T}$ hold in $V$. We will take up this idea below as $C^{1}$-canonicity.}. When $T$ is ZFC, we will usually drop `over $T$'.
+
+
+Moreover, for $T$ an extension of KP, $\phi$ %(\alpha)$
+is a $T$-canonical statement if and only if there is some $i\in\omega$ such that $\exists{y}\text{IM}_{i}(\phi,y)$ and $\phi$%(\alpha)$
+ is a uniqueness statement. When $T$ is ZFC, we simply call $\phi$ %(\alpha)$
+canonical.
+
+\begin{remark}
+Note that we do \textit{not} require $\exists{y}\text{IM}_{i}(\phi,y)$ to be provable in $T$; we only want it to be true (in $V$). These existence statements will usually be derived from stronger meta-theories, such as ZFC with large cardinals.
+\end{remark}
+
+
+\end{defini}
+
+\begin{remark} Typically, $T$ will just be ZFC. Below, we will also consider cases where $T$ is much weaker; however, some base theory is necessary to exclude unwanted cases such as `$\in$ is a total ordering' (which has $\text{On}$ as its only transitive proper class model) from our consideration. 
+\end{remark}
+
+The paradigmatical example for a uniqueness statement is $V=L$, which is a $\Pi_2$-statement. This is indeed the minimal complexity for a uniqueness statement:
+
+\begin{prop}
+No $\Sigma_2$-sentence is a uniqueness statement.
+\end{prop}
+\begin{proof}
+Suppose otherwise, let $\psi\equiv\exists{x}\forall{y}\phi(x,y)$ be a uniqueness statement, where $\phi$ is $\Delta_0$, and let $M$ be the unique transitive class model of ZFC+$\psi$. Pick $a\in M$ such that $M\models\forall{y}\phi(a,y)$, and let $\kappa\in\text{Card}$ be large enough so that $a\in V_{\kappa}^{M}$. As a cardinal, $\kappa$ is $\Sigma_1$-reflecting, so $V_{\kappa}^{M}\models\forall{y}\phi(a,y)$. 
+Let $\mathbb{P}_{\kappa^{+}}$ be the forcing for adding a new subset of $\kappa^+$ described in (\cite{Kunen}, section $6$) (i.e., the set of partial functions $f:\kappa^{+}\rightarrow\{0,1\}$ of cardinality $<\kappa^{+}$), and let $M[G]$ be a generic extension for $\mathbb{P}_{\kappa}$. Since $\mathbb{P}_{\kappa^{+}}$ is $\kappa$-closed, we have $V^{M[G]}_{\kappa}=V^{M}_{\kappa}$; thus $V^{M[G]}_{\kappa}\models\forall{y}\phi(a,y)$, and since $\kappa$ is also a cardinal in $M[G]$, we have that $M[G]\models\forall{y}\phi(y,a)$ by $\Sigma_1$-reflection. Thus $M[G]\models$ZFC+$\psi$, contradicting the assumption that $\psi$ is a uniqueness statement.
+\end{proof}
+
+\begin{defini}
+A statement $\phi$ is canonically necessary (c.n.) if and only if $\phi$ holds in all canonical models of ZFC.
+
+A statement $\phi$ is canonically possible (c.p.) if and only if there is a canonical model $M\models\phi$ of ZFC, i.e., if and only if its negation is not canonically necessary. 
+
+
+===== 作者活动证明：source0.tex 第699—719行 =====
+\begin{proof}
+(i) Let us add the unary function symbol $\sharp$ to the language of set theory, with the obvious intended meaning.
+For a set $X$, let $\text{Def}^{\sharp}(X)$ be the set of
+subsets of $X$ that are definable over $X$ using the language of set theory extended by $\sharp$. 
+Now define a class $\hat{L}\subseteq V$ in analogy with $L$ as follows: 
+
+\begin{itemize}
+ \item $\hat{L}_{0}=\emptyset$
+ \item $\hat{L}_{\alpha+1}=\text{Def}^{\sharp}(\hat{L}_{\alpha})$
+ \item $\hat{L}_{\lambda}=\bigcup_{\iota<\lambda}\hat{L}_{\iota}$ for $\iota<\lambda$
+ \item Finally, $\hat{L}:=\bigcup_{\iota\in\text{On}}\hat{L}_{\iota}$.
+\end{itemize}
+
+By $\Pi^{1}_{2}$-absoluteness of sharps, the sharp function and thus $\hat{L}$ is a definable subclass of $V$ via the recursion
+just stated.
+It is clear from the definition that $\hat{L}\models\phi^{\sharp}$. That $\hat{L}\models\text{ZFC}$ can be checked similarly
+to the fact that ZFC holds in $L$. 
+Thus $\hat{L}$ is a canonical model in which $\phi^{\sharp}$ holds.
+
+(ii) is now proved similarly, as the $\dagger$-operation is still $\Pi^{1}_{2}$.
+\end{proof}

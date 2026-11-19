@@ -1,0 +1,534 @@
+原编号：111367
+作者作品：Hitting probabilities of constrained random walks representing tandem networks
+固定版本：arXiv:2105.05474v1 (CC BY 4.0)
+以下为作者TeX原文按准确行区间摘录，未补写数学内容；完整原件见 assets/works/w00019/source0.tex。
+图示请打开条目“必要上下文”中的作者原图；本文件没有声称新编译PDF。
+
+
+===== 题目：source0.tex 第1063—1065行 =====
+\begin{proposition}
+The process $\{S_k, k=0,1,2,3,...\}$ is a supermartingale.
+\end{proposition}
+
+
+===== 必要上下文：source0.tex 第96—152行 =====
+\section{Introduction and Definitions}
+For an integer $d \ge 3$
+let $X$ be a random walk with independent and identically
+distributed increments $\{I_1,I_2,I_3,...\}$, $I_k \in {\mathcal V} \subset {\mathbb Z}^d$,  constrained
+to remain in ${\mathbb Z}_+^d$, i.e.,
+\[
+X_{k+1} = X_k + \pi(X_k,I_{k+1}),
+\]
+where
+\[
+\pi(x,v) \doteq \begin{cases} v, &\text{ if } x +v \in {\mathbb Z}_+^d \\
+				  0      , &\text{otherwise.}
+\end{cases}
+\]
+The constraining boundaries of $X$ are
+\[
+\partial_j = \{ x \in {\mathbb Z}^d: x(j) = 0 \}, j \in \{1,2,3,...d\}.
+\]
+For 
+$ A_n \doteq \{ x \in {\mathbb Z}_+^d: \sum_{i=1}^d x(i) \le n \}$
+and
+$\partial A_n \doteq \{ x \in {\mathbb Z}_+^d: \sum_{i=1}^d x(i) = n \}$
+define the stopping time
+\[
+\tau_n \doteq \inf \{k \ge 0: X_k \in \partial A_n\}.
+\]
+The goal of this work is to develop approximations of the hitting
+probability
+\[
+{\mathbb P}_x( \tau_n < \tau_0) 
+\]
+for $x \in {\mathbb Z}_+^d$,  $x \in A_n$
+when $X$ is a constrained random walk that represents $d$ queues
+in tandem (a tandem network), i.e., 
+when the set of possible increments of $X$
+are
+\begin{align*}
+{\mathcal V} &= \{e_1, -e_1 + e_2,..., -e_j+e_{j+1},...,-e_{d-1}+e_d, -e_d \},\\
+e_i(j) &= \begin{cases} 1, &\text{ if } i = j,\\
+		       0, &\text{otherwise,}
+\end{cases}
+\end{align*}
+$i,j=1,2,3,...,d$; $\{e_i,i=1,2,3,...,d\}$
+are the unit vectors in ${\mathbb Z}^d$.
+The distribution of the increments is given as follows:
+\begin{align*}
+{\mathbb P}(I_k = e_1) &= \lambda, \\
+{\mathbb P}(I_k = e_{i+1}-e_{i}) &= \mu_i,~~~ i=1,2,3,...,d-1,\\
+{\mathbb P}(I_k = -e_d) &= \mu_d.
+\end{align*}
+We assume $X$ to be stable:
+\begin{equation}\label{as:stability}
+\lambda < \max_{i=1}^d \mu_i
+\end{equation}
+which implies
+\[
+\rho_i \doteq \lambda/\mu_i, ~~\rho \doteq \max_i \rho_i < 1.
+
+
+===== 必要上下文：source0.tex 第182—212行 =====
+Let ${\mathcal I}_1 \in {\mathbb R}^{d\times d}$ be the diagonal matrix
+with diagonal entries ${\mathcal I}_1(1,1) =-1$, ${\mathcal I}_1(j,j) =1$
+$j >1$ and $T_n = n + {\mathcal I}_1.$ 
+Define
+\begin{equation}\label{e:defY}
+J_k \doteq {\mathcal I}_1 I_k,~~~ Y_{k+1} \doteq Y_k + \pi_1(Y_k,J_{k+1}),
+\end{equation}
+where
+\[
+\pi_1(y,v) \doteq \begin{cases} v, &\text{ if } x +v \in {\mathbb Z} \times {\mathbb Z}_+^{d-1} \\
+				  0      , &\text{otherwise.}
+\end{cases}
+\]
+Define, $\Omega_Y \doteq {\mathbb Z} \times {\mathbb Z}_+^{d-1}$,
+\begin{equation*}%\label{e:defB}
+B \doteq \left\{ y \in \Omega_Y, y(1) \ge \sum_{j=2}^d y(j) \right\};
+\end{equation*}
+the boundary of $B$ is 
+\begin{equation*}%\label{e:defBb}
+\partial B = \left\{ y \in \Omega_Y, y(1) = \sum_{j=2 }^d y(j) \right\}.
+\end{equation*}
+The limit stopping time
+\begin{equation*}%\label{e:deftau}
+\tau \doteq \inf \{k: Y_k \in \partial B\}
+\end{equation*}
+is the first time $Y$ hits $\partial B$.
+Our goal is to approximate ${\mathbb P}_x(\tau_n < \tau_0)$
+by the limit probability ${\mathbb P}_{T_n(x)}(\tau < \infty) = {\mathbb P}(
+\tau < \infty | Y_0 = T_n(x)).$ The process $Y^n =T_n(X)$ is
+the process $X$ as observed from the boundary
+point $(n,0,...,0) \in \partial A_n.$
+
+
+===== 必要上下文：source0.tex 第403—440行 =====
+\section{Error Analysis}
+The goal of this section is to prove Theorem \ref{t:main1}.
+This theorem generalizes \cite[Proposition 8]{sezer2018approximation}, 
+which treats $d=2$, to an arbitrary positive dimension $d > 0$.
+The proof is based on the stopping times
+\begin{align}\label{d:sigma01}
+\sigma_{0,1} &\doteq \inf \{k \ge 0: X_k \in \partial_1\}\\
+\sigma_{j-1,j} &\doteq \inf \{k > \sigma_{j-2,j-1}: X_k \in \partial_j\},  \notag
+j=2,3,...,d.
+\end{align}
+Time $\tau_0$ is the first time the set of all components of $X$ equal $0$; this definition and the dynamics of $X$ imply
+$\tau_0 \ge \sigma_{d-1,d}.$
+We will use these stopping times to show that the events 
+$\{tau_n < \tau_0\}$ and $\{\tau < \infty) \}$ mostly overlap. 
+In what follows it will be convenient to represent $Y$ in $x$-coordinates:
+$\bar{X}_k = T_n(Y_k)$,
+$\bar{X}$ has the same dynamics as $X$ except on $\partial_1$ where it is not
+constrained, i.e.,
+\[
+\bar{X}_{k+1} = \bar{X}_k + \pi_1(\bar{X}_k, I_{k+1});
+\]
+$\bar{X}$ and $X$ processes start from the same point:
+\begin{equation}\label{e:sameinitcond}
+X_0 = \bar{X}_0 = x_n;
+\end{equation}
+the $Y$ process then has initial point $Y_0 = T_n(x_n).$
+Define
+\[
+\bar{\tau}_n \doteq \inf\left \{k: \sum_{j=1}^d \bar{X}_k(j) = n \right\};
+\]
+we note $\bar{\tau}_n = \tau$, therefore:
+\[
+{\mathbb P}_{x_n}(\tau_n < \infty) = {\mathbb P}_{T_n(x_n)}(\tau < \infty).
+\]
+
+Define ${\bm S} : {\mathbb Z}^d \rightarrow {\mathbb Z}$ as
+\[
+{\bm S}(x) = \sum_{j=1}^d x(j).
+
+
+===== 必要上下文：source0.tex 第790—917行 =====
+Define
+\[
+h_{k,r} \doteq r^{y(1) - \sum_{j=2}^k y(j)}, k  \in \{1,2,3,...,d\}, r > 0.
+\]
+\begin{proposition}\label{p:hkr}
+The function $h_{k,r}$ satisfies
+\begin{equation}\label{e:howsuperharmonic}
+{\mathbb E}_y[h_{k,r}(Y_1)] -h_{k,r}(y) =
+\begin{cases}
+h_{k,r}(y) \left(
+\lambda \left(\frac{1}{r}-1\right) + \mu_1 (r-1)\right), &\text{if } k=1,\\
+h_{k,r}(y) \left(
+\lambda \left(\frac{1}{r}-1\right) + \mu_k (r-1) {\bm 1}_{\partial_k^c}(y)\right),
+&\text{if } k \in \{2,3,...,d\}.
+\end{cases}
+\end{equation}
+In particular, for $r \in (\rho,1)$,  $h_{1,r}$ is $Y$-superharmonic and for 
+$k \in \{2,3,4,...,d\}$ $h_{k,r}$ is $Y$-superharmonic on $D_Y - \partial_k.$
+\end{proposition}
+In the proof we will use the following basic fact:
+\begin{lemma}
+For $r \in (\rho,1)$ and any $k \in \{1,2,3,4,...,d\}$
+\begin{equation}\label{e:strictlynegative}
+\lambda (\frac{1}{r}-1) + \mu_k (r-1) < 0.
+\end{equation}
+\end{lemma}
+\begin{proof}
+The function
+$r\mapsto \lambda (\frac{1}{r}-1) + \mu_k (r-1)$
+is convex for $r \in (0,\infty)$ and equals $0$ for $r=\lambda/\mu_k < \rho$
+and $r=1$. It follows that it is strictly below $0$ on the interval
+$(\rho,1).$ 
+\end{proof}
+\begin{proof}[Proof of Proposition \ref{p:hkr}]
+For \eqref{e:howsuperharmonic}
+The distribution of $Y_1$
+and the definition of $h_{k,r}$ imply
+\begin{equation}\label{e:EY1}
+{\mathbb E}_y[h_{k,r}(Y_1)] =
+h_{k,r}(y) \left(
+\lambda \frac{1}{r} + \mu_k r{\bm 1}_{\partial_k^c}(y)
++ \mu_k {\bm 1}_{\partial_k}(y) + \sum_{j \neq k} \mu_j \right);
+\end{equation}
+subtracting $ h_{k,r}(y) = h_{k,r}(y) \left( \lambda_1 + \sum_{j=1}^d \mu_j\right)$ from the last expression gives \eqref{e:howsuperharmonic}.
+For $k=1$, $Y_1$ is not constrained on $\partial_1$, therefore
+\eqref{e:EY1} in that case reduces to
+\[
+{\mathbb E}_y[h_{k,r}(Y_1)] =
+h_{k,r}(y) \left(
+\lambda \frac{1}{\rho} + \mu_1 \rho + \sum_{j \neq 1} \mu_j \right).
+\]
+The rest of the argument remains the same for $k=1.$
+The inequality \eqref{e:strictlynegative} and \eqref{e:howsuperharmonic} imply
+\begin{align*}
+{\mathbb E}_y[h_{k,r}(Y_1)] -h_{k,r}(y) &< 0 , y \in D_Y, \text{ if } k=1,\\
+{\mathbb E}_y[h_{k,r}(Y_1)] -h_{k,r}(y) &< 0 ,  y \in D_Y -\partial_k\text{ if } k\in \{2,3,...,d\}.
+\end{align*}
+This proves the $Y$-superharmonicity of $h_{k,r}$ (on $D_Y$ for $k=1$
+and on $D_Y-\partial_k$ for $k> 1$).
+\end{proof}
+Linear combinations of $h_{k,r}$ give
+further $Y$-superharmonic functions:
+define the constants
+\begin{equation}\label{d:gamma}
+\gamma_1 \doteq 1, 
+\gamma_k \doteq \frac{1}{d}\frac{\min_{j < k}\gamma_j(\lambda(1 -1/r) + \mu_{j}(1-r))}{\lambda(1/r - 1) }, k=2,3,...,d.
+\end{equation}
+By \eqref{e:strictlynegative}, $\gamma_k > 0$ for  $r \in (\rho,1)$.
+Now define
+\[
+h_{2,k,r} \doteq \sum_{j=1}^k \gamma_j h_{j,r}.
+\]
+\begin{proposition}\label{p:Ysuperharmonicfuns}
+For any $k=1,2,3,...d$ and $r \in (\rho,1)$
+the function $h_{2,k,r}$ is $Y$-superharmonic
+\end{proposition}
+\begin{proof}
+We assume throughout that $r \in (\rho,1).$
+The proof is by induction. By definition $h_{2,k,r} = h_{k,r}$ for $k=1$
+and we know that $h_{1,r}$ is $Y$-superharmonic by the previous proposition.
+Now assume that $h_{2,k,r}$ is $Y$-superharmonic for some $k< d$; we will prove
+that $h_{2,k+1,r}$ must also be $Y$-superharmonic. The function
+$h_{k+1,r}$ is $Y$-superharmonic on $D_Y - \partial_{k+1}$ by the
+previous proposition; the function $h_{2,k,r}$ is $Y$-superharmonic
+by the induction hypothesis. These
+and  $\gamma_{k+1} > 0$ imply that $h_{2,k+1,r}$ is $Y$-superharmonic
+on $D_Y - \partial_{k+1}.$ Therefore, it suffices to prove that
+$h_{2,k+1,r}$ is $Y$-superharmonic on $\partial_{k+1}.$
+Choose any $y\in \partial_{k+1}$ and let
+\[
+k_0 = \max\{j \le k+1: y(j) > 0 \} \vee 1,
+\]
+where, by convention the $\max$ of the empty set is $-\infty.$
+By the induction hypothesis $h_{2,k_0-1,r}$ is $Y$-superharmonic on
+$\partial_k$.
+Therefore it suffices to prove that
+\[
+h_{2,k_0,k+1,r} \doteq \sum_{j=k_0}^{k+1} \gamma_j h_{j,r}
+\]
+satisfies the $Y$-superharmonicity condition for the chosen $y$.
+The definition of $k_0$ implies $y(j) = 0$ for $k_0 < j \le k+1.$
+This and the definition of $h_{k,r}$ imply
+$h_{j,r}(y) = h_{k_0,r}(y)$ for all $k_0 \le j \le k+1$.
+Then
+\begin{align}
+{\mathbb E}_y&[h_{2,k_0,k+1,r}(Y_1)] -h_{2,k_0,k+1,r}(y) \notag\\
+&=
+h_{k_0,r}(y) \left( \lambda \left(\frac{1}{r}-1\right) \sum_{j=k_0+1}^{k+1} \gamma_j
++ \gamma_{k_0} \left( \lambda\left(\frac{1}{r}-1\right) + \mu_{k_0}(r-1)\right)
+\right).\label{e:upperboundk0}
+\end{align}
+The definition \eqref{d:gamma} and $j > k_0$ implies
+\[
+\gamma_j \le \frac{1}{d} 
+\frac{1}{\lambda\left(\frac{1}{r}-1\right) }
+\gamma_{k_0} \left( \lambda\left(1-\frac{1}{r}\right) +\mu_{k_0}(1-r)\right).
+\]
+Substituting this in \eqref{e:upperboundk0} gives
+\begin{align*}
+{\mathbb E}_y&[h_{2,k_0,k+1,r}(Y_1)] -h_{2,k_0,k+1,r}(y) \\
+&\le
+h_{k_0,r}(y) 
+\gamma_{k_0}\frac{d-(k+1)+k_0}{d} 
+\left( \lambda\left(\frac{1}{r}-1\right) +  \mu_{k_0}(r-1)\right) 
+ < 0,
+\end{align*}
+which completes the induction step.
+\end{proof}
+
+
+===== 必要上下文：source0.tex 第1009—1062行 =====
+For $k \in \{2,3,...,d\}$ define
+\[
+\gamma_{k-1,k} \doteq \frac{\gamma_{k-1}}{\gamma_{k-1} + \gamma_{k}}.
+\]
+\begin{lemma}\label{l:inequalityoverjumps}
+For $k \in \{2,3,...,d\}$  and $r \in (\rho,1)$
+\begin{equation}\label{e:lowerboundonratio}
+\min_{y \in \partial_{k}} \frac{h_{2,k-1,r}(y)}{h_{2,k,r}(y)} \ge 
+\gamma_{k-1,j}
+\end{equation}
+for $y \in \partial_{k}.$
+\end{lemma}
+\begin{proof}
+By their definition
+\[
+h_{k-1,r}(y) = h_{k,r}(y)  = r^{y(1)- \sum_{j=2}^{k-1} y(j)}.
+\]
+for $y \in \partial_{k}.$
+This and the definition of $h_{2,k-1,r}, h_{2,k,r}$ imply
+\[
+\frac{h_{2,k-1,r}(y)}{h_{2,k,r}(y)} 
+=
+\frac{
+r^{y(1)- \sum_{j=1}^{k-1} y(j)} \left( \gamma_{k-1} + \sum_{j=1}^{k -2}
+ \gamma_j r^{\sum_{l=2}^j y(l)} \right)}
+{r^{y(1)- \sum_{j=1}^{k-1} y(j)} \left( \gamma_{k} +\gamma_{k-1}+ 
+\sum_{j=1}^{k -2}
+ \gamma_j r^{\sum_{l=2}^j y(l)} \right)}
+\]
+for $y \in \partial_{k}$;
+this and $\gamma_j, r > 0$ imply
+\eqref{e:lowerboundonratio}.
+\end{proof}
+Define
+\[
+\Gamma_j \doteq \prod_{l=2}^{j} \gamma_{l-1,l},
+\]
+and
+\[
+S_k' \doteq 
+\Gamma_j h_{2,j,r}(T_n(X_k)) \text{ for }\sigma_{j-1,j} < k \le \sigma_{j,j+1}, 
+j=0,1,2,3,...,d,
+\]
+where, by convention, $\Gamma_{0} = \Gamma_1 = 1$, $h_{2,0,r} = r^n$,
+ $\sigma_{-1,0} = -1$ and $\sigma_{d,d+1} = \infty$; in particular,
+$S_k' = r^n$ for $k \le \sigma_{0,1}$ and $S_k' = \Gamma_d h_{2,d,r}(T_n(X_k))$
+for $k > \sigma_{d-1,d}.$
+The supermartingle that we will use to upperbound the probability
+${\mathbb P}_{x}(\sigma_{d-1,d} < \tau_n < \tau_0)$
+is
+\begin{equation}\label{e:defsupS}
+S_k \doteq S_k' - 
+k\left( \lambda \left(\frac{1}{r} -1\right) \sum_{j=1}^d \gamma_j \right) r^n.
+\end{equation}
+
+
+===== 作者活动证明：source0.tex 第1066—1262行 =====
+\begin{proof}
+The proof is a case by case analysis. We begin by $X_k \notin \partial_1$,
+i.e., $X_k(1) > 0.$ There are two subcases two consider:
+$k = \sigma_{j-1,j}$ for some $j \ge 1$ and 
+$k \neq \sigma_{j-1,j}$ for all $j \ge 1$.
+For 
+$k \neq \sigma_{j-1,j}$, 
+$S_k' = \Gamma_j h_{2,j,r}(T_n(X_k))$ 
+$S_{k+1}' = \Gamma_j h_{2,j,r}(T_n(X_{k+1}))$ 
+for some $j \in \{0,1,2,3,...,d\}$;
+the functions $h_{2,j,r}$ are $Y$-superharmonic by Proposition
+\ref{p:Ysuperharmonicfuns} and therefore 
+$h_{2,j,r}(T_n(\cdot))$ are $X$-superharmonic on $\partial_1^c.$
+It follows from these that
+\begin{equation}\label{e:interiorinequalityskprime}
+{\mathbb E}_x[S_{k+1}' | {\mathscr F}_k] \le S_k'
+\end{equation}
+over the event 
+$\{ X_k \notin \partial_1\} \cap \{k \neq \sigma_{j-1,j}, j=1,2,3,...,d\}\}.$
+If $k = \sigma_{j-1,j}$ for some $j \in \{2,3,4,...,d\}$ we have
+$S_k' = \Gamma_{j-1}h_{2,j-1,r}(T_n(X_k))$
+and $S_{k+1}' = \Gamma_j h_{2,j,r}(T_n(X_{k+1})$; $h_{2,j,r}$  is $Y$-superharmonic
+and therefore $h_{2,j,r}(T_n(\cdot))$is $X$-superharmonic on $\partial_1^c$.
+These imply
+\begin{equation}\label{e:step1h2jr}
+\Gamma_j h_{2,j,r}(T_n(X_{k}) \ge
+{\mathbb E}[\Gamma_j h_{2,j,r}(T_n(X_{k+1}) |{\mathscr F}_k] =
+{\mathbb E}[S_{k+1}' |{\mathscr F}_k] 
+\end{equation}
+over the event $\{k = \sigma_{j-1,j}\} \cap \{ X_k \notin \partial_1\}.$
+That $X_{k} \in \partial_j$ for $k=\sigma_{j-1,j}$
+and Lemma \ref{l:inequalityoverjumps}
+imply
+\[
+S_{k}'=\Gamma_{j-1} h_{2,j-1,r}(T_n(X_{k}))\ 
+\ge \Gamma_j h_{2,j,r}(T_n(X_k)).
+\]
+This and \eqref{e:step1h2jr} imply
+\[
+S_k' \ge {\mathbb E}[S_{k+1}' |{\mathscr F}_k] 
+\]
+over the event $\{k = \sigma_{j-1,j}\} \cap \{ X_k \notin \partial_1.\}.$
+This and \eqref{e:interiorinequalityskprime} imply
+$S_k' \ge {\mathbb E}[S_{k+1}' |{\mathscr F}_k]$;
+subtracting 
+$k\left( \frac{\lambda}{r} + \sum_{j=1}^d \mu_j \right) r^n$
+from the left and 
+$(k+1)\left( \frac{\lambda}{r} + \sum_{j=1}^d \mu_j \right) r^n$
+from the right gives
+\[
+S_k \ge {\mathbb E}[S_{k+1} |{\mathscr F}_k] 
+\]
+over the event $\{X_k \notin \partial_1\}$. 
+
+For $x \in {\mathbb Z}_+^d$, define
+\[
+L^*(x) \doteq \{ l \in \{2,3,4,...d\}, x(l) \neq 0 \};
+\]
+and 
+\[
+d^*(x) \doteq |L^*(x)|;
+\]
+$l_1(x) < l_2(x) < \cdots < l_{d^*}(x)$ are the members of $L^*$; two
+conventions 1)
+$l_{d^*+1}(x) = d+1$ and 2) $l_1 = d+1$
+ if $d^* = 0$, i.e., if $L^*(x) = \emptyset.$
+For $X_k \in \partial_1$, 
+there are two cases to consider: 1) $k = \sigma_{j-1,j}$
+for some $j$ and 2)  $k \neq \sigma_{j-1,j}$ for all $j$.
+For the latter case 
+\begin{equation}\label{e:skpp1}
+S_k' = \Gamma_j h_{2,j,r}(T_n(X_k)),
+S_{k+1}' = \Gamma_j h_{2,j,r}(T_n(X_{k+1})),
+\end{equation}
+for some $j$.
+For ease of notation, let us abbreviate $l_m(X_{k})$ to $l_m$, 
+and $d^*(X_{k})$ to $d^*$.
+Decompose
+$h_{2,j,r}(T_n(x))$ as
+\begin{equation}\label{e:decomposeh2jr}
+h_{2,j,r}(T_n(x)) = 
+\sum_{l=1}^{(l_1-1) \wedge j}\gamma_l h_{l,r}(T_n(x)) 
++ \sum_{m=1}^{d^*} \sum_{l=l_m}^{(l_{m+1} -1)\wedge j} \gamma_l h_{l,r}(T_n(x)),
+\end{equation}
+where we use the conventions set above.
+Let us begin by considering any of the inner sums in the
+second sum in the last display. By the definition
+of $l_m$ and $l_{m+1}$, $X_k(l_m) > 0$ and
+$X_k(l) = 0$ for $l_m < l < l_{m+1}$. This implies
+$h_{l,r}(T_n(X_k))  = h_{l_m,r}(T_n(X_k))$ 
+for $l_m < l < l_{m+1}$. These, $l_m > 1$, Proposition \ref{p:hkr},
+the definition \eqref{d:gamma} of $\gamma_l$ and the dynamics of $X$ imply
+\begin{align*}
+&{\mathbb E}
+\left
+[\sum_{l=l_m}^{(l_{m+1} -1)\wedge j} \gamma_l h_{l,r}(T_n(X_{k+1}))
+| {\mathscr F}_k \right] -
+\sum_{l=l_m}^{(l_{m+1} -1)\wedge j} \gamma_l h_{l,r}(T_n(X_k))\\
+&~~~~=
+h_{l,r}(T_n(X_k))
+\left(
+\lambda \left( \frac{1}{r} - 1 \right)
+\sum_{l=l_m+1}^{(l_{m+1} -1)\wedge j} \gamma_l 
++ \gamma_{l_m} \left( \lambda\left(\frac{1}{r} -1\right) 
++ \mu_{l_m}(r-1) \right)\right)
+\le 0.
+\end{align*}
+Summing the last inequality over $m$ gives
+\begin{equation}\label{e:therestSkp}
+{\mathbb E}
+\left
+[\sum_{m=1}^{d^*}\sum_{l=l_m}^{(l_{m+1} -1)\wedge j} \gamma_l h_{l,r}(T_n(X_{k+1}))
+| {\mathscr F}_k \right] -
+\sum_{m=1}^{d^*}\sum_{l=l_m}^{(l_{m+1} -1)\wedge j} \gamma_l h_{l,r}(T_n(X_k))\\
+\le 0.
+\end{equation}
+Similarly, the definition of $l_1$ implies, $X_k(l) = 0$ for $l< l_1$,
+this and $h_{l,r}(T_n(x)) = r^{n-\sum_{m=1}^l x(m)}$
+imply $h_{l,r}(T_n(X_k)) = r^n$ for $l < l_1$
+over the event $\{X_k \in \partial_1\}$.
+These 
+and the dynamics of $X$ imply
+\begin{align*}
+&{\mathbb E}
+\left
+[\sum_{l=1}^{(l_1 -1)\wedge j} \gamma_l h_{l,r}(T_n(X_{k+1}))
+| {\mathscr F}_k \right] -
+\sum_{l=1}^{(l_{1} -1)\wedge j} \gamma_l h_{l,r}(T_n(X_k))\\
+&~~~~=
+h_{1,r}(T_n(X_k))
+\left(
+\lambda \left( \frac{1}{r} - 1 \right)
+\sum_{l=1}^{(l_{1} -1)\wedge j} \gamma_l 
+\right) 
+= 
+r^n 
+\left(
+\lambda \left( \frac{1}{r} - 1 \right)
+\sum_{l=1}^{(l_{1} -1)\wedge j} \gamma_l 
+\right) 
+\ge 0
+\end{align*}
+over the event $\{ X_k \in \partial_1\}.$ Putting together the last
+display, \eqref{e:therestSkp}, \eqref{e:decomposeh2jr}
+and $0 < \Gamma_j \le 1$
+give
+\begin{equation}\label{e:inforp1}
+{\mathbb E}[ \Gamma_{j} h_{2,j,r}(T_n(X_{k+1}))| {\mathscr F}_k]
+\le 
+\Gamma_{j} h_{2,j,r}(T_n(X_{k})) + 
+\left(
+\lambda \left( \frac{1}{r} - 1 \right)
+\sum_{l=1}^{d} \gamma_l 
+\right)
+\end{equation}
+over the event 
+$\cap_{j=1}^d \{X_k \in \partial_1, k \neq \sigma_{j-1,j}\}$;
+this and \eqref{e:skpp1} imply
+\[
+{\mathbb E}[S_{k+1}' | {\mathscr F}_k] 
+\le 
+ S_{k}'  +
+r^n
+\left(
+\lambda \left( \frac{1}{r} - 1 \right)
+\sum_{l=1}^{d} \gamma_l 
+\right).
+\]
+Moving the last expression to the left of the inequality sign
+and
+subtracting
+$k 
+\left(
+\lambda \left( \frac{1}{r} - 1 \right)
+\sum_{l=1}^{d} \gamma_l 
+\right)
+$ from both sides give
+${\mathbb E}[S_{k+1} | {\mathscr F}_k] \le S_{k}$ over the same event.
+It remains to show 
+\begin{equation}\label{e:lastcase}
+{\mathbb E}[S_{k+1} | {\mathscr F}_k] \le S_{k}
+\end{equation}
+over the event  
+$\cup_{j=1}^d \{X_k \in \partial_1,  k = \sigma_{j-1,j} \}.$ 
+In this case
+\[
+ S_{k}'=\Gamma_{j-1} h_{2,j-1,r}(T_n(X_{k})),
+S_{k+1}' = \Gamma_j h_{2,j,r}(T_n(X_{k+1})),
+\]
+for some $j \in \{1,2,3,...,d\}$ and $X_k \in \partial_j.$
+By Lemma \ref{l:inequalityoverjumps} 
+\[
+S_{k}'=\Gamma_{j-1} h_{2,j-1,r}(T_n(X_{k})) \ge
+\Gamma_{j} h_{2,j,r}(T_n(X_{k}));
+\]
+this and \eqref{e:inforp1} imply \eqref{e:lastcase}.
+\end{proof}

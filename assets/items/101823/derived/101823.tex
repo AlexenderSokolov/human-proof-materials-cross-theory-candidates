@@ -1,0 +1,219 @@
+\documentclass[10pt,a4paper]{amsart}
+\usepackage[margin=19mm]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage[scr=rsfs,cal=euler]{mathalfa}
+\usepackage{xfrac}
+\usepackage[unicode,hidelinks,bookmarks=false]{hyperref}
+\newcommand{\ie}{i.e.\ }
+\newcommand{\cf}{cf.\ }
+\newcommand{\resp}{respectively\ }
+\newcommand{\Subsection}{\subsection}
+\providecommand{\nobreakdash}{\nobreak\hbox{-}}
+\setlength{\emergencystretch}{2em}
+\multlinegap0pt
+\usepackage{bm}
+\usepackage{bbm}
+\usepackage{dsfont}
+\usepackage{xspace}
+\usepackage{cancel}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\makeatletter
+\@ifundefined{Proof}{\newtheorem{Proof}{Proof}}{}
+\@ifundefined{Theorem}{\newtheorem{Theorem}{Theorem}}{}
+\makeatother
+\title[Indefinite integration operators]{Indefinite Integration Operators Identities and their Approximations}
+\author{Frank Stenger}
+\date{Source: arXiv:1809.05607v2 (CC BY 4.0)}
+\allowdisplaybreaks
+\begin{document}
+\maketitle
+
+{\raggedright \noindent\emph{Source and licence.} Indefinite Integration Operators Identities and their Approximations. Version arXiv:1809.05607v2 (CC BY 4.0), distributed under the Creative Commons Attribution 4.0 International licence, as recorded in the arXiv licence metadata for this exact version and shown on the abstract page \url{https://arxiv.org/abs/1809.05607v2}. Full rights notice: \path{licenses/arxiv-1809.05607-CC-BY-4.0.txt}.\par\smallskip\par}
+
+\noindent\textit{Editorial scope.} Selected Theorem 2.5: source0.tex 421--433; author proof: 435--514. The actual definition of $q^\mp$ is the author equation (2.9), lines 392--399, now retained with its surrounding domain statement. The printed theorem cites (2.6) for this definition; that printed reference remains unchanged. The integration operators, Hilbert space, Fourier convention and source Theorem 2.4 input are also retained. The previous draft hold is removed. H2 records this target proof\textquotesingle s resolvent passage and $\delta$-regularization, with the source spectral input treated as already stated.\par\smallskip
+\par\medskip\noindent\textit{Author context (source0.tex lines 78--93).}\par\smallskip
+\vspace{.1in} \noindent This paper presents some symbolic--like
+approximations gotten from identities -- some previously known, and
+some new -- of indefinite integration operators.  These operators are
+defined for an interval $(a,b) \subseteq {\mathbf R}$ by the equations
+
+\begin{equation}%1.1
+  \begin{array}{rcl}
+    ({\mathcal J}^+\,g)(x) & = & \displaystyle \int_a^x g(t) \, dt \\
+    && \\
+    ({\mathcal J}^-\,g)(x) & = & \displaystyle \int_x^b g(t) \, dt\,.
+    \label{equation:1.1}
+    \end{array}
+\end{equation}
+                                                                  
+\noindent Here $g$ is a function defined on $(a,b)$\,, and we assume,
+of course, that the integrals exist for all $x \in (a,b)$\,.  Combined
+\par\medskip\noindent\textit{Author context (source0.tex lines 172--184).}\par\smallskip
+It is most convenient to work with operators in the setting of a
+Hilbert space.  Let $(a,b) \subseteq {\mathbf R}$\,.  Our Hilbert
+space is just the well--known space ${\mathbf H} = {\mathbf
+  L}^2(0,b)$\,, with $b \in {\mathbf R}^+$\,.
+
+
+\subsection{The operators ${\mathcal J}$}
+
+Let the operators ${\mathcal J}^\mp$ be defined for ${\mathbf H}$\,.
+The inverses of these operators have the property: if $G = {\mathcal
+  J}^\mp\,g$\,, then $g = \left({\mathcal J}^\mp\right)^{-1}\,G$\,,
+i.e., $g(t) = \mp \, \frac{d}{dt}\,G(t)$\,, whenever the derivatives
+exist.
+\par\medskip\noindent\textit{Author context (source0.tex lines 285--299).}\par\smallskip
+ \vspace{.2in} \noindent We now take $(0,b) = {\mathbf R}^+$\,, where
+ ${\mathbf R}^+$ denotes the interval $(0,\infty)$\,, we take $f^\mp
+ \in {\mathbf H} = {\mathbf L}^2({\mathbf R}^+)$\,, and we assume the
+ usual Fourier and inverse Fourier transforms defined by 
+
+ \begin{equation}%2.5
+   \begin{array}{rcl}
+     \widehat{f^\mp}(y) & = & \displaystyle \int_{{\mathbf R}^+} f^\mp(x) \,
+     e^{\mp\,i\,x\,y} \, dx \\
+     && \\
+ f^\mp(x) & = & \displaystyle \frac{1}{2\,\pi} \int_{\mathbf R}
+ e^{\mp\,i\,x\,y} \, \widehat{f^\mp}(y) \, dy\,.
+   \end{array}
+   \label{equation:2.5}
+ \end{equation}
+\par\medskip\noindent\textit{Author context (source0.tex lines 302--322).}\par\smallskip
+\begin{Theorem}%2.4
+  \label{Theorem:2.4}
+  If $F^\mp := \widehat{f^\mp}$ is the Fourier transform of $f^\mp \in
+  {\mathbf H}$\,, if ${\mathcal J}^\mp$ is supported on ${\mathbf
+    R}^+$\,, if $(F^\mp)^\prime$ exists on $[0,\infty]$\,, and if
+  $f^\mp$ is real--valued on ${\mathbf R}^+$\,, then
+  
+  \begin{equation}%2.6
+    \begin{array}{rcl}
+    (\mp i/{\mathcal J}^\mp\,F^\mp,F^\mp) & = & \pm \,  \displaystyle \pi \,
+      \int_{{\mathbf R}^+}y\,|f^\mp(y)|^2 + \frac{i}{2} \,
+      \left(\int_{{\mathbf R}^+} f^\mp(y) \, dy\right)^2\,, \\
+    && \\
+    (\mp i/{\mathcal J}^\mp\,F^\pm,F^\pm) & = & \mp \displaystyle \pi \,
+      \int_{{\mathbf R}^+}y\,|f^\mp(y)|^2 - \frac{i}{2} \,
+      \left(\int_{{\mathbf R}^+} f^\mp(y) \, dy\right)^2\,.
+      \end{array}
+    \label{equation:2.6}
+  \end{equation}
+
+  \end{Theorem}
+\par\medskip\noindent\textit{Author context (source0.tex lines 388--404).}\par\smallskip
+Our model indefinite integrals for $x \in (0,b) \subseteq
+(0,\infty)$ corresponding to given functions $f^\mp$ and $g$ take the
+form
+
+ \begin{equation}%2.9
+ \begin{array}{rcl}
+   q^+(x) & = & \displaystyle  \int_0^x f^+(x-t)\,g(t)\,dt, \\
+   && \\
+   q^-(x) & = & \displaystyle  \int_x^b f^-(x-t)\,g(t)\,dt.
+ \end{array}
+ \label{equation:2.9}
+ \end{equation}
+
+\noindent Given one or both functions $\widehat{f^\mp}$ in (2.5), we shall 
+obtain a formula for determining $q^\mp$ on $(0,b)$\,, under the
+assumption that the indefinite integration operators ${\mathcal
+  J}^\mp$ are supported on $(0,b)$\,. 
+
+  \begin{Theorem}%2.5
+    \label{theorem:2.5}
+Let ${\mathcal J}^\mp$ be defined as above, and have support on $(0,b)
+\subseteq {\mathbf R}^+$\,, let the functions $f^\mp$ of equation
+(2.6) belong to ${\mathbf H}$\,.  Let $q^\mp$ be defined as in
+(2.6).  Then
+ 
+ \begin{equation}%2.10
+ q^\mp = \widehat{f^\mp}\left(\mp i\,/{\mathcal J}^\mp\right)\,g\,.
+\label{equation:2.10}
+ \end{equation}
+
+ \end{Theorem}
+
+ \begin{Proof} The proof resembles that given in \S 4.6 of [Sp] and
+   \S1.5.9 of [Sc] for the case of Laplace transforms. We consider
+   only the case of $f^+$\,, since the proof for the case of $f^-$ is
+   similar.     The proof makes use of the following:
+ \begin{itemize}
+   \item $f^+$ has compact support $[0,b]$\,, -- inasmuch
+       extension to $(0,\beta)$\,, or to an infinite interval can be
+       carried out via the usual well--known procedure of analysis,
+       and moreover, our assumptions are consistent with this possibility;
+   \item By Theorem 2.4, the spectrum of $i/{\mathcal J}^+$ lies in
+     the closed second quadrant of the complex plane, ${\mathbf C}$\,.
+   \item As can be shown via an easy to prove inequality -- see
+       [Sp], \S4.6 -- namely, that $\left\|{\mathcal
+         J}^\mp\right\|_p \leq \alpha$ for all $p \in [1,\infty]$\,,
+       where $(0\,,\alpha) \subset {\mathbf R}^+$ is the support of
+       ${\mathcal J}^\mp$\,;
+   \item By inspection of (2.6), $\widehat{f^+}$ is
+     analytic in the upper half of the complex plane, and
+      $\widehat{f^-}$ is analytic in the lower half; and
+   \item The well--known formulas (2.6), as well as  
+
+   \begin{equation} %2.11
+     \begin{array}{rcl}
+          \displaystyle \left(\left({\mathcal J}^+\right)^n\,g\right)(x) & = & 
+          \displaystyle \int_0^x 
+          \frac{(x-t)^{n-1}}{(n-1)\,!} \, g(t) \, dt\,, \ \ \ n =
+          1\,,2\,,\ldots\,,\\ 
+           \\
+          \widehat{f^\mp}(z)  & = & \displaystyle \mp
+          \frac{1}{2\,\pi\,i} \int_{\mathbf R} 
+          \frac{\widehat{f^\mp}(t)}{t - z} dt\,, \ \ \ \mp\,\Im z > 0\,.
+     \end{array}
+    \label{equation:2.11}
+   \end{equation}
+   
+ \end{itemize}       
+
+\noindent Hence, applying the above points, for $x \in (0,b)$\,, and with $I$
+denoting the identity operator, we get
+
+%2.12
+\begin{equation}
+  \begin{array}{rcl}
+q^+(x) & = & \displaystyle \int_0^x f^+(x-\xi) \, g(\xi) \, d\xi \\
+    && \\
+    & = & \displaystyle \int_0^x \,\left(\frac{1}{2\,\pi} \, \int_{\mathbf R}
+\widehat{f^+}(t) \, e^{-\,i\,t\,(x - \xi)}\,dt \,
+\right)\,g(\xi)\,d\xi \\  
+&& \\
+& = & \displaystyle \frac{1}{2\,\pi} \,\int_{\mathbf R} \left(\int_0^x
+\,\sum_{n=0}^\infty  
+         \frac{(-i\,t\,(x-\xi))^n}{n\,!} \, 
+         g(\xi)\,d\xi\right) \, \widehat{f^+}(t) \, dt \\ 
+         && \\
+& = & \displaystyle \left(\frac{1}{2\,\pi} \, \int_{\mathbf R}
+         {\mathcal J}^+ \, 
+         \sum_{n=0}^\infty \left(-\,i\,t\,{\mathcal J}^+\right)^n \,
+         \widehat{f^+}(t) \, dt \, g\right)(x) \\ 
+         && \\
+& = & \displaystyle \left(\left(\frac{1}{2\,\pi\,i} \int_{\mathbf R} {\mathcal
+           J}^+/\left(1 + i\,t\,{\mathcal J}^+\right) \,
+         \widehat{f^+}(t) 
+         \, dt\right) \, g \, \right)(x) \\
+&& \\
+     & = & \displaystyle \lim_{\delta \to 0^+}\left(\frac{1}{2\,\pi\,i}\,\int_{\mathbf R}
+      \widehat{f^+}(t)/\left(t\,I - i/\left({\mathcal
+          J}^++\delta\,I\right)\right) \, dt \, 
+      g\right)(x) \\ 
+      && \\
+      & = & \displaystyle \lim_{\delta \to 0^+}
+      \left(\widehat{f^+}\left(i/\left({\mathcal J}^+ +
+      \delta\,I\right)\right)\,g\right)(x) = 
+      \left(\widehat{f^+}\left(i/{\mathcal J}^+\right)\,g\right)(x)\,,
+  \end{array}
+      \label{equation:2.12}
+\end{equation} 
+
+\noindent Similarly, $q^-(x) = \left(\widehat{f^-}\left(-i/{\mathcal
+  J}^-\right)\,g\right)(x)$\,.  
+  \end{Proof} $\blacksquare$
+
+
+\end{document}

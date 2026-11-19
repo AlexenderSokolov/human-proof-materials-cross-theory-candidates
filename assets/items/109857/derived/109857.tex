@@ -1,0 +1,188 @@
+\documentclass[10pt,a4paper]{amsart}
+\usepackage[margin=19mm]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage[scr=rsfs,cal=euler]{mathalfa}
+\usepackage{xfrac}
+\usepackage[unicode,hidelinks,bookmarks=false]{hyperref}
+\newcommand{\ie}{i.e.\ }
+\newcommand{\cf}{cf.\ }
+\newcommand{\resp}{respectively\ }
+\newcommand{\Subsection}{\subsection}
+\providecommand{\nobreakdash}{\nobreak\hbox{-}}
+\setlength{\emergencystretch}{2em}
+\multlinegap0pt
+\usepackage{bm}
+\usepackage{bbm}
+\usepackage{dsfont}
+\usepackage{xspace}
+\usepackage{cancel}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\makeatletter
+\@ifundefined{theorem}{\newtheorem{theorem}{Theorem}}{}
+\@ifundefined{lemma}{\newtheorem{lemma}[theorem]{Lemma}}{}
+\makeatother
+\newcommand{\lcm}{\textup{lcm}}
+\renewcommand{\mod}[2]{#1\textup{ (mod }#2\textup{)}}
+\title[Covering systems with odd moduli]{Covering systems with odd moduli}
+\author{Joshua Harrington, Yewen Sun, Wing Hong Tony Wong}
+\date{Source: arXiv:2104.00602v1 (CC BY 4.0)}
+\allowdisplaybreaks
+\makeatletter
+\newlabel{sec:squarefree}{{\textup{source line 337}}{}}
+\makeatother
+\newtheorem{definition}{Definition}
+\newtheorem{question}{Question}
+\begin{document}
+
+\maketitle
+\noindent\textbf{Reviewed difficulty: H2. Legacy noncounting; count 0.} The H2 burden includes the complete dimension reduction and covering construction at 358--403: normalize the shifted residue classes, cover each reduced $C_\xi$, organize the $p$-power layers, choose a common new prime, and use the Chinese remainder theorem to assemble a covering with odd, distinct moduli. This specialized assembly remains joint work in the unit. It does not settle the general existence of an odd covering. The active shifted-residue lemma is at 348--352. The earlier context 342--345 belongs to the author\textquotesingle s inactive source block 339--346; it is retained in the TeX with that identity and identified here by locator.\par\medskip
+
+\noindent\emph{Source and licence.} Covering systems with odd moduli. Version arXiv:2104.00602v1 (CC BY 4.0), distributed under the Creative Commons Attribution 4.0 International licence, as recorded in the arXiv licence metadata for this exact version and shown on the abstract page \url{https://arxiv.org/abs/2104.00602v1}. Full rights notice: \path{licenses/arxiv-2104.00602-CC-BY-4.0.txt}.\par\smallskip
+
+
+\noindent\textit{Editorial scope.} Selected author statement at source0.tex 354--356 and complete author proof at 358--403. Necessary author inputs and any dedicated auxiliary chain are displayed below. Original mathematical text, hypotheses, formulas and source version are retained.\par\smallskip
+\section*{Author context (source 125--158)}
+\begin{definition}
+A \emph{covering system of the integers} is a finite collection of congruences such that every integer satisfies at least one of the congruences in the collection.
+\end{definition}
+
+Since their introduction, the existence of certain types of covering systems and their applications has been the investigation of many articles \cite{ffk2008,ffk,ffkpy,filharr,fh,fj,hough,jw,n,o}.  Of particular interest to the investigation of this paper is the speculative existence of an odd covering.  The following is a well known question, originally asked by Erd\H{o}s.
+
+\begin{question}[The Odd Covering Problem]
+Does there exist a covering system of the integers whose moduli are all odd, distinct, and greater than 1?
+\end{question}
+
+If the answer to this question is yes, then such a covering system would be called an \emph{odd covering system of the integers}.  Hough and Nielsen \cite{hn} showed in 2019 that if the moduli of a covering system are distinct and greater than 1, then at least one of the moduli of the system must be divisible by either $2$ or $3$.  
+
+If an odd covering exists such that all moduli of the system are square-free, then we refer to this as a \emph{square-free odd covering system of the integers}.  In 2005, Guo and Sun \cite{gs} showed that the lowest common multiple of all moduli in a square-free odd covering system (if it exists) must have at least 22 distinct prime factors.%In 2005, Song and Sun \cite{} showed that if an odd covering system of the integers exists where all moduli of the system are square-free, then the LCM of the moduli of the system must have at least 22 distinct prime factors.  If an odd covering exists such that all of the moduli of the system are square-free, then we refer to this as a \emph{square-free odd covering system of the integers}.
+
+In 2015, Harrington \cite{h} posed the following question related to the odd covering problem.
+
+\begin{question}
+Given an odd integer $n\geq 3$, does there exist a covering system of the integers that has $n$ as a modulus at most twice, such that all other moduli are odd, distinct, and greater than 1?
+\end{question}
+
+Harrington answered this question in the affirmative when $n=3$ in the same paper.  The following more general question was later asked by Hammer, Harrington, and Marotta \cite{hhm} in 2018.
+
+\begin{question}\label{question:mainquestion}
+Given a fixed odd prime $p$, what is the smallest nonnegative integer $t_p$ for which there exists a covering system of the integers that has $p$ as a modulus exactly $t_p$ times, such that all other moduli are odd, distinct, and greater than 1?
+\end{question}
+
+If an odd covering system of the integers exists, then the answer to Question~\ref{question:mainquestion} is that $t_p\leq 1$ for all odd primes $p$.  Harrington's result yields $t_3\leq 2$ and Hammer, Harrington, and Marotta showed that $t_5\leq 3$.  One may further ask a similar question regarding square-free odd coverings.
+
+%In Section~\ref{sec:squarefree} of this paper, we make a connection between Question~\ref{question:mainquestion}
+%and the following analogue for square-free odd coverings.
+
+\begin{question}\label{question:mainquestionsquarefree}
+Given a fixed odd prime $p$, what is the smallest nonnegative integer $\tau_p$ for which there exists a covering system of the integers that has $p$ as a modulus exactly $\tau_p$ times, such that all other moduli are odd, distinct, square-free, and greater than 1?
+\end{question}
+
+\section*{Author context (source 342--345)}
+\noindent\textit{Author inactive source locator: 339--346 (retained below only as an inactive TeX block).}
+\iffalse
+\begin{lemma}\label{lem:shifted}
+Let $d$ be an integer.  Given a covering system $\mathcal{C}=\{\mod{r_j}{m_j}: 1\leq j\leq k\}$ of $S\subseteq\mathbb{Z}$, the set $\mathcal{C}_
+d=\{r_j+d\pmod{m_j}:1\leq j\leq k\}$ is a covering of the set $S_d=\{s+d:s\in S\}$.
+\end{lemma}
+\fi
+
+\section*{Author context (source 348--352)}
+To begin our investigation for square-free covering systems of the integers, we first provide the following lemma, originally given by Hammer, Harrington, and Marotta \cite{hhm}.
+
+\begin{lemma}\label{lem:shifted}
+Let $p$ be a prime and let $r_1$ and $r_2$ be distinct integers with $0\leq r_1,r_2\leq p-1$. Suppose $\mathcal{C}$ is a covering system of the integers such that $\mod{r_1}{p}\in\mathcal{C}$ and $\mod{r_2}{p}\notin\mathcal{C}$. Then there exists a covering system $\mathcal{C}'$ with the same moduli as those of $\mathcal{C}$ such that $\mod{r_2}{p}\in\mathcal{C}'$ and $\mod{r_1}{p}\notin\mathcal{C}'$. Furthermore, if $\mod{r}{p}\in\mathcal{C}$ with $r\not\equiv\mod{r_1}{p}$, then $\mod{r}{p}\in\mathcal{C}'$.
+\end{lemma}
+\section*{Selected author statement}
+\begin{theorem}\label{thm:3sqrfreeimpliesodd}
+Let $p\geq3$ be a prime. If there exists a covering system of the integers such that all moduli are odd, square-free, and distinct except that $p$ is used exactly twice as a modulus, then there exists an odd covering of the integers.
+\end{theorem}
+\section*{Complete author proof}
+\begin{proof}
+Suppose that $\mathcal{C}_0$ is a covering system of the integers such that all moduli are odd, square-free, and distinct except that $p$ is used exactly twice as a modulus. By Lemma~\ref{lem:shifted}, we may assume that $\mod{0}{p}$ and $\mod{1}{p}$ are congruences in $\mathcal{C}_0$. Let $k$ be a nonnegative integer and let $\ell_\xi$ be nonnegative integers for each $2\leq\xi\leq p-1$ such that
+\begin{align*}
+\mathcal{C}_0&=\{\mod{0}{p},\mod{1}{p}\}\cup\{\mod{r_j}{m_j}:1\leq j\leq k\}\cup\\
+&\hspace{20pt}\bigcup_{\xi=2}^{p-1}\{\mod{r_{\xi,j}}{pm_{\xi,j}}:1\leq j\leq\ell_\xi\},
+\end{align*}
+where $p\nmid m_j$ for all $1\leq j\leq k$, and $p\nmid m_{\xi,j}$ and $r_{\xi,j}\equiv\mod{\xi}{p}$ for all $1\leq j\leq k_\xi$ and $2\leq\xi\leq p-1$.
+
+We claim that for each $2\leq\xi\leq p-1$, the set of congruences 
+$$\mathcal{C}_\xi=\{\mod{r_j}{m_j}:1\leq j\leq k\}\cup\{\mod{r_{\xi,j}}{m_{\xi,j}}:1\leq j\leq\ell_\xi\}$$
+forms a covering system of the integers. To see this, consider any integer $r$. Let
+$$m=\lcm\big(\{m_j:1\leq j\leq k\}\cup\{m_{\xi,j}:1\leq j\leq\ell_\xi\}\big)$$
+and let $n$ be an integer that satisfies the congruence system
+$$\begin{cases}
+n\equiv\mod{\xi}{p},\\
+n\equiv\mod{r}{m}.
+\end{cases}$$
+Since $\mathcal{C}_0$ is a covering system of the integers, $n$ must satisfy one of the congruences in
+$$
+\{\mod{r_j}{m_j}:1\leq j\leq k\}\cup\{\mod{r_{\xi,j}}{pm_{\xi,j}}:1\leq j\leq\ell_\xi\}.$$
+As a result, if $n\equiv\mod{r_{\tilde{j}}}{m_{\tilde{j}}}$ for some $1\leq\tilde{j}\leq k$, then
+$$r\equiv n\equiv\mod{r_{\tilde{j}}}{m_{\tilde{j}}};$$
+if $n\equiv\mod{r_{\xi,\tilde{j}}}{pm_{\xi,\tilde{j}}}$ for some $1\leq\tilde{j}\leq\ell_\xi$, then
+$$r\equiv n\equiv\mod{r_{\xi,\tilde{j}}}{m_{\xi,\tilde{j}}}.$$
+This completes the proof of our claim.
+
+Let $q$ be an odd prime such that $q\nmid pm$. For each $1\leq i\leq q-2$, $2\leq\xi\leq p-2$, and $1\leq j\leq\ell_\xi$, let $r_{\xi,i,j}$ be an integer that satisfies the congruence system
+$$\begin{cases}
+r_{\xi,i,j}\equiv\mod{\xi\cdot p^i}{p^{i+1}},\\
+r_{\xi,i,j}\equiv\mod{r_{\xi,j}}{m_{\xi,j}}.
+\end{cases}$$
+Moreover, for each $0\leq i\leq q-1$, let $s_i$ be an integer that satisfies the congruence system
+$$\begin{cases}
+s_i\equiv\mod{0}{p^i},\\
+s_i\equiv\mod{i}{q}.
+\end{cases}$$
+Now, we are ready to build an odd covering system based on the existence of $\mathcal{C}_0$. Consider
+\begin{align*}
+\mathcal{C}&=\{\mod{p^i}{p^{i+1}}:0\leq i\leq q-2\}\cup\{\mod{s_i}{p^iq}:0\leq i\leq q-1\}\\
+&\hspace{20pt}\cup\{\mod{r_j}{m_j}:1\leq j\leq k\}\cup\bigcup_{\xi=2}^{p-1}\{\mod{r_{\xi,i,j}}{p^{i+1}m_{\xi,j}}:0\leq i\leq q-2,1\leq j\leq\ell_\xi\}.
+\end{align*}
+
+It is easy to see that all moduli of $\mathcal{C}$ are odd and distinct. To show that $\mathcal{C}$ is a covering system of the integers, let $N$ be an arbitrary integer, and let $i_0$ be the maximum integer such that $p^{i_0}\mid N$. If $0\leq i_0\leq q-2$, then either $N\equiv\mod{p^{i_0}}{p^{i_0+1}}$, which is trivially covered by $\mathcal{C}$, or $N\equiv\mod{\xi\cdot p^{i_0}}{p^{i_0+1}}$ for some $2\leq\xi\leq p-1$, which is covered by 
+$$\{\mod{r_j}{m_j}:1\leq j\leq k\}\cup\{\mod{r_{\xi,i_0,j}}{p^{i_0+1}m_{\xi,j}}:1\leq j\leq\ell_\xi\}$$
+since $C_\xi$ is a covering system of the integers. Lastly, if $i_0\geq q-1$, then $N$ is covered by $\{\mod{s_i}{p^iq}:0\leq i\leq q-1\}$.
+\end{proof}
+\begin{thebibliography}{99}
+\bibitem{ffk}
+M.~Filaseta, K.~Ford, and S.~Konyagin, On an irreducibility theorem of A.\ Schinzel associated with coverings of the integers, \textit{Illinois J.\ Math.\/} \textbf{44} (2000), 633--643.
+
+\bibitem{ffk2008}
+M.~Filaseta, C.~Finch, and M.~Kozek, On powers associated with Sierpi\'{n}ski numbers, Riesel numbers and Polignac's conjecture, \textit{J.\ Number Theory} \textbf{128} (2008), 1916--1940.
+
+\bibitem{ffkpy}
+M.~Filaseta, K.~Ford, S.~Konyagin, C.~Pomerance, and G.~Yu, Sieving by large integers and covering systems of congruences, \textit{J.\ Amer.\ Math.\ Soc.\/} \textbf{20} (2007), 495--517.
+
+\bibitem{fh}
+M.~Filaseta and W.~Harvey, Covering subsets of the integers by congruences, \textit{Acta Arith.\/} \textbf{182} (2018), 43--72.
+
+\bibitem{filharr}
+M.~Filaseta and J.~Harrington, A polynomial investigation inspired by work of Schinzel and Sierpi\'{n}ski, \textit{Acta Arith.\/} \textbf{155} (2012), 148--161.
+
+\bibitem{fj}
+M.~Filaseta and J.~Juillerat, Consecutive primes which are widely digitally delicate, \textit{preprint on arXiv} (2021), \url{https://arxiv.org/abs/2101.08898}.
+
+\bibitem{gs}  S.~Guo and Z.W.~Sun, On odd covering systems with distinct moduli, \textit{Adv.\ in Appl.\ Math.\/} \textbf{35} (2005), 182--187.
+
+\bibitem{h}
+J.~Harrington, Two questions concerning covering systems, \textit{Int.\ J.\ Number Theory} \textbf{11} (2015), 1739--1750.
+
+\bibitem{hhm}
+J.~Hammer, J.~Harrington, and K.~Marotta, Odd coverings of subsets of the integers, \textit{J.\ Comb.\ Number Theory} \textbf{10} (2018), 71--90.
+
+\bibitem{hn} R.~D.~Hough and P.~P.~Nielsen, Covering systems with restricted divisibility, \textit{Duke Math.\ J.\/} \textbf{168} (2019), 3261--3295.
+
+\bibitem{hough}
+B.~Hough, Solution of the minimum modulus problem for covering systems, \textit{Ann.\ of Math.\/} \textbf{181} (2015), 361--382.
+
+\bibitem{jw}
+L.~Jones and D.~White, Sierpi\'{n}ski numbers in imaginary quadratic fields, \textit{Integers} \textbf{12} (2012), 1265--1278.
+
+\bibitem{n}
+P.~Nielsen, A covering system whose smallest modulus is $40$, \textit{J.\ Number Theory} \textbf{129} (2009), 640--666.
+
+\bibitem{o}
+T.~Owens, A covering system with minimum modulus $42$, \textit{Theses and Dissertations} (2014), \url{https://scholarsarchive.byu.edu/etd/4329}.
+\end{thebibliography}
+\end{document}

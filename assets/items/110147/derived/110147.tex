@@ -1,0 +1,736 @@
+\documentclass[10pt,a4paper]{amsart}
+\usepackage[margin=19mm]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage[scr=rsfs,cal=euler]{mathalfa}
+\usepackage{xfrac}
+\usepackage[unicode,hidelinks,bookmarks=false]{hyperref}
+\newcommand{\ie}{i.e.\ }
+\newcommand{\cf}{cf.\ }
+\newcommand{\resp}{respectively\ }
+\newcommand{\Subsection}{\subsection}
+\providecommand{\nobreakdash}{\nobreak\hbox{-}}
+\setlength{\emergencystretch}{2em}
+\multlinegap0pt
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage[normalem]{ulem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newcommand{\bZ}{\mathbb Z}
+\def\ep{{\varepsilon}}
+\title[Author proof 110147]{Zero distribution of power series and binary correlation of coefficients}
+\author{Jacques Benatar, Alexander Borichev, Mikhail Sodin}
+\date{Source: arXiv:2104.04812v1 (CC BY 4.0)}
+\newcommand{\bC}{\mathbb C}
+\newcommand{\bR}{\mathbb R}
+\allowdisplaybreaks
+\makeatletter
+\newlabel{Lemma-subharm}{{\textup{source line 685}}{}}
+\newlabel{LemmaL-W-V}{{\textup{source line 1194}}{}}
+\newlabel{thm:main2}{{\textup{source line 2628}}{}}
+\makeatother
+\newtheorem{definition}{Definition}
+\begin{document}
+
+\maketitle
+\noindent\textbf{Reviewed difficulty: H3. Legacy noncounting; count 0.} The H3 burden includes quantitative autocorrelation and no-gap spectral-mass hypotheses, the complete dedicated Gaussian-kernel chain at 1546--1823 (with its regularity estimates at 1042--1113), and the $I+II+III$ lower-bound construction at 2454--2621, allowing singular spectral measures. These are joint research arguments in this unit. Source note: the positive exponent printed at 2464 is retained literally. The unique negative-Gaussian definition at 1885--1886 and the same Fourier identity at 1910--1928, explicitly reused at 2455 and 2468, identify the omitted minus sign. This resolved source notation issue does not create an active hold or a replacement author proof.\par\medskip
+
+\noindent\emph{Source and licence.} Zero distribution of power series and binary correlation of coefficients. Version arXiv:2104.04812v1 (CC BY 4.0), distributed by arXiv under the Creative Commons Attribution 4.0 International licence, \url{http://creativecommons.org/licenses/by/4.0/}, as recorded in the arXiv licence metadata for this exact version and shown on the abstract page \url{https://arxiv.org/abs/2104.04812v1}. Full licence notice: \path{licenses/arxiv-2104.04812-CC-BY-4.0.txt}.\par\smallskip
+
+
+\noindent\textit{Editorial scope.} Selected author statement at source0.tex 2427--2452 and complete author proof at 2454--2621. Necessary author inputs and any dedicated auxiliary chain are displayed below. Original mathematical text, hypotheses, formulas and source version are retained.\par\smallskip
+\section*{Author context (source 517--541)}
+\begin{itemize}
+\item $e(t)=e^{2\pi {\rm i}t}$.
+\item $F_\xi(z) = \displaystyle \sum_{n\ge 0} \xi(n) a(n) z^n$ the entire function.
+\item $a(n) = \displaystyle \exp\Bigl[\, -\int_0^n \varphi \,\Bigr]$ ``smooth coefficients''.
+\item $\psi = \varphi^{-1}$ the inverse of $\varphi$.
+\item $\mu = \displaystyle \max_{t\ge 0}\, \exp\Bigl[\,
+t\log R - \int_0^t \varphi \,\Bigr]$ the smoothed maximal term.
+\item $\nu = \psi\circ\log$ the smoothed central index.
+\item $\sigma = \psi'\circ\log$.
+\item $\gamma=(2\pi)^{-1}\Delta\log\mu(|z|) =
+\sigma (r)r^{-1}\, {\rm d}r \otimes {\rm d}\theta$, $z=r e(\theta)$, the reference measure.
+\item $\rho$ the radial gauge on $\bC$.
+\item $d_\rho (z_1, z_2) = \displaystyle \inf_\ell\, \int_\ell \frac{|{\rm d}w|}{\rho(w)}$,
+the infimum is taken over all $C^1$ curves $\ell$ connecting $z_1$ with $z_2$, the distance in $\bC$.
+\item $U_{+\tau} = \{z\in\bC\colon d_\rho(z, U)<\tau\}$ the $\tau$-neighbourhood of the set
+$U\subset \bC$.
+\item $W_R(\theta) = \displaystyle
+\sum_{|n-\nu|\le N} \xi (n)e(n\theta) e^{-(n-\nu)^2/(2\sigma)}$,
+$N=A\sqrt{\sigma\log\sigma}$ with sufficiently large positive $A$, the Weyl-type exponential sum.
+\item $A\lesssim B$ means that $A\le CB$ with a positive constant $C$,
+$A \gtrsim B$ means $A\ge cB$ with a constant $c>0$, and $A\simeq B$ means that $A\lesssim B$ and
+$A\gtrsim B$ simultaneously.
+\item The sign $\ll$ means ``sufficiently smaller than'' and $\gg$ means ``sufficiently large than''. For instance, the assumption `` given $A$ and $B$ such that $A\ll B$'' means that there exists
+    $c\in (0, 1)$ such that the corresponding conclusion holds for every positive $A$ and $B$ satisfying $A\le cB$.
+\end{itemize}
+
+\section*{Author context (source 1042--1113)}
+\begin{definition}[$\Delta$-regularity]
+Let $\Delta\colon (0, \infty)\to (0, \infty)$ be a non-decreasing function satisfying
+$\Delta (2s) \simeq \Delta (s)$ and $ \Delta(s) = o( \sqrt{s}\,(\log s)^{-3/2})$ as $s\to\infty$.
+The function $\varphi$ will be called $\Delta$-regular,
+if it is a non-negative, increasing, concave $C^2$-function on $[0, \infty)$, satisfying
+$$
+\varphi (0) = 0,
+\quad \lim_{t\to\infty} \varphi (t) = \infty, \quad \lim_{t\to\infty} \varphi' (t)= 0\,,
+$$
+with
+\begin{equation}\label{eq:phi-very-new}
+|\varphi''| \le (\varphi')^2\, \Delta(1/\varphi')\,.
+\end{equation}
+\end{definition}
+
+By $\psi=\varphi^{-1}$ we denote the inverse function to $\varphi$.
+This is a convex function, which, together with its derivative, grows to $+\infty$.
+
+We start with some simple estimates for $\Delta$-regular functions $\varphi$ and their inverses
+$\psi$, which will be used throughout this work.
+
+\begin{lemma}\label{Lemma-AuxEstimates-new}
+Suppose that the function $\varphi$ is $\Delta$-regular.
+Then,
+\begin{itemize}
+\item[{\rm (a)}] $\psi''\le \psi'\Delta(\psi')$;
+\item[{\rm (b)}] $\varphi'(t)=(1+o(1))\varphi'(\tau)$, for
+$\tau\to\infty$ and
+$|t-\tau|\varphi'(\tau)\Delta(1/\varphi'(\tau))=o(1)$;
+\item[{\rm (c)}] $\psi'(u) = (1+o(1))\psi'(v)$, for
+$v\to\infty$ and $|u-v|\Delta(\psi'(v))=o(1)$;
+\item[{\rm (d)}] $\varphi'(t)\Delta(1/\varphi'(t)) \gtrsim 1/t$;
+\item[{\rm (e)}] $\psi'/\Delta(\psi') \lesssim \psi$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+Estimate (a) follows from~\eqref{eq:phi-very-new} combined with the formulas
+\[
+\psi' = \frac1{\varphi'(\psi)}\,,
+\qquad \psi''=\frac{|\varphi''(\psi)|}{(\varphi'(\psi))^3}\,.
+\]
+
+Suppose that estimate (b) does not hold, i.e., that there exists a function $\ep(\tau)\to 0$
+as $\tau\to\infty$, such that
+\[
+\limsup_{\tau\to\infty}\, \max\{|\varphi'(t)/\varphi'(\tau)-1|\colon |t-\tau|\varphi'(\tau)\Delta(1/\varphi'(\tau)) \le \ep(\tau) \} > 0.
+\]
+Then, for some $\delta\in (0, \tfrac12)$, there exist an arbitrarily large $\tau$ and a
+$\vartheta$ such that $|\varphi' (\vartheta)/\varphi'(\tau)-1|=\delta$, while
+$|\varphi' (t)/\varphi'(\tau)-1|<\delta$ everywhere on the open interval $I$ with endpoints $\tau$ and $\vartheta$ and with $ |I|\varphi'(\tau)\Delta(1/\varphi'(\tau)) \le \ep(\tau) $.
+Then,
+\[
+\delta \lesssim \Bigl| \log\,\frac{\varphi'(\vartheta)}{\varphi'(\tau)}\, \Bigr|
+\le \int_I\, \Bigl|\, \frac{\varphi''}{\varphi'}\, \Bigr| \le |I|\cdot \max_I \Bigl|\, \frac{\varphi''}{\varphi'}\, \Bigr| \le |I|\cdot \max_I \varphi' \Delta(1/\varphi').
+\]
+Since $\delta$ was chosen less than $\tfrac12$,
+everywhere on $I$ we have $ \varphi' \le 2\varphi'(\tau) $. Hence,
+$ \max_I \varphi' \Delta(1/\varphi') \lesssim \varphi'(\tau) \Delta(1/\varphi'(\tau)) $, and therefore,
+\[
+\delta \lesssim |I| \cdot \varphi'(\tau) \Delta(1/\varphi'(\tau)) \lesssim \ep(\tau)\,,
+\]
+arriving at a contradiction as $\tau\to\infty$, which proves (b).
+The proof of estimate (c) follows the same pattern, so we skip it.
+
+Estimate (d) easily follows from (b). Indeed, assume that (d) does not hold.
+That is, there is a sequence $\tau_j\uparrow\infty$ such that
+$\tau_j \varphi'(\tau_j)\Delta(1/\varphi'(\tau_j))\to 0$. Consider the intervals
+$[0, \tau_j]$. By (b), $|\varphi'(+0)/\varphi'(\tau_j)-1|\to 0$. Since $\varphi'(\tau_j)\to 0$,
+we get $\varphi'(+0) = 0$, which is impossible since $\varphi'(\tau)$ monotonically decreases to $0$
+as $\tau$ grows. At last, estimate (e) is just a restatement of (d).
+\end{proof}
+
+\section*{Author context (source 1546--1823)}
+\subsection{Auxiliary estimates}
+Here, we collect estimates of the function \newline\noindent $V_R(k; h)$, which will be defined
+momentarily. These estimates will be used in the proofs of Proposition~\ref{Lemma5}
+and Proposition~\ref{Lemma5a}.
+
+Throughout this section we assume that the function $\varphi$ is $\Delta$-regular.
+As above, $\nu=\nu(R)$ and $\sigma=\sigma(R)$. Let $\beta=\beta(R)$ be a small parameter
+satisfying
+\[
+\sigma^{-1/2} = o(\beta), \quad
+\beta\Delta(\sigma) = o(1)\,,
+\]
+as $R\to\infty$. Set
+\begin{align*}
+V_R(k; h) &= \int_R^{R(1+\beta)}
+\exp\Bigl[ -\frac{(k-\nu(s))^2 + (k+h-\nu(s))^2}{2\sigma(s)}\, \Bigr]\, {\rm d}\nu(s) \\
+&=
+\int_{\nu(R)}^{\nu(R(1+\beta))}
+\exp\Bigl[ -\frac{(k-t)^2 + (k+h-t)^2}{2\sigma(\nu^{-1}(t))}\, \Bigr]\, {\rm d}t\,.
+\end{align*}
+A simple and useful observation is that the function $\sigma = \psi'\circ\log $ stays
+approximately constant on the integration interval $[R, R(1+\beta)]$:
+
+\begin{lemma}\label{Lemma5A}
+We have
+\begin{itemize}
+\item[{\rm (i)}]
+$\sigma (s) = (1+o(1))\sigma $ everywhere on $[R, R(1+\beta)]$;
+\item[{\rm (ii)}]
+$\nu(R(1+\beta))-\nu (R) = (1+o(1))\beta\sigma$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+Since $|\log(R(1+\beta))-\log R \,| \le \beta = o(1/\Delta(\sigma))$,
+relation (i) readily follows from Lemma~\ref{Lemma-AuxEstimates-new}(c).
+To prove (ii), we recall that $\nu'(r) = \sigma (r)/r$. Hence,
+(ii) follows from (i).
+\end{proof}
+
+The next lemma provides us with crude upper and lower bounds on $V_R$.
+
+\begin{lemma}\label{Lemma5C}
+We have
+\begin{itemize}
+\item[{\rm (i)}] $V_R(k; h)\lesssim \sqrt{\sigma}$;
+\item[{\rm (ii)}] $V_R(k; 0) \gtrsim \sqrt{\sigma}$,
+provided that  $\nu(R)\le k \le \nu(R(1+\beta))$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{Lemma5A}(i),
+\begin{align*}
+V_R(k; h) &\le \int_{\nu(R)}^{\nu(R(1+\beta))}
+\exp\bigl[ - (1+o(1))\,(k-t)^2/(2\sigma)\bigr]\, {\rm d}t \\
+&<\int_\bR \exp\bigl[ -(1+o(1))u^2/{2\sigma} \bigr]\, {\rm d}u \\
+&\lesssim\sqrt{\sigma}\,,
+\end{align*}
+proving (i).
+
+The proof of (ii) is also straightforward. By Lemma~\ref{Lemma5A}(i),
+\begin{align*}
+V_R(k; 0) &=
+\int_{\nu(R)}^{\nu(R(1+\beta))} \exp\bigl[ - (1+o(1))(k-t)^2/(2\sigma) \bigr]\, {\rm d}t \\
+&=
+\int_{\nu(R)-k}^{\nu(R(1+\beta))-k} \exp\bigl[ - (1+o(1))u^2/(2\sigma) \bigr]\, {\rm d}u\,.
+\end{align*}
+Observe that either $\nu (R) - k \le -\tfrac12\,L$, or $\nu (R(1+\beta))-k \ge \tfrac12\, L$,
+where $L=\nu (R(1+\beta))-\nu (R)$. By Lemma~\ref{Lemma5A}(ii), $L=(1+o(1))\beta\sigma$, which is
+$\gg \sqrt{\sigma}$. Thus,
+\[
+\int_0^{\frac12\, L} \exp\bigl[ - (1+o(1))u^2/(2\sigma) \bigr]\, {\rm d}u \gtrsim \sqrt{\sigma}\,,
+\]
+proving the lemma.
+\end{proof}
+
+The next lemma gives us more accurate upper bounds.
+
+\begin{lemma}\label{Lemma5B}\mbox{}
+\begin{itemize}
+\item[{\rm (i)}] $V_R(k; h) \lesssim e^{-ch^2/\sigma}\sqrt{\sigma}$;
+\item[{\rm (ii)}]
+\[
+V_R(k; h) \lesssim
+\begin{cases}
+e^{-c(\nu(R)-k)^2/\sigma}\sqrt{\sigma}, \ &k<\nu(R), \\
+e^{-c(k-\nu(R(1+\beta)))^2/\sigma}\sqrt{\sigma}, \ &k>\nu(R(1+\beta))\,.
+\end{cases}
+\]
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+We have
+\begin{align*}
+V_R(k; h) &=
+\int_{\nu (R)-k-\frac{h}2}^{\nu(R(1+\beta))-k-\frac{h}2}
+\exp\Bigl[ -\frac{1+o(1)}{2\sigma}\,
+\bigl( (u-\tfrac12 h)^2 + (u+\tfrac12 h)^2 \bigr)
+\Bigr]\, {\rm d}u \\
+&=
+\int_{\nu (R)-k-\frac{h}2}^{\nu(R(1+\beta))-k-\frac{h}2}
+\exp\bigl[ -(1+o(1))(u^2 + \tfrac14 h^2)/\sigma \bigr]\, {\rm d}u \\
+&<
+e^{-(1+o(1))h^2/(4\sigma)}\,
+\int_{\bR} e^{-(1+o(1))u^2/\sigma}\, {\rm d}u \\
+&\lesssim e^{-ch^2/\sigma}\, \sqrt{\sigma}\,.
+\end{align*}
+To prove the second estimate, we note that, for $k<\nu(R)$, we have
+\begin{align*}
+V_R(k; h) &<
+\int_{\nu(R)}^{\nu(R(1+\beta))}
+\exp\Bigl[ -\frac{1+o(1)}{2\sigma}\, (t-k)^2 \Bigr]\, {\rm d}t \\
+&<
+\int_{\nu(R)-k}^\infty e^{-(1+o(1))u^2/(2\sigma)}\, {\rm d}u \\
+&< e^{-(1+o(1))(\nu(R)-k)^2/(2\sigma)}\sqrt{\sigma}\,.
+\end{align*}
+The case $k>\nu(R(1+\beta))$ is very similar and we skip it.
+\end{proof}
+
+The next lemma estimates the oscillation of the function $k\mapsto V_R(k; h)$ along $\mathbb Z$.
+
+\begin{lemma}\label{Lemma5D}
+$ \displaystyle \sum_{k\in\bZ}
+|V_R(k; h) - V_R(k-1; h)| \lesssim \sqrt{\sigma} $.
+\end{lemma}
+
+\begin{proof}
+Set $m_1 = \nu(R) - A\sqrt{\sigma\log\sigma}$, $m_2 = \nu(R(1+\beta)) +A\sqrt{\sigma\log\sigma}$
+with sufficiently large $A$. By Lemma~\ref{Lemma5B}(ii), the sums over $k<m_1$ and
+$k>m_2$
+are $o(1)$ if the constant $A$ was chosen big enough. Hence, we need to show that
+\[ \sum_{m_1 \le k \le m_2} |V_R(k; h) - V_R(k-1; h)| \lesssim \sqrt{\sigma}\,. \]
+
+We will represent the function $V_R(k; h)$ as a difference of two increasing
+functions in $k$. Recalling that $\sigma (\nu^{-1}(t)) = 1/\varphi'(t))$,
+we get
+\begin{align*}
+V_R(k; h) &= \int_{\nu(R)}^{\nu(R(1+\beta))}
+\exp\Bigl[\,
+- \frac{(k-t)^2+(k+h-t)^2}{2\sigma(\nu^{-1}(t))}
+\,\Bigr]\, {\rm d}t \\
+&= \int_{\nu(R)}^{\nu(R(1+\beta))}
+\exp\bigl[\,
+- \tfrac12\, \varphi'(t)((k-t)^2+(k+h-t)^2)
+\,\bigr]\, {\rm d}t \\
+&= \int_{\nu(R)-k-\frac12 h}^{\nu(R(1+\beta))-k-\frac12 h}
+\exp\bigl[\,
+- \tfrac12\, \varphi'(x+k+\tfrac12\, h)(x^2 + \tfrac14\, h^2)
+\,\bigr]\, {\rm d}x \\
+&= \Bigl(\, \int_{\nu(R)-k-\frac12 h}^{\nu(R(1+\beta))-m_1 -\frac{h}2}
+- \int_{\nu(R(1+\beta))-k-\frac12 h}^{\nu(R(1+\beta))-m_1 -\frac{h}2} \,\Bigr)\\
+&\qquad\qquad\qquad\qquad\qquad\exp\bigl[
+- \tfrac12\, \varphi'(x+k+\tfrac12\, h)(x^2 + \tfrac14\, h^2)
+\,\bigr]\, {\rm d}x \\
+&= V_{1, R}(k; h) - V_{2, R}(k; h).
+\end{align*}
+
+First, observe that both functions $V_{1, R}$ and $V_{2, R}$ have uniform upper bounds
+\begin{equation}\label{eq:UB-V_1-V_2}
+V_{1, R}, V_{2, R} \lesssim \sqrt{\sigma}\,.
+\end{equation}
+Indeed, in the integration range, $\nu(R) \le x+k+\tfrac12\, h \le \nu(R(1+\beta)) + (m_2-m_1)
+= \nu + O(\beta\sigma)$. Since $\beta\sigma\Delta(\sigma) \varphi'(\nu) =
+\beta \Delta(\sigma) = o(1)$, by Lemma~\ref{Lemma-AuxEstimates-new}(b), in this range,
+$\varphi'(x+k+\tfrac12\, h) = (1+o(1))\varphi'(\nu) = (1+o(1))\sigma^{-1}$,
+which yields~\eqref{eq:UB-V_1-V_2}.
+
+Next, we observe that since the function $t\mapsto \varphi'(t)$ decreases,
+the functions $V_{1, R}$ and $V_{2, R}$ are increasing functions in $k$.
+
+The rest is straightforward:
+\begin{align*}
+ \sum_{m_1 \le k \le m_2}
+|V_R(k; h) &- V_R(k-1; h)| \\
+& 
+\le
+\sum_{1\le j\le 2}\,\sum_{m_1 \le k \le m_2}
+|V_{j, R}(k; h) - V_{j, R}(k-1; h)|
+\\
+& 
+= \sum_{1\le j\le 2}\,\sum_{m_1 \le k \le m_2}
+\bigl[ V_{j, R}(k-1; h) - V_{j, R}(k; h) \bigr]
+\\
+&   < \sum_{1\le j\le 2}V_{j, R}(m_1; h) 
+\\
+&  \lesssim \sqrt{\sigma}\,,
+\end{align*}
+proving the lemma.
+\end{proof}
+
+Set
+\[
+V_R(h) = \sum_{k\in\bZ} V_R(k; h)\,.
+\]
+
+\begin{lemma}\label{Lemma10a} We have
+\[
+V_R(0) \simeq \beta \sigma^{3/2}\,.
+\]
+\end{lemma}
+
+\begin{proof}
+To prove the lower bound, we write
+\[
+V_R(0) \ge \sum_{\nu(R)\le k \le \nu(R(1+\beta))}  V_R(k; 0)
+\]
+and note that by Lemma~\ref{Lemma5A}(ii) and Lemma~\ref{Lemma5C},
+the RHS is
+\[
+\simeq \sqrt{\sigma} \bigl[ \nu(R(1+\beta)) - \nu (R) \bigr] \simeq \beta \sigma^{3/2}.
+\]
+To prove the upper bound, we split the sum into three parts:
+\[
+V_R(0) = \Bigl( \sum_{k<\nu (R)}\ + \sum_{\nu(R)\le k \le \nu(R(1+\beta))}
++ \sum_{k>\nu(R(1+\beta))}\, \Bigr) V_R(k; 0)\,.
+\]
+By Lemma~\ref{Lemma5B}(ii), the first and the third sums are $O(\sigma)=o(\beta\sigma^{3/2})$,
+while, by the above, the middle sum is $\simeq \beta\sigma^{3/2}$.
+\end{proof}
+
+\begin{lemma}\label{Lemma10b} For $ h^2 \lesssim \sigma $, we have
+\[
+|V_R(h) - V_R(0)| \lesssim (1+ h^2\beta)\sqrt{\sigma}\,.
+\]
+\end{lemma}
+
+\begin{proof}
+First, we observe that
+\[
+\Bigl| V_R(h) - \int_{\bR} V_R(\kappa; h)\, {\rm d}\kappa \Bigr|
+\lesssim \sqrt{\sigma}\,.
+\]
+Indeed, as in the proof of Lemma~\ref{Lemma5D}, we set
+$m_1 = \nu(R) - A\sqrt{\sigma\log\sigma}$, $m_2 = \nu(R(1+\beta)) +A\sqrt{\sigma\log\sigma}$
+with sufficiently large $A$. Then, by Lemma~\ref{Lemma5B}(ii),
+\[
+V_R(h) - \int_{\bR} V_R(\kappa; h)\, {\rm d}\kappa
+= \sum_{m_1 \le k \le m_2} \Bigl[ V_R(k; h) -
+\int_k^{k+1} V_R(\kappa; h)\, {\rm d}\kappa \Bigr] + o(1)\,,
+\]
+provided that the constant $A$ was chosen sufficiently big. It remains to recall that,
+as we have shown in the proof of Lemma~\ref{Lemma5D}, the total variation of the function
+$k\mapsto V_R(k; h)$ on $[m_1, m_2]$ is $\lesssim\sqrt{\sigma}$.
+
+Thus, we need to bound the difference of the integrals
+\[
+\Bigl| \int_{\bR} V_R(\kappa; h)\, {\rm d}\kappa -
+\int_{\bR} V_R(\kappa; 0)\, {\rm d}\kappa\Bigr|
+\le \int_{m_1}^{m_2} \bigl| V_R(\kappa; h) - V_R(\kappa-\tfrac12\, h; 0) \bigr|\, {\rm d}\kappa
++ o(1)\,.
+\]
+Estimating the integrand on the RHS, we get
+\begin{align*}
+\bigl|&V_R(\kappa; h) - V_R(\kappa-\tfrac12\, h; 0) \bigr| \\
+&=
+\Bigl|
+\int_{\nu(R)-\kappa-\frac12\, h}^{\nu (R(1+\beta))-\kappa-\frac12\, h}
+\bigl[ \exp\bigl( -\varphi'(u+\kappa+\tfrac12\, h)(u^2 + \tfrac14\, h^2)\,\bigr)\\
+&\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad -\exp\bigl( -\varphi'(u+\kappa+\tfrac12\, h)u^2 \bigr]\, {\rm d}u
+\Bigr| \\
+&\le \int_{\nu(R)-\kappa-\frac12\, h}^{\nu (R(1+\beta))-\kappa-\frac12\, h}
+\exp\bigl( - (1+o(1))u^2/\sigma \bigr)\\
+&\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\times\bigl| \exp\bigl( -(1+o(1))h^2/(4\sigma) \bigr) - 1\bigr|\, {\rm d}u
+\\
+&\lesssim (h^2/\sigma) \cdot \sqrt{\sigma} = h^2/\sqrt{\sigma}\,,
+\end{align*}
+Thus,
+\begin{multline*}
+\Bigl| \int_{\bR} V_R(\kappa; h)\, {\rm d}\kappa -
+\int_{\bR} V_R(\kappa; 0)\, {\rm d}\kappa\Bigr|
+\lesssim (m_2-m_1)h^2/\sqrt{\sigma} + o(1) \\
+\lesssim (\beta\sigma + \sqrt{\sigma\log\sigma})h^2/\sqrt{\sigma}
+\lesssim h^2\beta\sqrt{\sigma}\,,
+\end{multline*}
+completing the proof.
+\end{proof}
+
+\section*{Author context (source 1847--1870)}
+\begin{proposition}\label{Lemma5}
+Suppose that
+\begin{equation}
+\label{eq:condition1}
+\sum_{\nu \le k \le \nu+\frac12 \beta\sigma}\, |\xi(k)|^2 \gtrsim \beta\sigma\,,
+\end{equation}
+and that, for some $p>1$,
+\begin{equation}
+\label{eq:condition2}
+\sum_{h \ge 1} (1+\beta h)^{-p} S^*(M_1, M_2; h) \ll \beta\sigma,
+\end{equation}
+with
+\[
+M_1 = \nu (R) - \beta\sigma, \quad M_2 =  \nu(R(1+\beta)) + \beta\sigma\,.
+\]
+Then, for every $\vartheta\in [-\frac12, \frac12]$, there exist
+\[
+R'\in [R, R(1+\beta)], \quad \theta'\in (\vartheta-\beta, \vartheta+\beta),
+\]
+such that
+\[
+|W_{R'}(\theta')| \gtrsim \sigma^{1/4}\,.
+\]
+\end{proposition}
+
+\section*{Author context (source 1882--1929)}
+\noindent\textit{Author proof excerpt 1882--1929, showing the previously defined Gaussian and Fourier identity. The earlier proof continues outside this excerpt.}
+To simplify our notation, we extend the sequence $\xi$, letting $\xi$ equal $0$
+on negative integers, and set
+\[
+\widetilde{W}_R(\theta)
+= \sum_{k\in\bZ} \xi(k)e(k\theta)\exp\Bigl[ - \frac{(k-\nu)^2}{2\sigma} \Bigr].
+\]
+It's easy to see that, for $N = A\,\sqrt{\sigma\log\sigma}$ with sufficiently large positive
+$A$ (used in the definition of the sum $W_R$), we have
+\[
+\sum_{|k-\nu|\ge N} \exp\Bigl[ - \frac{(k-\nu)^2}{2\sigma} \Bigr] \lesssim
+\int_N^\infty e^{-x^2/(2\sigma)}\, {\rm d}x = o(1),
+\]
+so that, in order to prove Proposition~\ref{Lemma5}, it will be enough to estimate the sum
+$\widetilde{W}_R$, rather than $W_R$, from below.
+
+We fix a non-negative function $g\in C_0^\infty(\bR)$, such that $\operatorname{supp}(g)\subset (-\tfrac12, \tfrac12)$, and $\displaystyle \int_\bR g = 1$, fix $\vartheta\in [-\tfrac12, \tfrac12]$,
+and set
+\[
+\widetilde{X} =
+\int_R^{R(1+\beta)}\, \int_{-1/2}^{1/2} |\widetilde{W}_s(\theta)|^2\,
+g(\beta^{-1}(\vartheta-\theta))\, {\rm d}\theta\, {\rm d}\nu (s)\,.
+\]
+By Lemma~\ref{Lemma5A}(ii), $\nu(R(1+\beta))-\nu(R) = (1+o(1))\beta\sigma$, so, to prove Proposition~\ref{Lemma5}, 
+we need to show that $\widetilde{X} \gtrsim \beta^2\sigma^{3/2}$.
+
+First, we rewrite $\widetilde X$ as a Fourier series
+\begin{align*}
+\widetilde{X} &=
+\int_R^{R(1+\beta)}\, \underset{k_1, k_2\in\bZ}{\sum\, \sum}\, \xi(k_1)\bar\xi(k_2)\,
+\Bigl[
+\int_{-1/2}^{1/2} e((k_1-k_2)\theta) g(\beta^{-1}(\vartheta-\theta))\, {\rm d}\theta
+\Bigr] \\
+& \qquad \qquad \qquad \qquad \qquad
+\cdot \exp\Bigl[ -\frac{(k_1-\nu(s))^2 + (k_2-\nu(s))^2}{2\sigma(s)}\, \Bigr]\, {\rm d}\nu(s) \\
+&= \beta\, \int_R^{R(1+\beta)}\, \underset{k_1, k_2\in\bZ}{\sum\, \sum}\,
+e((k_1-k_2)\vartheta) \widehat{g}(\beta(k_2-k_1))\, \xi(k_1)\bar \xi(k_2) \\
+& \qquad \qquad \qquad \qquad \qquad
+\cdot \exp\Bigl[ -\frac{(k_1-\nu(s))^2 + (k_2-\nu(s))^2}{2\sigma(s)}\, \Bigr]\, {\rm d}\nu(s) \\
+&= \beta\,
+\sum_{h\in\bZ} \widehat{g}(\beta h) e(-h\vartheta)\,
+\sum_{k\in\bZ} \xi(k)\bar\xi(k+h) V_R(k; h)\,,
+\end{align*}
+where
+\begin{align*}
+V_R(k; h) &= \int_R^{R(1+\beta)} \exp\Bigl[ -\frac{(k-\nu(s))^2 + (k+h-\nu(s))^2}{2\sigma(s)}\, \Bigr]\, {\rm d}\nu(s) \\
+&=
+\int_{\nu(R)}^{\nu(R(1+\beta))} \exp\Bigl[ -\frac{(k-t)^2 + (k+h-t)^2}{2\sigma(\nu^{-1}(t))}\, \Bigr]\, {\rm d}t \,.
+\end{align*}
+
+\section*{Author context (source 2388--2426)}
+\section{Wiener sequences $\xi$ whose spectral measures have no gaps}
+\label{sect:8}
+
+Throughout this section we assume that
+\begin{equation}\label{eq:C1}
+\Bigl|\, \frac1X\, \sum_{0\le s < X} \xi(s)\bar\xi(s+h) - \widehat{\chi}(h) \Bigr|
+\lesssim \ep_1(X; h), \qquad 0\le h \le H=H(X),
+\end{equation}
+with $X\mapsto \ep_1(X; h)$ decreasing to $0$ and $X\mapsto H(X)$ increasing to $\infty$,
+as $X\to\infty$, and that
+\begin{equation}\label{eq:C2}
+\inf\bigl\{\chi(J)\colon
+J\subset [-\tfrac12, \tfrac12\,] {\rm\ an\ interval}, |J|=\tfrac12\, \eta\bigr\}
+\gtrsim \ep_2(\eta),
+\end{equation}
+with a positive non-decreasing function $\ep_2$.
+The first condition quantifies the fact that $\chi$ is a spectral measure
+of the Wiener sequence $\xi$, while the second condition is a quantitative version
+of the statement that $\chi$ has no gaps in its support.
+
+In Proposition~\ref{Lemma5a} we provide a set of conditions which will yield a lower
+bound on the Weyl-type sum $W_R(\theta)$ on a sufficiently dense set of points
+$(R, \theta)$. Then, we combine Proposition~\ref{Lemma5a} with Proposition~\ref{Lemma-subharm} and Proposition~\ref{LemmaL-W-V} and show (in Theorem~\ref{thm:main2}) that these
+conditions guarantee equidistribution of zeroes of $F_\xi$ on appropriate local scales.
+This set of conditions looks somewhat cumbersome, but then, to demonstrate how neatly it works,
+we consider two instances of Wiener sequences $\xi$  with singular spectral measures
+having no gaps in their support: the indicator-function of the square-free integers
+and the Thue--Morse sequence.
+
+\subsection{Another lower bound for Weyl-type sums}
+\label{subsec:LB-general}
+
+Denote by $\mathcal G$ the class of non-negative test-functions $g\in C_0^\infty (\bR)$ such that
+$\operatorname{supp}(g)\subset \bigl(-\tfrac12, \tfrac12\, \bigr)$, $\displaystyle \int_\bR g = 1$, and
+$g=1$ on $\bigl[-\tfrac14, \tfrac14\, \bigr]$.
+As before, we assume that $\varphi$ is a $\Delta$-regular function, and
+that $\nu = \psi\circ\log$, $\sigma=\psi'\circ\log$, where $\psi=\varphi^{-1}$ is the inverse
+function.
+
+\section*{Selected author statement}
+\begin{proposition}\label{Lemma5a}
+Let $R\gg 1$. Suppose that there exist $q>1$, $\beta=\beta(R)\ll 1/\Delta(\sigma)$,
+and $g\in \mathcal G$, satisfying the following set of conditions:
+
+\smallskip\noindent{\rm (a)}
+$\beta^{-q} \le \min\bigl\{\sqrt{\sigma}, H(\tfrac12\, \nu)\bigr\}$;
+
+\medskip\noindent{\rm (b)}
+$\beta^{-(1+2q)} \ll \sigma\ep_2(\beta)$;
+
+\medskip\noindent{\rm (c)}
+$\displaystyle \nu \sum_{0\le h \le \beta^{-q}} \ep_1(\tfrac12\, \nu; h) \ll \beta\sigma\ep_2(\beta) $;
+
+\medskip\noindent{\rm (d)}
+$\displaystyle \sum_{h>\beta^{-q}} |\widehat{g}(\beta h)| \ll \ep_2(\beta) $.
+
+\smallskip
+Then, for every $\vartheta\in \bigl[-\tfrac12,  \tfrac12\, \bigr]$, there exist
+\[
+R'\in [R, R(1+\beta)],  \quad \theta'\in (\vartheta-\beta, \vartheta+\beta),
+\]
+such that
+\[
+|W_{R'}(\theta')| \gtrsim \sigma^{1/4}\, \sqrt{\ep_2 (\beta)}\,.
+\]
+\end{proposition}
+\section*{Complete author proof}
+\begin{proof}
+As in the proof of Proposition~\ref{Lemma5}, we estimate from below the average
+\[
+\widetilde{X} =
+\int_R^{R(1+\beta)}\, \int_{-1/2}^{1/2} |\widetilde{W}_s(\theta)|^2\,
+g(\beta^{-1}(\vartheta-\theta))\, {\rm d}\theta\, {\rm d}\nu (s)\,,
+\]
+where
+\[
+\widetilde{W}_R(\theta) = \sum_{k\in\bZ} \xi(k)e(k\theta)
+\exp\bigl[\,\frac{(k-\nu)^2}{2\sigma} \,\bigr]\,.
+\]
+By Lemma~\ref{Lemma5A}(ii), $\nu(R(1+\beta))-\nu(R) = (1+o(1))\beta\sigma$, so, to prove Proposition~\ref{Lemma5a} we need to show that
+$\widetilde{X} \gtrsim \beta^2\sigma^{3/2}\ep_2(\beta)$.
+As before, we rewrite $\widetilde X$ as a Fourier series
+\[
+\widetilde{X}
+= \beta\,
+\sum_{h\in\bZ} \widehat{g}(\beta h) e(-h\vartheta)\,
+\sum_{k\in\bZ} \xi(k)\bar\xi(k+h) V_R(k; h)\,.
+\]
+Recalling the notation
+$\displaystyle V_R(h) = \sum_{k\in\bZ} V_R(k; h)$, we split the RHS into three parts:
+\begin{align*}
+\widetilde{X}  &= \beta V_R(0)\, \sum_{h\in\bZ} \widehat{g}(\beta h)\widehat{\chi}(h) e(-h\vartheta) \\
+&\quad + \beta\, \sum_{h\in\bZ} \widehat{g}(\beta h) e(-h\vartheta)\,
+\sum_{k\in\bZ} \bigl( \xi(k)\bar\xi(k+h) - \widehat{\chi}(h) \bigr) V_R(k; h) \\
+&\quad + \beta\, \sum_{h\in\bZ} \widehat{g}(\beta h) \widehat{\chi}(h) e(-h\vartheta)\,
+(V_R(h) - V_R(0)) \\
+&= I +II + III\,.
+\end{align*}
+We will show that $I\gtrsim \beta^2\sigma^{3/2}\ep_2(\beta)$, while
+the terms $|II|$ and $|III|$ are  $\ll \beta^2\sigma^{3/2}\ep_2(\beta)$.
+
+\medskip\noindent\underline{Lower bound of $I$}:
+We set $g_\beta(\theta) = \beta^{-1}g(\beta^{-1}\theta)$, and denote by
+$(\chi * g_\beta)'$ the density of the convolution of $\chi$ with
+$g_\beta$. Then, \[ I=\beta V_R(0) (\chi * g_\beta)'(-\vartheta).\]
+By Lemma~\ref{Lemma10a}, $V_R(0)\gtrsim \beta \sigma^{3/2}$. Since $g_\beta = \beta^{-1}$ on
+$ \bigl[-\tfrac14\, \beta, \tfrac14\, \beta \bigr]$, we have
+\[
+(\chi * g_\beta)'(-\vartheta) \gtrsim
+\chi\bigl[-\vartheta-\tfrac14\, \beta, -\vartheta + \tfrac14\, \beta \bigr]
+\gtrsim \ep_2(\beta).
+\]
+Thus, $I \gtrsim \beta^2 \sigma^{3/2} \ep_2(\beta)$.
+
+\medskip\noindent\underline{Upper bound of $II$}:
+Recalling that $\beta\sigma \stackrel{(a)}\gg \sqrt{\sigma\log\sigma}$
+and using Lemma~\ref{Lemma5B}(ii), we cut the sum in $k$, getting
+\begin{align*}
+|II| &\lesssim \beta\, \sum_{h\in\bZ} |\widehat{g}(\beta h)| \cdot
+\bigl| \sum_{|k-\nu|\le 2\beta\sigma}
+\bigl( \xi(k)\bar\xi(k+h) - \widehat{\chi}(h) \bigr) V_R(k; h)\, \bigr| + o(1) \\
+&= \beta\, \bigl(\, \sum_{|h|\le \beta^{-q}} + \sum_{|h|>\beta^{-q}} \,\bigr)\,
+|\widehat{g}(\beta h)| \\ &\qquad\qquad\qquad\qquad \times
+\bigl|\, \sum_{|k-\nu|\le 2\beta\sigma}
+\bigl( \xi(k)\bar\xi(k+h) - \widehat{\chi}(h) \bigr) V_R(k; h) \,\bigr| + o(1)\,.
+\end{align*}
+For $|h|>\beta^{-q}$, using the crude estimate
+\[
+\bigl|\, \sum_{|k-\nu|\le 2\beta\sigma}
+\bigl( \xi(k)\bar\xi(k+h) - \widehat{\chi}(h) \bigr) V_R(k; h) \,\bigr|
+\lesssim \beta\sigma \cdot \sqrt{\sigma} = \beta\sigma^{3/2}\,,
+\]
+we get
+\begin{multline*}
+\beta\, \sum_{|h|> \beta^{-q}}
+|\widehat{g}(\beta h)| \cdot
+\bigl|\, \sum_{|k-\nu|\le 2\beta\sigma}
+\bigl( \xi(k)\bar\xi(k+h) - \widehat{\chi}(h) \bigr) V_R(k; h) \,\bigr|
+\\
+\lesssim \beta^2\sigma^{3/2} \sum_{|h|> \beta^{-q}}
+|\widehat{g}(\beta h)|\,,
+\end{multline*}
+which is $\ll \beta^2\sigma^{3/2}\ep_2(\beta)$ by assumption (d).
+
+Now, we consider the sum over $|h|\le\beta^{-q}$.
+Applying summation by parts and using Lemma~\ref{Lemma5D}, we have
+\begin{align*}
+\Bigl| &\sum_{|k-\nu|\le 2\beta\sigma}
+\bigl( \xi(k)\bar\xi(k+h) - \widehat{\chi}(h) \bigr) V_R(k; h) \Bigr|
+\\
+&\lesssim
+\Bigl(\max_{|k-\nu|\le 2\beta\sigma} V_R(k; h)+ \sum_{|k-\nu|\le 2\beta\sigma} |V_R(k; h)-V_R(k-1; h)|\,\Bigr) 
+\\&\qquad\qquad\qquad\qquad\qquad\times
+\max_{|k-\nu|\le 2\beta}\, \bigl|\,
+\sum_{k\le s \le \nu +2\beta\sigma}
+\bigl(  \xi(s)\bar\xi(s+h) - \widehat{\chi}(h) \bigr)\,
+\bigr|
+\\
+&\lesssim
+\sqrt{\sigma}\, \max_{|k-\nu|\le 2\beta}\, \bigl|\,
+\sum_{k\le s \le \nu +2\beta\sigma}
+\bigl(  \xi(s)\bar\xi(s+h) - \widehat{\chi}(h) \bigr)
+\,\bigr|\,.
+\end{align*}
+First, we assume that $0\le h \le \beta^{-q}$. Then, by estimate~\eqref{eq:C1},
+the maximum on the RHS is $ \lesssim (\nu + 2\beta\sigma)\ep_1(\nu-2\beta\sigma; h)$.
+Since $\beta\sigma \ll \sigma/\Delta(\sigma) \lesssim \nu$, the latter expression is
+$ \lesssim \, \nu\ep_1(\tfrac12\, \nu; h) $. The application of estimate~\eqref{eq:C1} was legal since,
+$  \beta^{-q} \stackrel{(a)}\le H(\tfrac12\, \nu) \,
+\stackrel{\beta\sigma\ll\nu}\le\, H(\nu-2\beta\sigma) $.
+Thus,
+\begin{multline*}
+\beta\, \sum_{0\le h \le \beta^{-q}}\,
+|\widehat{g}(\beta h)| \cdot
+\bigl|\, \sum_{|k-\nu|\le 2\beta\sigma}
+\bigl( \xi(k)\bar\xi(k+h) - \widehat{\chi}(h) \bigr) V_R(k; h) \,\bigr|
+\\
+\lesssim
+\beta\sqrt{\sigma}\cdot \nu\, \sum_{0\le h \le \beta^{-q}} \ep_1(\tfrac12\, \nu, h)\,,
+\end{multline*}
+which is $\ll \beta^2\sigma^{3/2} \ep_2(\beta)$ by assumption (c).
+
+The sum over $-\beta^{-q} \le h \le -1$ needs only a minor modification.
+In this case we have
+\begin{align*}
+\bigl|\, \sum_{k\le s \le \nu +2\beta\sigma}
+\bigl(  \xi(s)\bar\xi(s+h) &- \widehat{\chi}(h) \bigr) \,\bigr|\\
+&= \bigl|\, \sum_{k-|h|\le s \le \nu +2\beta\sigma-|h|}\,
+\bigl(  \xi(s)\bar\xi(s+|h|) - \widehat{\chi}(|h|) \bigr) \,\bigr| \\
+&= \bigl|\, \sum_{k\le s \le \nu +2\beta\sigma}\,
+\bigl(  \xi(s)\bar\xi(s+|h|) - \widehat{\chi}(|h|) \bigr) \,\bigr| + O(|h|)\,.
+\end{align*}
+Therefore,
+\begin{multline*}
+\beta\, \sum_{-\beta^{-q}\le h \le -1}\,
+|\widehat{g}(\beta h)| \cdot
+\bigl|\, \sum_{|k-\nu|\le 2\beta\sigma}
+\bigl( \xi(k)\bar\xi(k+h) - \widehat{\chi}(h) \bigr) V_R(k; h) \,\bigr|
+\\
+\lesssim
+\beta\sqrt{\sigma}\bigl(\, \nu\, \sum_{0\le h' \le \beta^{-q}} \ep_1(\tfrac12\, \nu, h')
++ \beta^{-2q}\,\bigr)\,,
+\end{multline*}
+and, by assumptions (c) and (b), both terms on the RHS are $\ll \beta^2\sigma^{3/2} \ep_2(\beta)$.
+
+\medskip\noindent\underline{Upper bound of $III$}:
+We have
+\[
+| III | \lesssim \beta\, \bigl(\, \sum_{|h|\le\sqrt\sigma} + \sum_{|h|>\sqrt{\sigma}} \,\bigr)
+|\widehat{g}(\beta h)|\cdot |(V_R(h) - V_R(0))|\,.
+\]
+To estimate the first sum, we apply Lemma~\ref{Lemma10b} and use that the Fourier transform of $g$ decays faster than any negative power. We get
+\begin{multline*}
+\beta\, \sum_{|h|\le\sqrt\sigma}
+|\widehat{g}(\beta h)|\cdot |(V_R(h) - V_R(0))| \lesssim \beta\sqrt{\sigma}\,
+\sum_{|h|\le\sqrt\sigma}\,  |\widehat{g}(\beta h)| (1+ h^2\beta) \\
+\lesssim \beta\sqrt{\sigma} \cdot \beta^{-2} = \frac{\sqrt{\sigma}}\beta\,.
+\end{multline*}
+To estimate the second sum, we use the crude bound $V_R(h) \lesssim \beta\sigma^{3/2}$,
+which follows from Lemma~\ref{Lemma5C}(i) and Lemma~\ref{Lemma5B}(ii).
+Using again that the Fourier transform of $g$ decays faster than any negative power, we get
+\begin{multline*}
+\beta\, \sum_{|h|>\sqrt\sigma}
+|\widehat{g}(\beta h)|\cdot |(V_R(h) - V_R(0))| \lesssim \beta^2\sigma^{3/2}\,
+\sum_{|h|>\sqrt\sigma} |\widehat{g}(\beta h)| \\
+\lesssim \beta^2 \sigma^{3/2} \cdot \frac1{\beta}\,
+\sum_{\ell\ge\beta\sqrt\sigma} \frac1{\ell^3} \lesssim \frac{\sqrt{\sigma}}\beta\,.
+\end{multline*}
+It remains to recall that
+condition (b) guarantees that 
+$$
+\beta^{-1}\sqrt{\sigma} \ll \beta^2 \sigma^{3/2}\, \ep_2(\beta).
+$$
+This completes the proof of Proposition~\ref{Lemma5a}.
+\end{proof}
+\end{document}
