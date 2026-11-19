@@ -1,0 +1,9 @@
+# CT-001162 · Weak etaleness is checked on the local rings
+
+The Stacks Project Authors
+
+Stacks Project, chapter more-morphisms.tex (More on Morphisms), section Thickenings · Stacks Project source tree, file more-morphisms.tex, corpus local snapshot 20261011
+
+[阅读PDF](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/jobs/j06729/build-root-r001/L26005/L26005_author_proof.pdf) · [来源：human-proof-materials / 001259](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/problems/001259/README.md)
+
+[题证原材料](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/jobs/j06729/package-root-r001/items/L26005_author_proof.tex)

@@ -1,0 +1,9 @@
+# CT-001269 · Vanishing of mod p cohomology of a separated variety in characteristic p above the dimension
+
+The Stacks Project Authors
+
+stacks-project:etale-cohomology.tex:local-snapshot-20261011 · Stacks Project source tree, file etale-cohomology.tex, corpus local snapshot 20261011
+
+[阅读PDF](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/jobs/j05339/build-root-r001/L1790/L1790_author_proof.pdf) · [来源：human-proof-materials / 001704](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/problems/001704/README.md)
+
+[题证原材料](https://github.com/AlexenderSokolov/human-proof-materials/blob/a3af733fb6167cdab93f959f21cdbdbd1568bf3f/assets/jobs/j05339/package-root-r001/items/L1790_author_proof.tex)
